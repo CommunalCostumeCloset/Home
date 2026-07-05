@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>奇装异服共享平台</title>
+  <style>
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,'PingFang SC','Microsoft YaHei',sans-serif;background:#faf7f2;color:#2f2a25}.header{background:#fff;padding:18px 28px;box-shadow:0 2px 12px #0001;position:sticky;top:0;z-index:10}.logo h1{margin:0;font-size:26px}.logo p{margin:6px 0 14px;color:#766b5f}.nav{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.nav a,.nav button{border:0;background:#f1e6d8;padding:9px 13px;border-radius:999px;text-decoration:none;color:#3a3028;cursor:pointer;font-size:14px}.nav a:hover,.nav button:hover{background:#e3d1bd}.nav .admin-link{background:#ded1ff}.nav .danger{background:#ffd8d8}.section{display:none;max-width:1100px;margin:0 auto;padding:28px}.section.active{display:block}.hero{background:linear-gradient(135deg,#fff,#f4e5d2);border-radius:24px;padding:48px;text-align:center}.hero h2{font-size:36px;margin:0 0 12px}.btn-primary{background:#8b5e3c;color:white;border:0;border-radius:10px;padding:11px 18px;cursor:pointer}.btn-secondary{background:#eadaca;color:#2f2a25;border:0;border-radius:10px;padding:10px 14px;cursor:pointer}.cancel-btn{background:#d9534f;color:white;border:0;border-radius:10px;padding:9px 13px;cursor:pointer}.stats,.features,.category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:24px}.stat-item,.feature-card,.item-card,.reservation-card,.auth-card{background:white;border-radius:18px;padding:18px;box-shadow:0 4px 18px #00000012}.stat-number{display:block;font-size:28px;font-weight:bold}.stat-label{color:#766b5f}.category-btn{background:white;border:1px solid #eadaca;border-radius:14px;padding:18px;cursor:pointer;font-size:16px}.filters{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 24px}.filters input,.filters select,.form-group input,.form-group select,.form-group textarea{padding:10px;border:1px solid #d8c8b8;border-radius:10px;background:white;width:100%}.items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}.item-card{cursor:pointer;transition:.15s}.item-card:hover{transform:translateY(-3px)}.item-image{height:150px;display:flex;align-items:center;justify-content:center;font-size:66px;background:#f8efe6;border-radius:14px}.item-tags{display:flex;gap:6px;flex-wrap:wrap}.item-tag{background:#f1e6d8;border-radius:999px;padding:4px 8px;font-size:12px}.item-status{font-weight:bold}.status-available{color:#2e8b57}.status-reserved{color:#c78000}.status-borrowed{color:#b94141}.reservations-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}.empty-state{text-align:center;background:white;border-radius:18px;padding:28px;margin-top:16px;color:#766b5f}.form-group{margin:14px 0}.auth-container{max-width:420px;margin:0 auto}.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:20px;z-index:20}.modal-content{background:white;max-width:520px;width:100%;max-height:90vh;overflow:auto;border-radius:20px;padding:24px;position:relative}.close{position:absolute;right:18px;top:12px;font-size:28px;cursor:pointer}.detail-row{margin:10px 0}.detail-label{font-weight:bold}.footer{text-align:center;padding:28px;color:#766b5f}.return-photo{width:100%;border-radius:12px;margin-top:8px}.admin-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.notice{background:#fff6d7;border:1px solid #f1d88a;border-radius:14px;padding:14px;margin:14px 0}.success{background:#e6f6ea;border:1px solid #90d3a2}.small{font-size:13px;color:#766b5f}#user-info{gap:8px;align-items:center}.progress{height:9px;background:#eee;border-radius:999px;overflow:hidden;margin-top:10px}.progress div{height:100%;background:#8b5e3c;width:0%}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <h1>🧥 奇装异服共享平台</h1>
+      <p>让每一件衣服都发挥最大价值</p>
+    </div>
+    <nav class="nav">
+      <a href="#home" onclick="showSection('home')">首页</a>
+      <a href="#catalog" onclick="showSection('catalog')">衣物目录</a>
+      <a href="#reserve" onclick="showSection('reserve')">我的预定</a>
+      <a href="#return" onclick="showSection('return')">归还衣物</a>
+      <a href="#donate" onclick="showSection('donate')">捐赠衣物</a>
+      <a class="admin-link" href="#admin" onclick="showSection('admin')">管理员后台</a>
+      <div id="auth-links">
+        <a href="#login" onclick="showSection('login')">登录</a>
+        <a href="#register" onclick="showSection('register')">注册</a>
+      </div>
+      <div id="user-info" style="display:none;">
+        <span id="user-name">用户</span>
+        <button onclick="logout()">退出</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="section active">
+      <div class="hero">
+        <h2>共享奇装异服，减少浪费</h2>
+        <p>解决“奇装异服周”的两大问题：住宿生无法参加、衣物浪费严重</p>
+        <button onclick="showSection('catalog')" class="btn-primary">浏览衣物</button>
+      </div>
+      <div class="stats">
+        <div class="stat-item"><span class="stat-number" id="stat-items">0</span><span class="stat-label">件衣物</span></div>
+        <div class="stat-item"><span class="stat-number" id="stat-reservations">0</span><span class="stat-label">次借用/预定</span></div>
+        <div class="stat-item"><span class="stat-number" id="stat-returns">0</span><span class="stat-label">次归还</span></div>
+      </div>
+      <div class="features">
+        <div class="feature-card"><h3>📚 图书馆式预定</h3><p>提前预定心仪的衣物，像借书一样方便。</p></div>
+        <div class="feature-card"><h3>📷 拍照归还</h3><p>归还时上传照片，方便管理员检查衣物状态。</p></div>
+        <div class="feature-card"><h3>☁️ 云端保存</h3><p>照片上传到 Cloudinary，适合 GitHub Pages 展示。</p></div>
+      </div>
+      <div class="quick-categories">
+        <h3>热门分类</h3>
+        <div class="category-grid">
+          <button onclick="filterByCategory('假发')" class="category-btn">👩‍🦰 假发</button>
+          <button onclick="filterByCategory('裙子')" class="category-btn">👗 裙子</button>
+          <button onclick="filterByCategory('套装')" class="category-btn">👔 套装</button>
+          <button onclick="filterByCategory('配饰')" class="category-btn">🎩 配饰</button>
+          <button onclick="filterByCategory('道具')" class="category-btn">🎭 道具</button>
+          <button onclick="filterByCategory('鞋履')" class="category-btn">👠 鞋履</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog" class="section">
+      <div class="section-header">
+        <h2>衣物目录</h2>
+        <div class="filters">
+          <select id="category-filter" onchange="filterItems()"><option value="all">全部类别</option><option value="假发">假发</option><option value="裙子">裙子</option><option value="套装">套装</option><option value="配饰">配饰</option><option value="道具">道具</option><option value="鞋履">鞋履</option></select>
+          <select id="size-filter" onchange="filterItems()"><option value="all">全部尺寸</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="均码">均码</option><option value="38">38</option><option value="42">42</option></select>
+          <select id="gender-filter" onchange="filterItems()"><option value="all">全部性别</option><option value="男">男</option><option value="女">女</option><option value="通用">通用</option></select>
+          <input type="text" id="search-input" placeholder="搜索衣物名称..." onkeyup="filterItems()">
+        </div>
+      </div>
+      <div id="items-grid" class="items-grid"></div>
+    </section>
+
+    <section id="reserve" class="section">
+      <h2>我的预定</h2>
+      <div class="notice">这里只显示当前登录用户的预定。归还完成后，记录会从这里移除。</div>
+      <div id="reservations-list" class="reservations-list"></div>
+      <div id="no-reservations" class="empty-state"><p>暂无预定记录</p><button onclick="showSection('catalog')" class="btn-primary">去预定衣物</button></div>
+    </section>
+
+    <section id="return" class="section">
+      <h2>归还衣物</h2>
+      <p>请拍照或上传归还衣物照片。照片会上传到 Cloudinary，并按日期分类。</p>
+      <div id="return-list" class="reservations-list"></div>
+      <div id="no-return-items" class="empty-state"><p>你还没有租借的衣服可以归还</p><button onclick="showSection('catalog')" class="btn-primary">去借衣物</button></div>
+    </section>
+
+    <section id="donate" class="section">
+      <h2>捐赠衣物</h2>
+      <form id="donate-form" onsubmit="handleDonate(event)">
+        <div class="form-group"><label>衣物名称</label><input type="text" id="donate-name" required></div>
+        <div class="form-group"><label>类别</label><select id="donate-category" required><option value="">请选择类别</option><option value="假发">假发</option><option value="裙子">裙子</option><option value="套装">套装</option><option value="配饰">配饰</option><option value="道具">道具</option><option value="鞋履">鞋履</option></select></div>
+        <div class="form-group"><label>尺寸</label><select id="donate-size" required><option value="">请选择尺寸</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="均码">均码</option></select></div>
+        <div class="form-group"><label>适合性别</label><select id="donate-gender" required><option value="">请选择性别</option><option value="男">男</option><option value="女">女</option><option value="通用">通用</option></select></div>
+        <div class="form-group"><label>描述</label><textarea id="donate-desc" rows="3"></textarea></div>
+        <div class="form-group"><label>捐赠人姓名</label><input type="text" id="donate-donor" required></div>
+        <button type="submit" class="btn-primary">确认捐赠</button>
+      </form>
+    </section>
+
+    <section id="admin" class="section">
+      <h2>管理员后台：归还照片记录</h2>
+      <div id="admin-login-box" class="notice">
+        只有管理员可以查看全部归还照片。请先用 <b>admin / 123456</b> 登录。
+      </div>
+      <div id="admin-panel" style="display:none;">
+        <div class="admin-toolbar">
+          <button class="btn-primary" onclick="loadAdminReturns()">刷新云端归还照片</button>
+          <button class="btn-secondary" onclick="renderLocalReturnRecords()">查看本机归还记录</button>
+        </div>
+        <div class="notice small">
+          云端列表依赖 Cloudinary 的 list delivery type。若看不到照片，请看 README 的“管理员后台设置”。
+        </div>
+        <div id="admin-return-list" class="reservations-list"></div>
+      </div>
+    </section>
+
+    <section id="login" class="section">
+      <div class="auth-container"><div class="auth-card">
+        <h2>🔐 用户登录</h2>
+        <form id="login-form" onsubmit="handleLogin(event)">
+          <div class="form-group"><label>用户名</label><input type="text" id="login-username" required></div>
+          <div class="form-group"><label>密码</label><input type="password" id="login-password" required></div>
+          <button type="submit" class="btn-primary">登录</button>
+        </form>
+        <p>测试账号：xiaoming / 123456；管理员：admin / 123456</p>
+      </div></div>
+    </section>
+
+    <section id="register" class="section">
+      <div class="auth-container"><div class="auth-card">
+        <h2>📝 用户注册</h2>
+        <form id="register-form" onsubmit="handleRegister(event)">
+          <div class="form-group"><label>用户名</label><input type="text" id="register-username" required></div>
+          <div class="form-group"><label>密码</label><input type="password" id="register-password" required></div>
+          <div class="form-group"><label>确认密码</label><input type="password" id="register-confirm-password" required></div>
+          <div class="form-group"><label>姓名</label><input type="text" id="register-name" required></div>
+          <div class="form-group"><label>学号</label><input type="text" id="register-student-id"></div>
+          <button type="submit" class="btn-primary">注册</button>
+        </form>
+      </div></div>
+    </section>
+  </main>
+
+  <div id="item-modal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal()">&times;</span><div id="modal-body"></div></div></div>
+  <footer class="footer"><p>&copy; 2026 奇装异服共享平台</p></footer>
+
+<script>
+const CLOUD_NAME = 'vicummbs';
+const UPLOAD_PRESET = 'returned_costumes_upload';
+const RETURN_TAG = 'returned_costume';
+
+const defaultUsers = [
+  { id: 1, username: 'admin', password: '123456', name: '管理员', studentId: '000000', role: 'admin' },
+  { id: 2, username: 'xiaoming', password: '123456', name: '小明', studentId: '2024001', role: 'user' },
+  { id: 3, username: 'xiaohua', password: '123456', name: '小华', studentId: '2024002', role: 'user' }
+];
+const defaultItems = [
+  { id: 1, name: '粉色长卷发假发', category: '假发', size: '均码', gender: '女', description: '甜美粉色长卷发，适合公主装扮', donor: '李同学', status: 'available', image: '👩‍🦰' },
+  { id: 2, name: '黑色波波头假发', category: '假发', size: '均码', gender: '女', description: '时尚黑色波波头，适合复古风格', donor: '王同学', status: 'available', image: '👩‍🦱' },
+  { id: 3, name: '金色大波浪假发', category: '假发', size: '均码', gender: '女', description: '闪耀金色大波浪，舞会必备', donor: '张同学', status: 'available', image: '👱‍♀️' },
+  { id: 4, name: '彩色爆炸头', category: '假发', size: '均码', gender: '通用', description: '彩虹色爆炸头，夸张搞怪', donor: '赵同学', status: 'available', image: '🤡' },
+  { id: 5, name: '复古宫廷裙', category: '裙子', size: 'M', gender: '女', description: '欧式宫廷风格长裙，华丽优雅', donor: '陈同学', status: 'available', image: '👗' },
+  { id: 6, name: '蓬蓬公主裙', category: '裙子', size: 'S', gender: '女', description: '粉色蓬蓬裙，童话公主风', donor: '刘同学', status: 'available', image: '👑' },
+  { id: 7, name: '旗袍', category: '裙子', size: 'M', gender: '女', description: '优雅旗袍，复古中国风', donor: '孙同学', status: 'available', image: '🧧' },
+  { id: 8, name: '巫师长袍', category: '套装', size: 'L', gender: '通用', description: '黑色巫师长袍，万圣节必备', donor: '周同学', status: 'available', image: '🧙' },
+  { id: 9, name: '超级英雄套装', category: '套装', size: 'M', gender: '男', description: '蜘蛛侠主题套装，帅气十足', donor: '吴同学', status: 'available', image: '🦸' },
+  { id: 10, name: '警察制服', category: '套装', size: 'L', gender: '男', description: '经典警察制服，角色扮演', donor: '郑同学', status: 'available', image: '👮' },
+  { id: 11, name: '医生白大褂', category: '套装', size: 'XL', gender: '通用', description: '专业医生白大褂，适合职业体验', donor: '黄同学', status: 'available', image: '👨‍⚕️' },
+  { id: 12, name: '皇冠头饰', category: '配饰', size: '均码', gender: '女', description: '金色皇冠，公主装扮必备', donor: '林同学', status: 'available', image: '👑' },
+  { id: 13, name: '绅士礼帽', category: '配饰', size: '均码', gender: '男', description: '黑色礼帽，复古绅士风格', donor: '何同学', status: 'available', image: '🎩' },
+  { id: 14, name: '夸张眼镜', category: '配饰', size: '均码', gender: '通用', description: '搞怪夸张眼镜，派对必备', donor: '马同学', status: 'available', image: '🤓' },
+  { id: 15, name: '魔法棒', category: '道具', size: '均码', gender: '通用', description: '闪亮魔法棒，仙女装扮', donor: '罗同学', status: 'available', image: '🪄' },
+  { id: 16, name: '宝剑道具', category: '道具', size: '均码', gender: '男', description: '塑料宝剑，骑士装扮', donor: '梁同学', status: 'available', image: '⚔️' },
+  { id: 17, name: '麦克风道具', category: '道具', size: '均码', gender: '通用', description: '仿真麦克风，歌手装扮', donor: '谢同学', status: 'available', image: '🎤' },
+  { id: 18, name: '高跟鞋', category: '鞋履', size: '38', gender: '女', description: '银色高跟鞋，舞会必备', donor: '宋同学', status: 'available', image: '👠' },
+  { id: 19, name: '马丁靴', category: '鞋履', size: '42', gender: '男', description: '黑色马丁靴，朋克风格', donor: '唐同学', status: 'available', image: '🥾' },
+  { id: 20, name: '魔法拖鞋', category: '鞋履', size: '均码', gender: '通用', description: '搞怪魔法拖鞋，舒适有趣', donor: '韩同学', status: 'available', image: '🩴' }
+];
+
+let users = load('users', defaultUsers);
+let items = load('items', defaultItems);
+let reservations = load('reservations', []);
+let returnRecords = load('returnRecords', []);
+let currentUser = load('currentUser', null);
+
+function load(key, fallback){ try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } }
+function save(key, value){ localStorage.setItem(key, JSON.stringify(value)); }
+function todayString(){ return new Date().toISOString().split('T')[0]; }
+function safeName(text){ return String(text || '').replace(/[\\/:*?"<>|#%&{}$!'@+`=]/g, '_').replace(/\s+/g, '_').slice(0, 60); }
+function isAdmin(){ return currentUser && currentUser.role === 'admin'; }
+
+function showSection(sectionId){
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(sectionId);
+  if (target) target.classList.add('active');
+  if (sectionId === 'catalog') renderItems(items);
+  if (sectionId === 'reserve') renderReservations();
+  if (sectionId === 'return') renderReturnItems();
+  if (sectionId === 'admin') renderAdminSection();
+  updateStats();
+}
+
+function updateStats(){
+  document.getElementById('stat-items').textContent = items.length;
+  document.getElementById('stat-reservations').textContent = reservations.length;
+  document.getElementById('stat-returns').textContent = returnRecords.length;
+}
+
+function renderItems(filteredItems){
+  const grid = document.getElementById('items-grid');
+  grid.innerHTML = '';
+  if (filteredItems.length === 0){ grid.innerHTML = '<div class="empty-state"><p>没有找到符合条件的衣物</p></div>'; return; }
+  filteredItems.forEach(item => {
+    const card = document.createElement('div'); card.className = 'item-card'; card.onclick = () => showItemDetail(item);
+    let statusClass = 'status-available', statusText = '可借用';
+    if (item.status === 'reserved'){ statusClass = 'status-reserved'; statusText = '已预定'; }
+    if (item.status === 'borrowed'){ statusClass = 'status-borrowed'; statusText = '已借出'; }
+    card.innerHTML = `<div class="item-image">${item.image}</div><div class="item-info"><h3>${item.name}</h3><div class="item-tags"><span class="item-tag">${item.category}</span><span class="item-tag">${item.size}</span><span class="item-tag">${item.gender}</span></div><p class="item-status ${statusClass}">${statusText}</p></div>`;
+    grid.appendChild(card);
+  });
+}
+
+function showItemDetail(item){
+  const modal = document.getElementById('item-modal'); const modalBody = document.getElementById('modal-body');
+  let statusText = item.status === 'available' ? '可借用' : item.status === 'reserved' ? '已预定' : '已借出';
+  modalBody.innerHTML = `<div class="item-image" style="height:250px;">${item.image}</div><h3>${item.name}</h3><div class="detail-row"><span class="detail-label">类别：</span>${item.category}</div><div class="detail-row"><span class="detail-label">尺寸：</span>${item.size}</div><div class="detail-row"><span class="detail-label">适合性别：</span>${item.gender}</div><div class="detail-row"><span class="detail-label">状态：</span>${statusText}</div><div class="detail-row"><span class="detail-label">捐赠人：</span>${item.donor}</div><div class="detail-row"><span class="detail-label">描述：</span>${item.description}</div>${item.status === 'available' ? `<button onclick="reserveItem(${item.id})" class="btn-primary reserve-btn">立即预定</button>` : ''}`;
+  modal.style.display = 'flex';
+}
+function closeModal(){ document.getElementById('item-modal').style.display = 'none'; }
+
+function filterItems(){
+  const category = document.getElementById('category-filter').value;
+  const size = document.getElementById('size-filter').value;
+  const gender = document.getElementById('gender-filter').value;
+  const search = document.getElementById('search-input').value.toLowerCase();
+  renderItems(items.filter(item => (category === 'all' || item.category === category) && (size === 'all' || item.size === size) && (gender === 'all' || item.gender === gender) && (item.name.toLowerCase().includes(search) || item.description.toLowerCase().includes(search))));
+}
+function filterByCategory(category){ showSection('catalog'); document.getElementById('category-filter').value = category; filterItems(); }
+
+function reserveItem(itemId){
+  if (!currentUser){ alert('请先登录后再预定'); closeModal(); showSection('login'); return; }
+  const item = items.find(i => i.id === itemId);
+  if (!item || item.status !== 'available') return;
+  item.status = 'reserved';
+  reservations.push({ id: Date.now(), itemId: item.id, itemName: item.name, reservedAt: todayString(), reservedBy: currentUser.name, reservedByUsername: currentUser.username, status: 'reserved' });
+  save('items', items); save('reservations', reservations);
+  closeModal(); renderItems(items); alert('预定成功！');
+}
+
+function userReservations(){ return isAdmin() ? reservations : reservations.filter(r => currentUser && r.reservedByUsername === currentUser.username); }
+function renderReservations(){
+  const list = document.getElementById('reservations-list'); const emptyState = document.getElementById('no-reservations'); list.innerHTML = '';
+  const data = userReservations();
+  if (!currentUser){ list.innerHTML = '<div class="empty-state"><p>请先登录查看预定记录</p></div>'; emptyState.style.display = 'none'; return; }
+  if (data.length === 0){ emptyState.style.display = 'block'; return; }
+  emptyState.style.display = 'none';
+  data.forEach(r => { const card = document.createElement('div'); card.className = 'reservation-card'; card.innerHTML = `<h3>${r.itemName}</h3><p>预定时间：${r.reservedAt}</p><p>预定人：${r.reservedBy}</p><p>状态：${r.status === 'reserved' ? '待归还' : r.status}</p><button onclick="cancelReservation(${r.id})" class="cancel-btn">取消预定</button>`; list.appendChild(card); });
+}
+function cancelReservation(reservationId){
+  const index = reservations.findIndex(r => r.id === reservationId); if (index === -1) return;
+  const reservation = reservations[index];
+  if (!isAdmin() && (!currentUser || reservation.reservedByUsername !== currentUser.username)){ alert('只能取消自己的预定'); return; }
+  const item = items.find(i => i.id === reservation.itemId); if (item) item.status = 'available';
+  reservations.splice(index, 1); save('reservations', reservations); save('items', items); renderReservations(); renderItems(items); alert('预定已取消');
+}
+
+function renderReturnItems(){
+  const returnList = document.getElementById('return-list'); const noReturnItems = document.getElementById('no-return-items'); returnList.innerHTML = '';
+  if (!currentUser){ returnList.innerHTML = '<div class="empty-state"><p>请先登录后归还衣物</p></div>'; noReturnItems.style.display = 'none'; return; }
+  const data = reservations.filter(r => r.reservedByUsername === currentUser.username);
+  if (data.length === 0){ noReturnItems.style.display = 'block'; return; }
+  noReturnItems.style.display = 'none';
+  data.forEach(r => {
+    const item = items.find(i => i.id === r.itemId) || {};
+    const card = document.createElement('div'); card.className = 'reservation-card';
+    card.innerHTML = `<h3>${r.itemName}</h3><p>预定时间：${r.reservedAt}</p><p>预定人：${r.reservedBy}</p><div class="form-group"><label>上传归还照片</label><input type="file" accept="image/*" capture="environment" id="return-photo-${r.id}"></div><div class="progress" id="progress-wrap-${r.id}" style="display:none;"><div id="progress-${r.id}"></div></div><button class="btn-primary" onclick="returnItem(${r.id})">确认归还并上传</button>`;
+    returnList.appendChild(card);
+  });
+}
+
+async function uploadToCloudinary(file, reservation){
+  const date = todayString();
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', UPLOAD_PRESET);
+  formData.append('asset_folder', `returned costumes/${date}`);
+  formData.append('folder', `returned costumes/${date}`);
+  formData.append('tags', `${RETURN_TAG},return_${date.replaceAll('-', '_')}`);
+  formData.append('context', `returned_by=${reservation.reservedBy}|item=${reservation.itemName}|date=${date}|reservation_id=${reservation.id}`);
+
+  const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, { method: 'POST', body: formData });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result?.error?.message || 'Cloudinary 上传失败');
+  return result;
+}
+
+async function returnItem(reservationId){
+  const input = document.getElementById(`return-photo-${reservationId}`);
+  if (!input.files || input.files.length === 0){ alert('请先拍照或上传归还照片'); return; }
+  const reservation = reservations.find(r => r.id === reservationId);
+  if (!reservation){ alert('找不到这条预定记录'); return; }
+  if (!currentUser || reservation.reservedByUsername !== currentUser.username){ alert('只能归还自己的衣物'); return; }
+  const progressWrap = document.getElementById(`progress-wrap-${reservationId}`); const progress = document.getElementById(`progress-${reservationId}`);
+  progressWrap.style.display = 'block'; progress.style.width = '35%';
+  try {
+    const uploadResult = await uploadToCloudinary(input.files[0], reservation);
+    progress.style.width = '85%';
+    const record = { id: Date.now(), itemId: reservation.itemId, itemName: reservation.itemName, returnedBy: reservation.reservedBy, returnedByUsername: reservation.reservedByUsername, returnedAt: new Date().toLocaleString(), date: todayString(), photoUrl: uploadResult.secure_url, publicId: uploadResult.public_id, folder: uploadResult.folder || `returned costumes/${todayString()}` };
+    returnRecords.push(record); save('returnRecords', returnRecords);
+    const item = items.find(i => i.id === reservation.itemId); if (item) item.status = 'available';
+    reservations = reservations.filter(r => r.id !== reservationId); save('items', items); save('reservations', reservations);
+    progress.style.width = '100%'; alert('归还成功！照片已经上传。'); renderReturnItems(); renderReservations(); updateStats();
+  } catch (error){ progressWrap.style.display = 'none'; alert('归还失败：' + error.message); }
+}
+
+function handleDonate(event){
+  event.preventDefault();
+  const newItem = { id: Date.now(), name: document.getElementById('donate-name').value, category: document.getElementById('donate-category').value, size: document.getElementById('donate-size').value, gender: document.getElementById('donate-gender').value, description: document.getElementById('donate-desc').value, donor: document.getElementById('donate-donor').value, status: 'available', image: getCategoryEmoji(document.getElementById('donate-category').value) };
+  items.push(newItem); save('items', items); document.getElementById('donate-form').reset(); alert('捐赠成功！感谢您的贡献'); showSection('catalog');
+}
+function getCategoryEmoji(category){ return ({'假发':'👩‍🦰','裙子':'👗','套装':'👔','配饰':'🎩','道具':'🎭','鞋履':'👠'})[category] || '🧥'; }
+
+function handleLogin(event){
+  event.preventDefault();
+  const username = document.getElementById('login-username').value; const password = document.getElementById('login-password').value;
+  const user = users.find(u => u.username === username && u.password === password);
+  if (!user){ alert('用户名或密码错误'); return; }
+  currentUser = user; save('currentUser', currentUser); updateAuthUI(); document.getElementById('login-form').reset(); showSection('home'); alert('登录成功！欢迎回来，' + user.name);
+}
+function handleRegister(event){
+  event.preventDefault();
+  const username = document.getElementById('register-username').value; const password = document.getElementById('register-password').value; const confirmPassword = document.getElementById('register-confirm-password').value; const name = document.getElementById('register-name').value; const studentId = document.getElementById('register-student-id').value;
+  if (password !== confirmPassword){ alert('两次输入的密码不一致'); return; }
+  if (users.some(u => u.username === username)){ alert('用户名已存在'); return; }
+  users.push({ id: Date.now(), username, password, name, studentId, role: 'user' }); save('users', users); document.getElementById('register-form').reset(); showSection('login'); alert('注册成功！请登录');
+}
+function logout(){ currentUser = null; localStorage.removeItem('currentUser'); updateAuthUI(); showSection('home'); alert('已退出登录'); }
+function updateAuthUI(){
+  const authLinks = document.getElementById('auth-links'); const userInfo = document.getElementById('user-info'); const userName = document.getElementById('user-name');
+  if (currentUser){ authLinks.style.display = 'none'; userInfo.style.display = 'flex'; userName.textContent = currentUser.name + (isAdmin() ? '（管理员）' : ''); }
+  else { authLinks.style.display = 'flex'; userInfo.style.display = 'none'; }
+}
+
+function renderAdminSection(){
+  const loginBox = document.getElementById('admin-login-box'); const panel = document.getElementById('admin-panel');
+  if (!isAdmin()){ loginBox.style.display = 'block'; panel.style.display = 'none'; return; }
+  loginBox.style.display = 'none'; panel.style.display = 'block'; renderLocalReturnRecords();
+}
+function renderLocalReturnRecords(){ renderAdminCards(returnRecords.slice().reverse(), '本机还没有归还记录。'); }
+async function loadAdminReturns(){
+  if (!isAdmin()){ alert('请先用管理员账号登录'); return; }
+  const list = document.getElementById('admin-return-list'); list.innerHTML = '<div class="empty-state"><p>正在读取 Cloudinary 照片...</p></div>';
+  try {
+    const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${RETURN_TAG}.json?_=${Date.now()}`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Cloudinary Resource list 没有开启，或照片没有 returned_costume tag');
+    const data = await response.json();
+    const resources = (data.resources || []).map(r => {
+      const context = r.context || {};
+      return { id: r.public_id, itemName: context.item || extractItemFromPublicId(r.public_id), returnedBy: context.returned_by || '未知用户', returnedAt: context.date || '', date: context.date || extractDateFromPublicId(r.public_id), photoUrl: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}.${r.format}`, publicId: r.public_id, folder: r.public_id.split('/').slice(0,-1).join('/') };
+    }).sort((a,b) => String(b.date).localeCompare(String(a.date)));
+    renderAdminCards(resources, 'Cloudinary 里还没有归还照片。');
+  } catch (error){ list.innerHTML = `<div class="empty-state"><p>无法读取云端照片：${error.message}</p><p class="small">请看 README：需要开启 Resource list，并确保上传时带 returned_costume tag。</p></div>`; }
+}
+function extractDateFromPublicId(publicId){ const m = String(publicId).match(/\d{4}-\d{2}-\d{2}/); return m ? m[0] : ''; }
+function extractItemFromPublicId(publicId){ return String(publicId).split('/').pop().replace(/_\d+$/, '').replaceAll('_',' '); }
+function renderAdminCards(records, emptyText){
+  const list = document.getElementById('admin-return-list'); list.innerHTML = '';
+  if (!records || records.length === 0){ list.innerHTML = `<div class="empty-state"><p>${emptyText}</p></div>`; return; }
+  records.forEach(r => { const card = document.createElement('div'); card.className = 'reservation-card'; card.innerHTML = `<h3>${r.itemName}</h3><p>归还人：${r.returnedBy}</p><p>日期：${r.date || r.returnedAt}</p><p class="small">位置：${r.folder || 'Cloudinary'}</p><a href="${r.photoUrl}" target="_blank"><img class="return-photo" src="${r.photoUrl}" alt="归还照片"></a>`; list.appendChild(card); });
+}
+
+window.onclick = function(event){ const modal = document.getElementById('item-modal'); if (event.target === modal) modal.style.display = 'none'; };
+document.addEventListener('DOMContentLoaded', () => { renderItems(items); updateAuthUI(); updateStats(); });
+</script>
+</body>
+</html>
