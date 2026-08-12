@@ -1,0 +1,61 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid)
+        && request.resource.data.role == 'user'
+        && request.resource.data.email == request.auth.token.email;
+      allow update: if (isOwner(uid)
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.email == resource.data.email)
+        || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Everyone can browse the shared costume catalog, even before logging in.
+    match /items/{itemId} {
+      allow read: if true;
+      allow create: if signedIn();
+      // Normal signed-in users may only change the live status of an existing item.
+      // Admins may edit the complete item, including catalog photos and metadata.
+      allow update: if isAdmin()
+        || (signedIn()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']));
+      allow delete: if isAdmin();
+    }
+
+    // Signed-in users need shared reservation status so availability is the same on every device.
+    match /reservations/{reservationId} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && (isAdmin() || request.resource.data.userUid == request.auth.uid);
+      allow update, delete: if isAdmin()
+        || (signedIn() && resource.data.userUid == request.auth.uid);
+    }
+
+    match /returnRecords/{recordId} {
+      allow read: if signedIn();
+      allow create: if isAdmin()
+        || (signedIn() && request.resource.data.userUid == request.auth.uid);
+      allow update: if isAdmin()
+        || (signedIn() && resource.data.userUid == request.auth.uid);
+      allow delete: if isAdmin();
+    }
+  }
+}

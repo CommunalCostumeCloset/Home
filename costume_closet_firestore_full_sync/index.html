@@ -1,0 +1,3424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>奇装异服共享平台</title>
+  <style>
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,'PingFang SC','Microsoft YaHei',sans-serif;background:#faf7f2;color:#2f2a25}.header{background:#fff;padding:18px 28px;box-shadow:0 2px 12px #0001;position:sticky;top:0;z-index:10}.logo h1{margin:0;font-size:26px}.logo p{margin:6px 0 14px;color:#766b5f}.nav{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.nav a,.nav button{border:0;background:#f1e6d8;padding:9px 13px;border-radius:999px;text-decoration:none;color:#3a3028;cursor:pointer;font-size:14px}.nav a:hover,.nav button:hover{background:#e3d1bd}.nav .admin-link{background:#ded1ff}.nav .danger{background:#ffd8d8}.section{display:none;max-width:1100px;margin:0 auto;padding:28px}.section.active{display:block}.hero{background:linear-gradient(135deg,#fff,#f4e5d2);border-radius:24px;padding:48px;text-align:center}.hero h2{font-size:36px;margin:0 0 12px}.btn-primary{background:#8b5e3c;color:white;border:0;border-radius:10px;padding:11px 18px;cursor:pointer}.btn-secondary{background:#eadaca;color:#2f2a25;border:0;border-radius:10px;padding:10px 14px;cursor:pointer}.cancel-btn{background:#d9534f;color:white;border:0;border-radius:10px;padding:9px 13px;cursor:pointer}.stats,.features,.category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:24px}.stat-item,.feature-card,.item-card,.reservation-card,.auth-card{background:white;border-radius:18px;padding:18px;box-shadow:0 4px 18px #00000012}.stat-number{display:block;font-size:28px;font-weight:bold}.stat-label{color:#766b5f}.category-btn{background:white;border:1px solid #eadaca;border-radius:14px;padding:18px;cursor:pointer;font-size:16px}.filters{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 24px}.filters input,.filters select,.form-group input,.form-group select,.form-group textarea{padding:10px;border:1px solid #d8c8b8;border-radius:10px;background:white;width:100%}.items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}.item-card{cursor:pointer;transition:.15s}.item-card:hover{transform:translateY(-3px)}.item-image{height:150px;display:flex;align-items:center;justify-content:center;background:#f8efe6;border-radius:14px;overflow:hidden}.item-image img{width:100%;height:100%;object-fit:cover;display:block}.image-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;color:#8a7d70;font-size:14px;padding:16px;background:#f8efe6}.donate-preview{width:180px;max-width:100%;border-radius:12px;margin-top:10px;display:none}.item-tags{display:flex;gap:6px;flex-wrap:wrap}.item-tag{background:#f1e6d8;border-radius:999px;padding:4px 8px;font-size:12px}.item-status{font-weight:bold}.status-available{color:#2e8b57}.status-reserved{color:#c78000}.status-borrowed{color:#b94141}.status-pending{color:#8b5e3c}.reservations-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}.empty-state{text-align:center;background:white;border-radius:18px;padding:28px;margin-top:16px;color:#766b5f}.form-group{margin:14px 0}.auth-container{max-width:420px;margin:0 auto}.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:20px;z-index:20}.modal-content{background:white;max-width:520px;width:100%;max-height:90vh;overflow:auto;border-radius:20px;padding:24px;position:relative}.close{position:absolute;right:18px;top:12px;font-size:28px;cursor:pointer}.detail-row{margin:10px 0}.detail-label{font-weight:bold}.footer{text-align:center;padding:28px;color:#766b5f}.return-photo{width:100%;border-radius:12px;margin-top:8px}.admin-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.notice{background:#fff6d7;border:1px solid #f1d88a;border-radius:14px;padding:14px;margin:14px 0}.success{background:#e6f6ea;border:1px solid #90d3a2}.small{font-size:13px;color:#766b5f}#user-info{gap:8px;align-items:center}.progress{height:9px;background:#eee;border-radius:999px;overflow:hidden;margin-top:10px}.progress div{height:100%;background:#8b5e3c;width:0%}.due-date-help{font-size:13px;color:#766b5f;margin-top:6px}.overdue{color:#b94141;font-weight:bold}.admin-table-wrap{background:white;border-radius:18px;box-shadow:0 4px 18px #00000012;overflow:auto;margin:18px 0;padding:12px}.admin-table{width:100%;border-collapse:collapse;min-width:760px}.admin-table th,.admin-table td{padding:12px;border-bottom:1px solid #eadaca;text-align:left;vertical-align:top;font-size:14px}.admin-table th{background:#f8efe6;position:sticky;top:0;z-index:1}.admin-table tr:hover{background:#fffaf4}.status-pill{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:bold}.pill-available{background:#e6f6ea;color:#2e8b57}.pill-reserved{background:#fff2cf;color:#a96800}.pill-borrowed{background:#ffe1df;color:#b94141}.pill-pending{background:#f1e6d8;color:#8b5e3c}.admin-thumb{width:82px;height:62px;object-fit:cover;border-radius:10px;border:1px solid #eadaca}.admin-empty-photo{color:#8a7d70;font-size:13px}.history-photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}.history-photo-card{background:white;border-radius:16px;padding:12px;box-shadow:0 4px 18px #00000012;display:flex;flex-direction:column;gap:7px}.history-photo-card h4{margin:0;font-size:16px}.history-photo-thumb{width:100%;height:130px;object-fit:cover;border-radius:10px;border:1px solid #eadaca;display:block}.history-photo-card p{margin:0;font-size:13px;line-height:1.45}.photo-view-btn{display:inline-block;text-decoration:none;background:#eadaca;color:#2f2a25;border-radius:9px;padding:8px 11px;text-align:center;font-size:13px}.admin-subtitle{margin-top:28px}.admin-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:16px 0 18px}.admin-summary-card{background:white;border-radius:16px;padding:16px;box-shadow:0 4px 18px #00000012}.admin-summary-card .admin-summary-number{display:block;font-size:26px;font-weight:bold;margin-top:6px}.admin-summary-card .admin-summary-label{font-size:13px;color:#766b5f}.admin-summary-card.borrowed{border-left:6px solid #b94141}.admin-summary-card.reserved{border-left:6px solid #c78000}.admin-summary-card.pending{border-left:6px solid #8b5e3c}.admin-summary-card.available{border-left:6px solid #2e8b57}.admin-summary-card.returned{border-left:6px solid #8b5e3c}.history-search-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0 18px}.history-search-bar input{flex:1;min-width:240px;padding:11px 13px;border:1px solid #d8c8b8;border-radius:10px;background:white}.history-search-bar select{min-width:150px;padding:11px 13px;border:1px solid #d8c8b8;border-radius:10px;background:white;color:#2f2a25}.history-date-group{margin:0 0 22px}.history-date-heading{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px;padding:10px 14px;background:#f1e6d8;border-radius:12px;font-size:15px}.history-date-count{font-size:12px;color:#766b5f;font-weight:normal}.history-date-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}.history-no-results{grid-column:1/-1}
+.return-admin-card{background:white;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 4px 18px #00000012}
+.return-admin-card img{max-width:220px;height:160px;object-fit:cover;border-radius:12px}
+.damage-alert{border-left:6px solid #b94141;background:#fff6f5}
+
+
+.admin-task-panel{background:white;border-radius:18px;padding:18px;box-shadow:0 4px 18px #00000012;margin:16px 0}.admin-task-panel h3{margin:0 0 12px}.admin-task-list{display:grid;gap:10px}.admin-task-item{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:12px 14px;border-radius:12px;background:#faf7f2;border-left:5px solid #d8c8b8}.admin-task-item.pending{border-left-color:#8b5e3c}.admin-task-item.overdue-task{border-left-color:#b94141}.admin-task-item.reserved-task{border-left-color:#c78000}.admin-task-item strong{display:block}.admin-task-empty{color:#2e8b57;background:#e6f6ea;border-radius:12px;padding:12px 14px}.sortable-th{cursor:pointer;user-select:none;white-space:nowrap}.sortable-th:hover{background:#f1e6d8}.sort-indicator{font-size:11px;color:#766b5f;margin-left:4px}.photo-modal-info{margin-top:14px;line-height:1.65}.photo-modal-image{width:100%;max-height:68vh;object-fit:contain;border-radius:14px;background:#f8efe6}.history-date-heading{cursor:pointer;user-select:none}.history-date-heading:hover{background:#e8d7c4}.history-collapse-icon{display:inline-block;width:18px}.history-date-row.is-collapsed{display:none}.history-search-bar{position:sticky;top:104px;z-index:3;background:#faf7f2;padding:10px 0}.overdue-days{display:inline-block;margin-top:5px;color:#b94141;font-weight:bold}
+
+
+    .reservation-board{display:flex;flex-direction:column;gap:22px;margin-top:20px}
+    .reservation-module{border-radius:20px;overflow:hidden;box-shadow:0 4px 18px #00000012;background:white;border:1px solid transparent}
+    .reservation-module-header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 20px}
+    .reservation-module-header h3{margin:0;font-size:20px}
+    .reservation-module-header p{margin:5px 0 0;font-size:14px;color:#62584e}
+    .reservation-count{min-width:48px;text-align:center;padding:6px 11px;border-radius:999px;background:#fff9;font-size:13px;font-weight:bold}
+    .reservation-module-body{padding:18px 20px 20px}
+    .reservation-module-body .reservations-list{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+    .reservation-module.reserved-module{border-color:#efd99a}
+    .reservation-module.reserved-module .reservation-module-header{background:#fff3cf}
+    .reservation-module.borrowed-module{border-color:#e8b6b1}
+    .reservation-module.borrowed-module .reservation-module-header{background:#ffe4e1}
+    .reservation-module.pending-module{border-color:#d2c1e7}
+    .reservation-module.pending-module .reservation-module-header{background:#eee5f8}
+    .reservation-card-status{display:inline-block;margin:0 0 12px;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:bold}
+    .reservation-card-status.reserved{background:#fff2cf;color:#9a6200}
+    .reservation-card-status.borrowed{background:#ffe1df;color:#a93535}
+    .reservation-card-status.pending{background:#eee5f8;color:#6f4b8b}
+    .reservation-action-area{margin-top:16px;padding-top:14px;border-top:1px solid #eee1d5}
+    .reservation-main-action{display:block;width:100%;font-size:15px;font-weight:bold;padding:12px 16px}
+    .reservation-cancel-action{display:block;width:100%;margin-top:9px;background:transparent;color:#a33;border:1px solid #e4b0ad;border-radius:10px;padding:9px 13px;cursor:pointer}
+    .reservation-cancel-action:hover{background:#fff0ef}
+    .reservation-empty{padding:20px;text-align:center;color:#766b5f;background:#fff;border-radius:14px;border:1px dashed #dacbbb}
+    @media (max-width:640px){.reservation-module-header{align-items:flex-start}.reservation-module-header h3{font-size:18px}.reservation-module-body{padding:14px}.reservation-module-body .reservations-list{grid-template-columns:1fr}}
+  .admin-page-card{background:white;border-radius:18px;padding:20px;box-shadow:0 4px 18px #00000012;}\n.admin-menu-label{font-weight:700;color:#6f4b8b;padding:0 2px}
+.admin-badge{display:inline-block;min-width:20px;padding:2px 6px;border-radius:999px;background:#fff;color:#6f4b8b;font-size:11px;font-weight:700}
+.admin-review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.admin-review-card{background:white;border-radius:18px;padding:18px;box-shadow:0 4px 18px #00000012}
+.admin-review-card img{width:128px;height:96px;object-fit:cover;border-radius:10px;margin:8px 0;display:block}
+.admin-review-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.damage-resolved{border-left:6px solid #2e8b57;background:#f3fbf5}
+.damage-unresolved{border-left:6px solid #b94141;background:#fff6f5}
+.damage-status{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700}
+.damage-status.unresolved{background:#ffe1df;color:#b94141}
+.damage-status.resolved{background:#e6f6ea;color:#2e8b57}
+
+.home-guide{
+  margin:34px 0;
+  padding:28px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#fbf8ff 0%,#f4ecfb 100%);
+  border:1px solid #e4d7ef;
+  box-shadow:0 10px 30px rgba(92,58,112,.08);
+}
+.home-guide-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:18px;
+  margin-bottom:22px;
+}
+.home-guide-header h3{
+  margin:0;
+  font-size:1.45rem;
+  color:#5f3d73;
+}
+.home-guide-header p{
+  margin:5px 0 0;
+  color:#725f7c;
+}
+.home-guide-link{
+  white-space:nowrap;
+  font-weight:700;
+  color:#6f4b8b;
+  text-decoration:none;
+}
+.borrowing-steps{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.borrowing-step{
+  position:relative;
+  min-height:170px;
+  padding:18px;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 5px 18px rgba(70,42,87,.07);
+}
+.borrowing-step-number{
+  display:inline-flex;
+  width:30px;
+  height:30px;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#744d8e;
+  color:#fff;
+  font-weight:800;
+  margin-bottom:12px;
+}
+.borrowing-step h4{
+  margin:0 0 8px;
+  color:#51345f;
+  font-size:1.05rem;
+}
+.borrowing-step p{
+  margin:0;
+  color:#665b6c;
+  line-height:1.65;
+  font-size:.93rem;
+}
+.home-guide-notes{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:16px;
+}
+.home-guide-note{
+  padding:15px 17px;
+  border-radius:14px;
+  background:#fffaf0;
+  border:1px solid #efdfba;
+  color:#62563f;
+  line-height:1.55;
+}
+.home-guide-note strong{
+  color:#5a4930;
+}
+@media (max-width:900px){
+  .borrowing-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  .home-guide{padding:20px 16px}
+  .home-guide-header{display:block}
+  .home-guide-link{display:inline-block;margin-top:10px}
+  .borrowing-steps,.home-guide-notes{grid-template-columns:1fr}
+  .borrowing-step{min-height:auto}
+}
+
+
+.home-guide-top{
+  margin-top:24px;
+}
+.home-important-notice{
+  margin:18px 0 30px;
+  padding:20px 22px;
+  border-radius:18px;
+  background:#fff8e7;
+  border:1px solid #ebd39a;
+  box-shadow:0 8px 24px rgba(114,82,24,.08);
+}
+.home-important-title{
+  font-size:1.08rem;
+  font-weight:800;
+  color:#694f1d;
+  margin-bottom:14px;
+}
+.home-important-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.home-important-item{
+  padding:14px 16px;
+  border-radius:13px;
+  background:#fffdf7;
+  border:1px solid #f0dfb8;
+  line-height:1.55;
+}
+.home-important-item strong{
+  display:block;
+  color:#5a451d;
+  margin-bottom:4px;
+}
+.home-important-item span{
+  color:#6f624a;
+  font-size:.94rem;
+}
+@media (max-width:700px){
+  .home-important-grid{grid-template-columns:1fr}
+}
+
+
+/* Clean homepage redesign */
+.home-hero-clean{
+  padding:64px 34px 54px;
+  text-align:center;
+  border-radius:28px;
+  background:linear-gradient(145deg,#ffffff 0%,#f7effc 52%,#f2e7d9 100%);
+  box-shadow:0 16px 42px rgba(74,48,86,.08);
+  overflow:hidden;
+}
+.home-hero-kicker,.home-section-eyebrow{
+  display:block;
+  margin-bottom:10px;
+  color:#806091;
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+.home-hero-clean h2{
+  max-width:800px;
+  margin:0 auto;
+  color:#4c3458;
+  font-size:clamp(2.2rem,5vw,4rem);
+  line-height:1.05;
+  letter-spacing:-.045em;
+}
+.home-hero-clean p{
+  max-width:620px;
+  margin:18px auto 0;
+  color:#6e6173;
+  font-size:1.05rem;
+  line-height:1.7;
+}
+.home-hero-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+.home-hero-actions button{
+  min-width:132px;
+  padding:12px 20px;
+}
+.home-alert-strip{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:16px;
+  margin:24px 0 0;
+  padding:18px 22px;
+  border:1px solid #ead39a;
+  border-left:6px solid #d5a838;
+  border-radius:16px;
+  background:#fffaf0;
+  box-shadow:0 6px 20px rgba(116,82,20,.06);
+}
+.home-alert-icon{
+  font-size:1.35rem;
+  line-height:1.2;
+}
+.home-alert-content h3{
+  margin:0 0 8px;
+  color:#59451e;
+  font-size:1rem;
+}
+.home-alert-points{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.home-alert-points p{
+  margin:0;
+  color:#6e624a;
+  font-size:.92rem;
+  line-height:1.55;
+}
+.home-process-section{
+  margin-top:28px;
+  padding:30px;
+  border-radius:26px;
+  background:#6f4b83;
+  color:#fff;
+  box-shadow:0 14px 34px rgba(72,42,88,.16);
+}
+.home-section-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:22px;
+}
+.home-section-heading h3{
+  margin:0;
+  font-size:1.55rem;
+  color:inherit;
+}
+.home-section-heading p{
+  margin:5px 0 0;
+  opacity:.78;
+}
+.home-process-section .home-section-eyebrow{
+  color:#d9c5e6;
+}
+.home-process-link{
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  white-space:nowrap;
+}
+.home-process-line{
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;
+  gap:12px;
+  align-items:stretch;
+}
+.home-process-step{
+  display:flex;
+  gap:13px;
+  min-width:0;
+  padding:17px;
+  border-radius:17px;
+  background:rgba(255,255,255,.11);
+  border:1px solid rgba(255,255,255,.14);
+}
+.home-process-number{
+  display:flex;
+  flex:0 0 30px;
+  width:30px;
+  height:30px;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#fff;
+  color:#6f4b83;
+  font-weight:900;
+}
+.home-process-step h4{
+  margin:2px 0 7px;
+  font-size:1rem;
+}
+.home-process-step p{
+  margin:0;
+  color:rgba(255,255,255,.77);
+  font-size:.87rem;
+  line-height:1.55;
+}
+.home-process-arrow{
+  align-self:center;
+  color:rgba(255,255,255,.48);
+  font-size:1.35rem;
+}
+.home-stats-section{
+  margin-top:34px;
+}
+.home-stats-heading{
+  margin-bottom:14px;
+}
+.home-stats-heading h3,
+.home-categories-clean .home-section-heading h3{
+  color:#4f3b59;
+}
+.home-stats-clean{
+  margin-top:0;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.home-stats-clean .stat-item{
+  padding:28px 20px;
+  text-align:center;
+  box-shadow:none;
+  border:1px solid #eadfeb;
+  background:#fff;
+}
+.home-stats-clean .stat-number{
+  color:#6f4b83;
+  font-size:2.3rem;
+}
+.home-stats-clean .stat-label{
+  display:block;
+  margin-top:6px;
+}
+.home-categories-clean{
+  margin-top:40px;
+}
+.home-categories-clean .category-grid{
+  margin-top:0;
+}
+@media (max-width:900px){
+  .home-alert-points{grid-template-columns:1fr}
+  .home-process-line{grid-template-columns:1fr}
+  .home-process-arrow{display:none}
+}
+@media (max-width:620px){
+  .home-hero-clean{padding:46px 20px 40px}
+  .home-alert-strip{grid-template-columns:1fr;padding:17px}
+  .home-process-section{padding:22px 17px}
+  .home-section-heading{align-items:flex-start;display:block}
+  .home-process-link{display:inline-block;margin-top:10px}
+  .home-stats-clean{grid-template-columns:1fr}
+}
+
+
+/* Pickup page */
+.pickup-page-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
+  margin-bottom:18px;
+}
+.pickup-page-heading h2{margin:2px 0 6px}
+.pickup-page-heading p{margin:0;color:#766b5f}
+.pickup-eyebrow{
+  color:#806091;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.15em;
+}
+.pickup-page-count{
+  white-space:nowrap;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#eee5f8;
+  color:#6f4b8b;
+  font-weight:800;
+}
+.pickup-urgent-banner{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  padding:17px 19px;
+  margin:0 0 20px;
+  border-radius:16px;
+  border:1px solid;
+}
+.pickup-urgent-banner p{margin:5px 0 0;line-height:1.55}
+.pickup-urgent-banner.safe{background:#eef8f1;border-color:#b7ddc1;color:#315e3c}
+.pickup-urgent-banner.warning{background:#fff7df;border-color:#ead087;color:#765d1e}
+.pickup-urgent-banner.urgent{background:#fff0ef;border-color:#e7aaa5;color:#8f302a}
+.pickup-banner-icon{font-size:1.35rem}
+.pickup-list{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.pickup-card{
+  padding:0;
+  overflow:hidden;
+  border:1px solid #eadfeb;
+}
+.pickup-card.urgent{border-color:#e3a09b}
+.pickup-card.warning{border-color:#e5ca7d}
+.pickup-card .item-image{
+  height:180px;
+  border-radius:0;
+}
+.pickup-card-body{padding:18px}
+.pickup-card-topline{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.pickup-countdown-badge{
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.pickup-countdown-badge.safe{background:#e6f6ea;color:#2e7d4d}
+.pickup-countdown-badge.warning{background:#fff0c4;color:#9a6800}
+.pickup-countdown-badge.urgent{background:#ffe0dd;color:#b13b34}
+.pickup-date-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:14px 0;
+}
+.pickup-date-grid div{
+  padding:11px 12px;
+  border-radius:12px;
+  background:#faf7f2;
+}
+.pickup-date-grid span{
+  display:block;
+  margin-bottom:4px;
+  color:#766b5f;
+  font-size:12px;
+}
+.pickup-date-grid strong{font-size:14px}
+.pickup-deadline-copy{
+  margin:0 0 14px;
+  color:#6f6258;
+  font-size:13px;
+}
+@media(max-width:620px){
+  .pickup-page-heading{display:block}
+  .pickup-page-count{display:inline-block;margin-top:12px}
+  .pickup-date-grid{grid-template-columns:1fr}
+}
+
+
+/* Reservation / Pickup / Return page clarification */
+.page-heading-row{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:16px;
+}
+.page-heading-row h2{margin:0 0 5px}
+.page-heading-row p{margin:0;color:#746a61}
+.page-count-badge{
+  display:inline-block;
+  white-space:nowrap;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#eee5f8;
+  color:#6f4b8b;
+  font-weight:800;
+}
+.reserved-view-card,
+.return-action-card,
+.pending-admin-card{
+  padding:0;
+  overflow:hidden;
+}
+.reserved-view-card .item-image,
+.return-action-card .item-image,
+.pending-admin-card .item-image{
+  height:180px;
+  border-radius:0;
+}
+.reservation-view-body{padding:18px}
+.reservation-date-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:14px 0;
+}
+.reservation-date-grid div{
+  padding:11px 12px;
+  border-radius:12px;
+  background:#faf7f2;
+}
+.reservation-date-grid span{
+  display:block;
+  margin-bottom:4px;
+  color:#796f65;
+  font-size:12px;
+}
+.reservation-date-grid strong{font-size:14px}
+.reservation-only-action{
+  width:100%;
+  margin-top:4px;
+}
+.return-status-section{
+  margin-top:22px;
+  padding:22px;
+  border:1px solid #e8dfe8;
+  border-radius:20px;
+  background:#fff;
+}
+.pending-admin-section{
+  background:#faf8fc;
+}
+.return-status-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:16px;
+}
+.return-status-header > div:first-child{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+.return-status-icon{font-size:1.35rem}
+.return-status-header h3{margin:0 0 4px}
+.return-status-header p{margin:0;color:#776d75;font-size:.92rem}
+@media(max-width:620px){
+  .page-heading-row,.return-status-header{display:block}
+  .page-count-badge{margin-top:10px}
+  .reservation-date-grid{grid-template-columns:1fr}
+}
+
+
+/* Return upload modal fix */
+.return-modal-heading h2{margin:4px 0 7px}
+.return-modal-heading p{margin:0;color:#766b5f;line-height:1.5}
+.return-modal-eyebrow{
+  color:#806091;
+  font-size:.74rem;
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.return-modal-item{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:15px;
+  align-items:center;
+  margin:18px 0;
+  padding:13px;
+  border-radius:15px;
+  background:#faf7f2;
+}
+.return-modal-item .item-image{
+  height:100px;
+  border-radius:11px;
+}
+.return-modal-item h3{margin:0 0 7px}
+.return-modal-item p{margin:4px 0}
+.return-submit-button{
+  width:100%;
+  margin-top:8px;
+}
+.return-submit-button:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+}
+@media(max-width:520px){
+  .return-modal-item{grid-template-columns:1fr}
+  .return-modal-item .item-image{height:160px}
+}
+
+
+/* Admin catalog photo editor */
+.admin-photo-edit-btn{
+  margin-top:7px;
+}
+.admin-photo-editor-heading h2{
+  margin:4px 0 7px;
+}
+.admin-photo-editor-heading p{
+  margin:0;
+  color:#756a61;
+  line-height:1.55;
+}
+.admin-photo-editor-eyebrow{
+  display:block;
+  color:#806091;
+  font-size:.74rem;
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.admin-photo-editor-current{
+  display:grid;
+  grid-template-columns:130px 1fr;
+  gap:16px;
+  align-items:center;
+  margin:18px 0;
+  padding:14px;
+  border-radius:15px;
+  background:#faf7f2;
+}
+.admin-photo-editor-current .item-image{
+  height:115px;
+  border-radius:11px;
+}
+.admin-photo-editor-current h3{
+  margin:0 0 7px;
+}
+.admin-photo-editor-current p{
+  margin:4px 0;
+}
+.admin-photo-submit{
+  width:100%;
+  margin-top:8px;
+}
+.admin-photo-submit:disabled{
+  cursor:not-allowed;
+  opacity:.65;
+}
+.admin-photo-remove{
+  width:100%;
+  margin-top:9px;
+}
+@media(max-width:520px){
+  .admin-photo-editor-current{
+    grid-template-columns:1fr;
+  }
+  .admin-photo-editor-current .item-image{
+    height:180px;
+  }
+}
+
+
+/* Admin can replace both existing and missing catalog photos */
+.catalog-image-area{
+  position:relative;
+}
+.catalog-photo-edit-button{
+  position:absolute;
+  right:9px;
+  bottom:9px;
+  z-index:2;
+  border:0;
+  border-radius:999px;
+  padding:7px 11px;
+  background:rgba(255,255,255,.94);
+  color:#5f3f73;
+  box-shadow:0 3px 12px rgba(0,0,0,.18);
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+.catalog-photo-edit-button:hover{
+  background:#eee5f8;
+}
+.modal-admin-photo-button{
+  width:100%;
+  margin:12px 0 4px;
+  font-weight:800;
+}
+
+
+.catalog-photo-edit-button{
+  pointer-events:auto !important;
+  z-index:20 !important;
+}
+.catalog-image-area{
+  position:relative;
+  isolation:isolate;
+}
+
+
+/* Homepage/catalog status distinction */
+.item-card{
+  transition:opacity .2s ease, filter .2s ease, transform .2s ease;
+}
+.item-card-reserved,
+.item-card-borrowed,
+.item-card-pendingReturn{
+  opacity:.66;
+}
+.item-card-reserved:hover,
+.item-card-borrowed:hover,
+.item-card-pendingReturn:hover{
+  opacity:.86;
+}
+.item-card-reserved .catalog-image-area::after,
+.item-card-borrowed .catalog-image-area::after,
+.item-card-pendingReturn .catalog-image-area::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.item-card-reserved .catalog-image-area::after{
+  background:rgba(226,184,83,.12);
+}
+.item-card-borrowed .catalog-image-area::after{
+  background:rgba(94,134,171,.13);
+}
+.item-card-pendingReturn .catalog-image-area::after{
+  background:rgba(117,92,139,.16);
+}
+.catalog-status-overlay{
+  position:absolute;
+  left:10px;
+  top:10px;
+  z-index:4;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:850;
+  line-height:1;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  backdrop-filter:blur(5px);
+}
+.catalog-status-overlay.status-available{
+  background:rgba(231,248,236,.94);
+  color:#2f7447;
+}
+.catalog-status-overlay.status-reserved{
+  background:rgba(255,241,198,.94);
+  color:#8d6500;
+}
+.catalog-status-overlay.status-borrowed{
+  background:rgba(224,238,250,.94);
+  color:#3d6687;
+}
+.catalog-status-overlay.status-pending{
+  background:rgba(235,226,244,.95);
+  color:#6e4a83;
+}
+.item-card-reserved .item-image img,
+.item-card-borrowed .item-image img,
+.item-card-pendingReturn .item-image img{
+  filter:saturate(.72) brightness(.97);
+}
+
+
+/* Firebase Authentication */
+.auth-text-button{
+  display:block;
+  width:100%;
+  margin-top:10px;
+  border:0;
+  background:transparent;
+  color:#6f4a82;
+  font-weight:700;
+  cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.firebase-auth-note{
+  margin:12px 0 0;
+  color:#80756c;
+  font-size:.82rem;
+  line-height:1.5;
+  text-align:center;
+}
+.auth-card button:disabled{
+  opacity:.62;
+  cursor:not-allowed;
+}
+
+
+.firestore-sync-status{
+  margin:14px 0;
+  padding:11px 14px;
+  border-radius:12px;
+  background:#eef7f0;
+  border:1px solid #c8e2ce;
+  color:#356244;
+  font-size:.9rem;
+  font-weight:700;
+}
+.firestore-sync-status.error{
+  background:#fff0ef;
+  border-color:#e6b0ab;
+  color:#9a3832;
+}
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <h1>🧥 奇装异服共享平台</h1>
+      <p>让每一件衣服都发挥最大价值</p>
+    </div>
+    <nav class="nav">
+      <a href="#home" onclick="showSection('home')">首页</a>
+      <a href="#catalog" onclick="showSection('catalog')">衣物目录</a>
+      <a href="#reserve" onclick="showSection('reserve')">我的预定</a>
+      <a href="#pickup" onclick="showSection('pickup')">取衣 <span id="pickup-nav-count"></span></a>
+      <a href="#return" onclick="showSection('return')">归还衣物</a>
+      <a href="#donate" onclick="showSection('donate')">捐赠衣物</a>
+      <span id="admin-nav-group" style="display:none;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span class="admin-menu-label">🔒 管理员</span>
+        <a class="admin-link" href="#admin-inventory" onclick="showSection('admin-inventory')">📋 衣物状态总表 <span id="admin-inventory-count"></span></a>
+        <a class="admin-link" href="#admin-returns" onclick="showSection('admin-returns')">📦 管理归还衣物 <span id="admin-return-count"></span></a>
+        <a class="admin-link" href="#admin-damage" onclick="showSection('admin-damage')">⚠️ 损坏提醒 <span id="admin-damage-count"></span></a>
+        <a class="admin-link" href="#admin-history" onclick="showSection('admin-history')">📷 历史已被取走</a>
+      </span>
+      <div id="auth-links">
+        <a href="#login" onclick="showSection('login')">登录</a>
+        <a href="#register" onclick="showSection('register')">注册</a>
+      </div>
+      <div id="user-info" style="display:none;">
+        <span id="user-name">用户</span>
+        <button onclick="logout()">退出</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="home" class="section active">
+      <div class="home-hero-clean">
+        <div class="home-hero-kicker">DANA HALL COSTUME CLOSET</div>
+        <h2>Browse. Borrow. Return. Share.</h2>
+        <p>快速找到需要的戏服，预定取衣，并通过照片完成归还。</p>
+        <div class="home-hero-actions">
+          <button onclick="showSection('catalog')" class="btn-primary">浏览衣物</button>
+          <button onclick="showSection('reserve')" class="btn-secondary">我的预定</button>
+        </div>
+      </div>
+
+      <div class="home-alert-strip">
+        <div class="home-alert-icon">⚠️</div>
+        <div class="home-alert-content">
+          <h3>使用前请注意</h3>
+          <div class="home-alert-points">
+            <p><strong>确认取衣后，预定将无法取消。</strong> 衣服只有完成归还并经管理员确认后，才会重新开放借用。</p>
+            <p><strong>实际取走衣服后，请立即点击「确认取衣」。</strong> 否则系统可能仍显示衣服在柜中，导致其他同学误预定。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-process-section">
+        <div class="home-section-heading">
+          <div>
+            <span class="home-section-eyebrow">FIRST TIME HERE?</span>
+            <h3>第一次使用？</h3>
+            <p>借用一件戏服，只需要四步。</p>
+          </div>
+          <a class="home-process-link" href="#catalog" onclick="showSection('catalog')">开始浏览 →</a>
+        </div>
+
+        <div class="home-process-line">
+          <div class="home-process-step">
+            <span class="home-process-number">1</span>
+            <div>
+              <h4>浏览并预定</h4>
+              <p>选择取衣日期与归还日期，最长可借两周。</p>
+            </div>
+          </div>
+          <div class="home-process-arrow">→</div>
+          <div class="home-process-step">
+            <span class="home-process-number">2</span>
+            <div>
+              <h4>取衣并确认</h4>
+              <p>实际取走后点击「确认取衣」，已有损坏可选填提醒。</p>
+            </div>
+          </div>
+          <div class="home-process-arrow">→</div>
+          <div class="home-process-step">
+            <span class="home-process-number">3</span>
+            <div>
+              <h4>上传并归还</h4>
+              <p>上传归还照片；如有新增损坏，可填写备注。</p>
+            </div>
+          </div>
+          <div class="home-process-arrow">→</div>
+          <div class="home-process-step">
+            <span class="home-process-number">4</span>
+            <div>
+              <h4>管理员确认</h4>
+              <p>确认后衣服重新开放；逾期时系统会发送邮件提醒。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-stats-section">
+        <div class="home-section-heading home-stats-heading">
+          <div>
+            <span class="home-section-eyebrow">COSTUME CLOSET TODAY</span>
+            <h3>衣柜数据</h3>
+          </div>
+        </div>
+        <div class="stats home-stats-clean">
+          <div class="stat-item">
+            <span class="stat-number" id="stat-items">0</span>
+            <span class="stat-label">件衣物</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="stat-reservations">0</span>
+            <span class="stat-label">次借用／预定</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="stat-returns">0</span>
+            <span class="stat-label">次归还</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-categories home-categories-clean">
+        <div class="home-section-heading">
+          <div>
+            <span class="home-section-eyebrow">BROWSE BY CATEGORY</span>
+            <h3>热门分类</h3>
+          </div>
+        </div>
+        <div class="category-grid">
+          <button onclick="filterByCategory('假发')" class="category-btn">👩‍🦰 假发</button>
+          <button onclick="filterByCategory('裙子')" class="category-btn">👗 裙子</button>
+          <button onclick="filterByCategory('套装')" class="category-btn">👔 套装</button>
+          <button onclick="filterByCategory('配饰')" class="category-btn">🎩 配饰</button>
+          <button onclick="filterByCategory('道具')" class="category-btn">🎭 道具</button>
+          <button onclick="filterByCategory('鞋履')" class="category-btn">👠 鞋履</button>
+        </div>
+      </div>
+    </section>
+
+<section id="catalog" class="section">
+      <div class="section-header">
+        <h2>衣物目录</h2>
+        <div class="filters">
+          <select id="category-filter" onchange="filterItems()"><option value="all">全部类别</option><option value="假发">假发</option><option value="裙子">裙子</option><option value="套装">套装</option><option value="配饰">配饰</option><option value="道具">道具</option><option value="鞋履">鞋履</option></select>
+          <select id="size-filter" onchange="filterItems()"><option value="all">全部尺寸</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="均码">均码</option><option value="38">38</option><option value="42">42</option></select>
+          <select id="gender-filter" onchange="filterItems()"><option value="all">全部性别</option><option value="男">男</option><option value="女">女</option><option value="通用">通用</option></select>
+          <input type="text" id="search-input" placeholder="搜索衣物名称..." onkeyup="filterItems()">
+        </div>
+      </div>
+      <div id="items-grid" class="items-grid"></div>
+    </section>
+
+    
+    <section id="reserve" class="section">
+      <div class="page-heading-row">
+        <div>
+          <h2>我的预定</h2>
+          <p>这里显示已经预定、但还没有取衣的衣服。</p>
+        </div>
+        <span id="reserved-count" class="page-count-badge">0 件预定</span>
+      </div>
+      <div class="notice">你可以在这里查看或取消预定。需要实际取衣时，请前往“取衣”页面。</div>
+      <div id="reserved-reservations-list" class="reservations-list"></div>
+    </section>
+
+<section id="pickup" class="section">
+      <div class="pickup-page-heading">
+        <div>
+          <span class="pickup-eyebrow">PICKUP</span>
+          <h2>取衣</h2>
+          <p>这里显示已经预定、但还没有确认取衣的衣服。</p>
+        </div>
+        <span id="pickup-page-count" class="pickup-page-count">0 件待取</span>
+      </div>
+
+      <div id="pickup-urgent-banner" class="pickup-urgent-banner" style="display:none;"></div>
+      <div id="pickup-list" class="reservations-list pickup-list"></div>
+      <div id="no-pickup-items" class="empty-state" style="display:none;">
+        <p>目前没有等待取衣的预定。</p>
+        <button onclick="showSection('catalog')" class="btn-primary">浏览衣物</button>
+      </div>
+    </section>
+
+    
+    <section id="return" class="section">
+      <div class="page-heading-row">
+        <div>
+          <h2>归还衣物</h2>
+          <p>查看需要归还的衣服，以及已经提交、正在等待管理员确认的归还。</p>
+        </div>
+      </div>
+
+      <div class="return-status-section">
+        <div class="return-status-header">
+          <div>
+            <span class="return-status-icon">↩️</span>
+            <div>
+              <h3>待归还</h3>
+              <p>已经确认取衣、但还没有提交归还的衣服。</p>
+            </div>
+          </div>
+          <span id="return-borrowed-count" class="page-count-badge">0 件</span>
+        </div>
+        <div id="return-items-list" class="reservations-list"></div>
+      </div>
+
+      <div class="return-status-section pending-admin-section">
+        <div class="return-status-header">
+          <div>
+            <span class="return-status-icon">⏳</span>
+            <div>
+              <h3>等待管理员处理</h3>
+              <p>你已经上传归还照片；管理员确认后，衣服才会重新开放借用。</p>
+            </div>
+          </div>
+          <span id="return-pending-count" class="page-count-badge">0 件</span>
+        </div>
+        <div id="return-pending-list" class="reservations-list"></div>
+      </div>
+    </section>
+
+<section id="donate" class="section">
+      <h2>捐赠衣物</h2>
+      <form id="donate-form" onsubmit="handleDonate(event)">
+        <div class="form-group"><label>衣物名称</label><input type="text" id="donate-name" required></div>
+        <div class="form-group"><label>类别</label><select id="donate-category" required><option value="">请选择类别</option><option value="假发">假发</option><option value="裙子">裙子</option><option value="套装">套装</option><option value="配饰">配饰</option><option value="道具">道具</option><option value="鞋履">鞋履</option></select></div>
+        <div class="form-group"><label>尺寸</label><select id="donate-size" required><option value="">请选择尺寸</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="均码">均码</option></select></div>
+        <div class="form-group"><label>适合性别</label><select id="donate-gender" required><option value="">请选择性别</option><option value="男">男</option><option value="女">女</option><option value="通用">通用</option></select></div>
+        <div class="form-group"><label>描述</label><textarea id="donate-desc" rows="3"></textarea></div>
+        <div class="form-group"><label>捐赠人姓名(昵称)</label><input type="text" id="donate-donor" required></div>
+        <div class="form-group">
+          <label>上传衣物照片（必须）</label>
+          <input type="file" id="donate-photo" accept="image/*" required onchange="previewDonatePhoto()">
+          <img id="donate-photo-preview" class="donate-preview" alt="衣物照片预览">
+          <div class="due-date-help">这张照片会显示在衣物目录里，代替原来的卡通图标。</div>
+        </div>
+        <div class="progress" id="donate-progress-wrap" style="display:none;"><div id="donate-progress"></div></div>
+        <button type="submit" id="donate-submit" class="btn-primary">确认捐赠并上传照片</button>
+      </form>
+    </section>
+
+
+    <section id="admin-inventory" class="section">
+      <h2>📋 衣物状态总表</h2>
+      <div class="notice small">这里保留五列表格，用来查看全部衣物的前端状态、实际状态、照片和管理员操作。</div>
+      <div id="admin-task-panel" class="admin-task-panel"></div>
+      <div id="admin-summary-cards" class="admin-summary-grid"></div>
+      <div id="firestore-sync-status" class="firestore-sync-status">云端数据正在连接…</div>
+      <div class="admin-toolbar">
+        <button class="btn-primary" onclick="renderAdminInventoryTable()">刷新衣物总表</button>
+        <button class="btn-secondary" onclick="migrateLocalDataToFirestore()">迁移这台设备的旧数据到 Firestore</button>
+        <button class="btn-secondary" onclick="restartFirestoreDataListeners()">重新连接云端数据</button>
+      </div>
+      <div id="admin-inventory-table" class="admin-table-wrap"></div>
+    </section>
+
+    <section id="admin-returns" class="section">
+      <h2>📦 管理归还衣物 <span id="admin-returns-title-count"></span></h2>
+      <div class="notice small">这里只显示用户已经上传归还照片、正在等待管理员确认的衣物；按归还时间从新到旧排列。</div>
+      <div id="admin-pending-returns-page"></div>
+    </section>
+
+    <section id="admin-damage" class="section">
+      <h2>⚠️ 损坏提醒 <span id="admin-damage-title-count"></span></h2>
+      <div class="notice small">这里显示所有填写了损坏、污渍或其他问题备注的已被取走。点击“已处理”后，记录不会删除，而是转入“已处理”。</div>
+      <div class="admin-toolbar">
+        <button class="btn-primary" onclick="setDamageFilter('unresolved')">未处理</button>
+        <button class="btn-secondary" onclick="setDamageFilter('resolved')">已处理</button>
+        <button class="btn-secondary" onclick="setDamageFilter('all')">全部</button>
+      </div>
+      <div id="admin-damage-page"></div>
+    </section>
+
+    <section id="admin-history" class="section">
+      <h2>📷 历史已被取走</h2>
+      <div class="notice small">这里集中显示全部归还历史，保留搜索和日期分组。</div>
+      <div class="admin-toolbar">
+        <button class="btn-primary" onclick="renderLocalReturnRecords()">显示 Firestore 记录</button>
+        <button class="btn-secondary" onclick="loadAdminReturns()">刷新云端记录</button>
+      </div>
+      <div class="history-search-bar">
+        <select id="return-history-field" onchange="updateReturnHistorySearchPlaceholder(); filterReturnHistory()" aria-label="选择搜索范围">
+          <option value="all">全部</option>
+          <option value="itemName">衣服名称</option>
+          <option value="returnedBy">归还人</option>
+          <option value="returnedAt">归还时间</option>
+          <option value="dueDate">原定最晚归还</option>
+        </select>
+        <input type="search" id="return-history-search" placeholder="搜索全部已被取走…" oninput="filterReturnHistory()">
+        <button class="btn-secondary" type="button" onclick="clearReturnHistorySearch()">清除搜索</button>
+      </div>
+      <div id="admin-return-list"></div>
+    </section>
+
+    <section id="login" class="section">
+      <div class="auth-container"><div class="auth-card">
+        <h2>🔐 用户登录</h2>
+        <form id="login-form" onsubmit="handleLogin(event)">
+          <div class="form-group"><label>邮箱</label><input type="email" id="login-email" autocomplete="email" required></div>
+          <div class="form-group"><label>密码</label><input type="password" id="login-password" autocomplete="current-password" required></div>
+          <button type="submit" class="btn-primary" id="login-submit">登录</button>
+          <button type="button" class="auth-text-button" onclick="handleForgotPassword()">忘记密码？</button>
+          <p class="firebase-auth-note">账号由 Firebase Authentication 安全管理。</p>
+        </form>
+        
+      </div></div>
+    </section>
+
+    <section id="register" class="section">
+      <div class="auth-container"><div class="auth-card">
+        <h2>📝 用户注册</h2>
+        <form id="register-form" onsubmit="handleRegister(event)">
+          <div class="form-group"><label>用户名</label><input type="text" id="register-username" autocomplete="username" required></div>
+          <div class="form-group"><label>密码</label><input type="password" id="register-password" autocomplete="new-password" minlength="6" required></div>
+          <div class="form-group"><label>确认密码</label><input type="password" id="register-confirm-password" autocomplete="new-password" minlength="6" required></div>
+          <div class="form-group"><label>姓名</label><input type="text" id="register-name" required></div>
+          <div class="form-group"><label>邮箱</label><input type="email" id="register-email" placeholder="用于接收逾期归还提醒" required></div>
+          <div class="due-date-help">邮箱为必填项。衣服超过最晚归还时间后，系统会向这个邮箱发送提醒。</div>
+          <button type="submit" class="btn-primary" id="register-submit">注册</button>
+          <p class="firebase-auth-note">注册后会自动登录；用户资料存储在 Cloud Firestore。</p>
+        </form>
+      </div></div>
+    </section>
+  </main>
+
+  <div id="item-modal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal()">&times;</span><div id="modal-body"></div></div></div>
+
+  <div id="pickup-damage-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closePickupDamageModal()">&times;</span>
+      <h2>确认取衣</h2>
+      <div class="notice">
+        如果取衣时发现已有损坏、污渍或缺失配件，可以在下面写下提醒；这不是必填项，填写后仍会正常把衣服借到你的账户。
+        <br><br>
+        如果损坏严重到你不愿意继续借用，请先确认取衣，再前往“归还衣物”完成拍照归还，让这件衣服重新进入管理员审核流程。
+      </div>
+      <div class="form-group">
+        <label for="pickup-damage-note">取衣时发现的问题（选填）</label>
+        <textarea id="pickup-damage-note" rows="4" placeholder="例如：取衣时发现袖口已有污渍；左侧纽扣缺失"></textarea>
+      </div>
+      <div class="admin-review-actions">
+        <button type="button" class="btn-primary" onclick="submitPickupConfirmation()">确认取衣</button>
+        <button type="button" class="btn-secondary" onclick="closePickupDamageModal()">暂不取衣</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="photo-modal" class="modal"><div class="modal-content"><span class="close" onclick="closePhotoModal()">&times;</span><img id="photo-modal-image" class="photo-modal-image" alt="归还照片"><div id="photo-modal-info" class="photo-modal-info"></div></div></div>
+  <footer class="footer"><p>&copy; 2026 奇装异服共享平台</p></footer>
+
+
+<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore-compat.js"></script>
+
+<script>
+
+// ============================================================
+// FIREBASE 设置
+// 1. 在 Firebase Console 注册 Web App。
+// 2. 把下方占位内容替换成 Firebase 提供的 firebaseConfig。
+// 3. 在 Authentication 中启用 Email/Password。
+// 4. 创建 Cloud Firestore，并部署压缩包内 firestore.rules。
+// ============================================================
+const firebaseConfig = {
+  apiKey: "AIzaSyC2hOZELkeT6vl6BSNZjGj8GtYH-ihcCFg",
+  authDomain: "communalcostumecloset-612db.firebaseapp.com",
+  projectId: "communalcostumecloset-612db",
+  storageBucket: "communalcostumecloset-612db.firebasestorage.app",
+  messagingSenderId: "670370383868",
+  appId: "1:670370383868:web:fa2da6d6eea5a15a405479",
+  measurementId: "G-JC0EQXG5P0"
+};
+
+let firebaseAuth = null;
+let firebaseDb = null;
+let firebaseReady = false;
+let authStateResolved = false;
+
+function hasFirebaseConfig(){
+  return firebaseConfig.apiKey &&
+    !firebaseConfig.apiKey.includes('PASTE_') &&
+    firebaseConfig.projectId &&
+    !firebaseConfig.projectId.includes('PASTE_');
+}
+
+function initializeFirebase(){
+  if (!hasFirebaseConfig()){
+    console.warn('Firebase 尚未配置。请把 firebaseConfig 替换成你自己的项目配置。');
+    return false;
+  }
+
+  try{
+    if (!firebase.apps.length){
+      firebase.initializeApp(firebaseConfig);
+    }
+    firebaseAuth = firebase.auth();
+    firebaseDb = firebase.firestore();
+    firebaseReady = true;
+    return true;
+  } catch(error){
+    console.error('Firebase 初始化失败：', error);
+    return false;
+  }
+}
+
+function firebaseErrorMessage(error){
+  const code = error && error.code ? error.code : '';
+  const messages = {
+    'auth/invalid-email': '邮箱格式不正确。',
+    'auth/missing-password': '请输入密码。',
+    'auth/weak-password': '密码至少需要 6 个字符。',
+    'auth/email-already-in-use': '这个邮箱已经注册过账号。',
+    'auth/invalid-credential': '邮箱或密码错误。',
+    'auth/user-not-found': '找不到这个账号。',
+    'auth/wrong-password': '邮箱或密码错误。',
+    'auth/too-many-requests': '尝试次数过多，请稍后再试。',
+    'auth/network-request-failed': '网络连接失败，请检查网络后重试。',
+    'auth/operation-not-allowed': 'Firebase 尚未启用 Email/Password 登录。',
+    'permission-denied': 'Firestore 权限不足，请检查安全规则。'
+  };
+  return messages[code] || (error && error.message ? error.message : '操作失败，请稍后重试。');
+}
+
+async function loadFirebaseUserProfile(firebaseUser){
+  if (!firebaseDb || !firebaseUser) return null;
+  const ref = firebaseDb.collection('users').doc(firebaseUser.uid);
+  const snapshot = await ref.get();
+
+  if (snapshot.exists){
+    const data = snapshot.data();
+    return {
+      id: firebaseUser.uid,
+      uid: firebaseUser.uid,
+      username: data.username || firebaseUser.email.split('@')[0],
+      name: data.name || data.username || firebaseUser.email,
+      email: firebaseUser.email || data.email || '',
+      studentId: data.studentId || '',
+      role: data.role === 'admin' ? 'admin' : 'user',
+      createdAt: data.createdAt || null
+    };
+  }
+
+  // Older Authentication accounts without a Firestore profile get a safe user profile.
+  const fallbackProfile = {
+    username: firebaseUser.email ? firebaseUser.email.split('@')[0] : 'user',
+    name: firebaseUser.displayName || (firebaseUser.email ? firebaseUser.email.split('@')[0] : '用户'),
+    email: firebaseUser.email || '',
+    studentId: '',
+    role: 'user',
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  };
+  await ref.set(fallbackProfile, { merge: true });
+
+  return {
+    id: firebaseUser.uid,
+    uid: firebaseUser.uid,
+    ...fallbackProfile,
+    createdAt: null
+  };
+}
+
+function requireFirebase(){
+  if (!firebaseReady){
+    alert('Firebase 尚未连接。请先在 index.html 中填写 firebaseConfig，并在 Firebase Console 启用 Email/Password 和 Firestore。');
+    return false;
+  }
+  return true;
+}
+
+const CLOUD_NAME = 'vicummbs';
+const UPLOAD_PRESET = 'returned_costumes_upload';
+const RETURN_TAG = 'returned_costume';
+const DONATION_TAG = 'donated_costume';
+
+// 部署 Google Apps Script 后，把 Web App URL 粘贴到这里。
+// 留空时，网站其他功能仍可使用，但不会同步逾期邮件提醒。
+const REMINDER_SERVICE_URL = 'https://script.google.com/macros/s/AKfycbymwPJ7hMdnE_SWqdwUY_m7oGOd465mb3Mk_U3-qLmhU0suVbaROISHOQHUNM6EoO9s/exec';
+
+function syncReminderService(action, payload = {}){
+  if (!REMINDER_SERVICE_URL) return;
+  const data = { action, ...payload, sentAt: new Date().toISOString() };
+  fetch(REMINDER_SERVICE_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(data)
+  }).catch(error => console.warn('提醒服务同步失败：', error));
+}
+
+function syncReservationRecord(reservation){
+  syncReminderService('upsertReservation', {
+    reservationId: reservation.id,
+    itemId: reservation.itemId,
+    itemName: reservation.itemName,
+    borrowerName: reservation.reservedBy,
+    username: reservation.reservedByUsername,
+    email: reservation.email || '',
+    reservedAt: reservation.reservedAt,
+    dueDate: getDueDate(reservation),
+    status: reservation.status || 'reserved'
+  });
+}
+
+function syncReservationStatus(reservation, status){
+  syncReminderService('updateReservationStatus', {
+    reservationId: reservation.id,
+    status,
+    dueDate: getDueDate(reservation),
+    email: reservation.email || ''
+  });
+}
+
+const defaultItems = [
+  { id: 1, name: '粉色长卷发假发', category: '假发', size: '均码', gender: '女', description: '甜美粉色长卷发，适合公主装扮', donor: '李同学', status: 'available', imageUrl: '' },
+  { id: 2, name: '黑色波波头假发', category: '假发', size: '均码', gender: '女', description: '时尚黑色波波头，适合复古风格', donor: '王同学', status: 'available', imageUrl: '' },
+  { id: 3, name: '金色大波浪假发', category: '假发', size: '均码', gender: '女', description: '闪耀金色大波浪，舞会必备', donor: '张同学', status: 'available', imageUrl: '' },
+  { id: 4, name: '彩色爆炸头', category: '假发', size: '均码', gender: '通用', description: '彩虹色爆炸头，夸张搞怪', donor: '赵同学', status: 'available', imageUrl: '' },
+  { id: 5, name: '复古宫廷裙', category: '裙子', size: 'M', gender: '女', description: '欧式宫廷风格长裙，华丽优雅', donor: '陈同学', status: 'available', imageUrl: '' },
+  { id: 6, name: '蓬蓬公主裙', category: '裙子', size: 'S', gender: '女', description: '粉色蓬蓬裙，童话公主风', donor: '刘同学', status: 'available', imageUrl: '' },
+  { id: 7, name: '旗袍', category: '裙子', size: 'M', gender: '女', description: '优雅旗袍，复古中国风', donor: '孙同学', status: 'available', imageUrl: '' },
+  { id: 8, name: '巫师长袍', category: '套装', size: 'L', gender: '通用', description: '黑色巫师长袍，万圣节必备', donor: '周同学', status: 'available', imageUrl: '' },
+  { id: 9, name: '超级英雄套装', category: '套装', size: 'M', gender: '男', description: '蜘蛛侠主题套装，帅气十足', donor: '吴同学', status: 'available', imageUrl: '' },
+  { id: 10, name: '警察制服', category: '套装', size: 'L', gender: '男', description: '经典警察制服，角色扮演', donor: '郑同学', status: 'available', imageUrl: '' },
+  { id: 11, name: '医生白大褂', category: '套装', size: 'XL', gender: '通用', description: '专业医生白大褂，适合职业体验', donor: '黄同学', status: 'available', imageUrl: '' },
+  { id: 12, name: '皇冠头饰', category: '配饰', size: '均码', gender: '女', description: '金色皇冠，公主装扮必备', donor: '林同学', status: 'available', imageUrl: '' },
+  { id: 13, name: '绅士礼帽', category: '配饰', size: '均码', gender: '男', description: '黑色礼帽，复古绅士风格', donor: '何同学', status: 'available', imageUrl: '' },
+  { id: 14, name: '夸张眼镜', category: '配饰', size: '均码', gender: '通用', description: '搞怪夸张眼镜，派对必备', donor: '马同学', status: 'available', imageUrl: '' },
+  { id: 15, name: '魔法棒', category: '道具', size: '均码', gender: '通用', description: '闪亮魔法棒，仙女装扮', donor: '罗同学', status: 'available', imageUrl: '' },
+  { id: 16, name: '宝剑道具', category: '道具', size: '均码', gender: '男', description: '塑料宝剑，骑士装扮', donor: '梁同学', status: 'available', imageUrl: '' },
+  { id: 17, name: '麦克风道具', category: '道具', size: '均码', gender: '通用', description: '仿真麦克风，歌手装扮', donor: '谢同学', status: 'available', imageUrl: '' },
+  { id: 18, name: '高跟鞋', category: '鞋履', size: '38', gender: '女', description: '银色高跟鞋，舞会必备', donor: '宋同学', status: 'available', imageUrl: '' },
+  { id: 19, name: '马丁靴', category: '鞋履', size: '42', gender: '男', description: '黑色马丁靴，朋克风格', donor: '唐同学', status: 'available', imageUrl: '' },
+  { id: 20, name: '魔法拖鞋', category: '鞋履', size: '均码', gender: '通用', description: '搞怪魔法拖鞋，舒适有趣', donor: '韩同学', status: 'available', imageUrl: '' }
+];
+
+let items = load('items', defaultItems);
+let reservations = load('reservations', []);
+let returnRecords = load('returnRecords', []);
+let currentUser = null;
+
+const legacyLocalData = {
+  items: JSON.parse(JSON.stringify(items)),
+  reservations: JSON.parse(JSON.stringify(reservations)),
+  returnRecords: JSON.parse(JSON.stringify(returnRecords))
+};
+
+let applyingFirestoreSnapshot = false;
+let firestoreUnsubscribers = [];
+let firestoreCollectionsLoaded = { items: false, reservations: false, returnRecords: false };
+let firestoreWriteTimers = {};
+
+function load(key, fallback){
+  try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+  catch { return fallback; }
+}
+
+function cleanFirestoreValue(value){
+  return JSON.parse(JSON.stringify(value, (key, val) => val === undefined ? null : val));
+}
+
+function saveLocalOnly(key, value){
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function save(key, value){
+  saveLocalOnly(key, value);
+  if (applyingFirestoreSnapshot || !firebaseReady || !firebaseDb) return;
+  if (!['items','reservations','returnRecords'].includes(key)) return;
+  scheduleFirestoreArrayUpsert(key, value);
+}
+
+function scheduleFirestoreArrayUpsert(collectionName, values){
+  clearTimeout(firestoreWriteTimers[collectionName]);
+  firestoreWriteTimers[collectionName] = setTimeout(() => {
+    upsertFirestoreArray(collectionName, values).catch(error => {
+      console.error(`同步 ${collectionName} 到 Firestore 失败：`, error);
+      showFirestoreSyncStatus(`云端保存失败：${firebaseErrorMessage(error)}`, true);
+    });
+  }, 80);
+}
+
+async function upsertFirestoreArray(collectionName, values){
+  if (!firebaseReady || !firebaseDb) return;
+  const safeValues = (values || []).map(cleanFirestoreValue);
+  for (let start = 0; start < safeValues.length; start += 400){
+    const batch = firebaseDb.batch();
+    safeValues.slice(start, start + 400).forEach(value => {
+      if (value.id === undefined || value.id === null) return;
+      const ref = firebaseDb.collection(collectionName).doc(String(value.id));
+      batch.set(ref, value, { merge: true });
+    });
+    await batch.commit();
+  }
+  showFirestoreSyncStatus('已连接 Firestore · 数据会在设备间自动同步');
+}
+
+async function deleteFirestoreDoc(collectionName, id){
+  if (!firebaseReady || !firebaseDb || id === undefined || id === null) return;
+  try{
+    await firebaseDb.collection(collectionName).doc(String(id)).delete();
+  } catch(error){
+    console.error(`删除 ${collectionName}/${id} 失败：`, error);
+    showFirestoreSyncStatus(`云端删除失败：${firebaseErrorMessage(error)}`, true);
+  }
+}
+
+function showFirestoreSyncStatus(text, error=false){
+  const box = document.getElementById('firestore-sync-status');
+  if (!box) return;
+  box.textContent = text;
+  box.classList.toggle('error', !!error);
+}
+
+function renderAfterCloudSync(){
+  cleanupExpiredReservations();
+  renderItems(getSortedItems(items));
+  renderReservations();
+  renderPickupItems();
+  renderReturnItems();
+  updateStats();
+  updatePickupNavCount();
+  updateAdminNavCounts();
+  if (isAdmin()){
+    renderAdminInventoryTable();
+    renderAdminPendingReturns();
+    renderDamageAlerts();
+  }
+}
+
+function stopFirestoreDataListeners(){
+  firestoreUnsubscribers.forEach(unsubscribe => {
+    try { unsubscribe(); } catch(e){}
+  });
+  firestoreUnsubscribers = [];
+}
+
+function listenToFirestoreCollection(collectionName, onData, options={}){
+  const unsubscribe = firebaseDb.collection(collectionName).onSnapshot(snapshot => {
+    const data = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.data().id ?? doc.id }));
+    firestoreCollectionsLoaded[collectionName] = true;
+    applyingFirestoreSnapshot = true;
+    try{
+      onData(data);
+      saveLocalOnly(collectionName, data);
+    } finally {
+      applyingFirestoreSnapshot = false;
+    }
+    renderAfterCloudSync();
+    showFirestoreSyncStatus('已连接 Firestore · 数据会在设备间自动同步');
+  }, error => {
+    console.error(`监听 ${collectionName} 失败：`, error);
+    if (!options.silent) showFirestoreSyncStatus(`读取云端失败：${firebaseErrorMessage(error)}`, true);
+  });
+  firestoreUnsubscribers.push(unsubscribe);
+}
+
+function startFirestoreDataListeners(){
+  if (!firebaseReady || !firebaseDb) return;
+  stopFirestoreDataListeners();
+  firestoreCollectionsLoaded = { items: false, reservations: false, returnRecords: false };
+  showFirestoreSyncStatus('正在连接 Firestore…');
+
+  // Catalog data is shared by everyone.
+  listenToFirestoreCollection('items', data => {
+    // If Firestore is still empty, preserve this device's local catalog so the admin can migrate it.
+    if (data.length) items = data;
+  });
+
+  if (!currentUser){
+    reservations = [];
+    returnRecords = [];
+    saveLocalOnly('reservations', reservations);
+    saveLocalOnly('returnRecords', returnRecords);
+    renderAfterCloudSync();
+    return;
+  }
+
+  // Reservation status is shared so every logged-in device sees availability immediately.
+  listenToFirestoreCollection('reservations', data => { reservations = data; });
+  listenToFirestoreCollection('returnRecords', data => { returnRecords = data; });
+}
+
+function restartFirestoreDataListeners(){
+  if (!requireFirebase()) return;
+  startFirestoreDataListeners();
+}
+
+async function migrateLocalDataToFirestore(){
+  if (!isAdmin()){
+    alert('只有管理员可以迁移旧的本机数据。');
+    return;
+  }
+  if (!requireFirebase()) return;
+  if (!confirm('要把这台设备之前的衣物、预定和归还记录上传到 Firestore 吗？已有同 ID 的云端记录会被更新，不会删除其他云端记录。')) return;
+
+  const migratedReservations = legacyLocalData.reservations.map(r => ({
+    ...r,
+    userUid: r.userUid || (currentUser && r.reservedByUsername === currentUser.username ? currentUser.uid : '')
+  }));
+  const migratedReturns = legacyLocalData.returnRecords.map(r => ({
+    ...r,
+    userUid: r.userUid || (currentUser && r.returnedByUsername === currentUser.username ? currentUser.uid : '')
+  }));
+
+  try{
+    showFirestoreSyncStatus('正在迁移这台设备的旧数据…');
+    await upsertFirestoreArray('items', legacyLocalData.items);
+    await upsertFirestoreArray('reservations', migratedReservations);
+    await upsertFirestoreArray('returnRecords', migratedReturns);
+    alert('迁移完成。其他设备现在会从 Firestore 读取这些数据。');
+    startFirestoreDataListeners();
+  } catch(error){
+    alert('迁移失败：' + firebaseErrorMessage(error));
+  }
+}
+
+function todayString(){ return new Date().toISOString().split('T')[0]; }
+function dateFromString(value){ const [y,m,d] = String(value).split('-').map(Number); return new Date(y, m - 1, d); }
+function addDaysString(dateString, days){ const date = dateFromString(dateString || todayString()); date.setDate(date.getDate() + days); return date.toISOString().split('T')[0]; }
+function maxReturnDate(){ return addDaysString(todayString(), 14); }
+function maxPickupDate(){ return addDaysString(todayString(), 7); }
+function cleanupExpiredReservations(){
+  let changed = false;
+  reservations = reservations.filter(r => {
+    if ((r.status || 'reserved') === 'reserved' && r.pickupDate){
+      const deadline = dateFromString(r.pickupDate);
+      deadline.setHours(23, 59, 59, 999);
+      if (Date.now() > deadline.getTime()){
+        const item = items.find(i => String(i.id) === String(r.itemId));
+        if (item) item.status = 'available';
+        deleteFirestoreDoc('reservations', r.id);
+        changed = true;
+        return false;
+      }
+    }
+    return true;
+  });
+  if (changed){
+    save('reservations', reservations);
+    save('items', items);
+    updatePickupNavCount();
+  }
+}
+function getDueDate(reservation){ return reservation.dueDate || addDaysString(reservation.reservedAt, 14); }
+function isOverdue(reservation){ return getDueDate(reservation) < todayString(); }
+function safeName(text){ return String(text || '').replace(/[\\/:*?"<>|#%&{}$!'@+`=]/g, '_').replace(/\s+/g, '_').slice(0, 60); }
+function isAdmin(){ return currentUser && currentUser.role === 'admin'; }
+function getEffectiveItemStatus(item){
+  const active = reservations.find(r => r.itemId === item.id && ['reserved','borrowed','pendingReturn'].includes(r.status || 'reserved'));
+  return active ? (active.status || 'reserved') : (item.status || 'available');
+}
+function syncItemStatusFromReservations(){
+  items.forEach(item => {
+    const active = reservations.find(r => r.itemId === item.id && ['reserved','borrowed','pendingReturn'].includes(r.status || 'reserved'));
+    item.status = active ? (active.status || 'reserved') : (item.status === 'pendingReturn' || item.status === 'borrowed' || item.status === 'reserved' ? 'available' : item.status || 'available');
+  });
+  save('items', items);
+}
+function getStatusRank(status){ return { available: 0, reserved: 1, borrowed: 2, pendingReturn: 3 }[status] ?? 4; }
+function getSortedItems(itemList){ return [...itemList].sort((a,b) => getStatusRank(getEffectiveItemStatus(a)) - getStatusRank(getEffectiveItemStatus(b)) || String(a.name).localeCompare(String(b.name), 'zh-CN')); }
+function getAdminStatusRank(status){ return { borrowed: 0, pendingReturn: 1, reserved: 2, available: 3 }[status] ?? 4; }
+function getAdminSortedItems(itemList){ return [...itemList].sort((a,b) => getAdminStatusRank(getEffectiveItemStatus(a)) - getAdminStatusRank(getEffectiveItemStatus(b)) || String(a.name).localeCompare(String(b.name), 'zh-CN')); }
+function getItemStatusText(status){ return status === 'available' ? '可借用' : status === 'reserved' ? '已预定，待取衣' : status === 'borrowed' ? '已取衣，待归还' : status === 'pendingReturn' ? '处理中，等待管理员确认' : '未知'; }
+function getStatusPillClass(status){ return status === 'available' ? 'pill-available' : status === 'reserved' ? 'pill-reserved' : status === 'borrowed' ? 'pill-borrowed' : status === 'pendingReturn' ? 'pill-pending' : ''; }
+function getCatalogStatusClass(status){ return status === 'available' ? 'status-available' : status === 'reserved' ? 'status-reserved' : status === 'borrowed' ? 'status-borrowed' : status === 'pendingReturn' ? 'status-pending' : 'status-available'; }
+
+function getItemById(itemId){
+  return items.find(item => String(item.id) === String(itemId));
+}
+
+function getItemPhotoUrl(item){
+  if (!item) return '';
+  return item.imageUrl || item.photoUrl || item.image || item.photo || item.url || '';
+}
+
+function setItemPhotoUrl(item, url){
+  item.imageUrl = url || '';
+  // Keep older saved item formats synchronized too.
+  if (Object.prototype.hasOwnProperty.call(item, 'photoUrl')) item.photoUrl = url || '';
+  if (Object.prototype.hasOwnProperty.call(item, 'image')) item.image = url || '';
+  if (Object.prototype.hasOwnProperty.call(item, 'photo')) item.photo = url || '';
+  if (Object.prototype.hasOwnProperty.call(item, 'url')) item.url = url || '';
+}
+
+function itemImageHtml(item, label='衣物照片'){
+  const photoUrl = getItemPhotoUrl(item);
+  if (photoUrl) {
+    return `<div class="item-image"><img src="${photoUrl}" alt="${label}"></div>`;
+  }
+  return `<div class="item-image"><div class="image-placeholder">暂无真实照片<br>请上传衣物照片</div></div>`;
+}
+function modalImageHtml(item){
+  const photoUrl = getItemPhotoUrl(item);
+  if (photoUrl) {
+    return `<div class="item-image" style="height:250px;"><img src="${photoUrl}" alt="${item.name}"></div>`;
+  }
+  return `<div class="item-image" style="height:250px;"><div class="image-placeholder">暂无真实照片</div></div>`;
+}
+
+
+const adminSectionIds = ['admin-inventory','admin-returns','admin-damage','admin-history'];
+
+function showSection(sectionId){
+  if(adminSectionIds.includes(sectionId) && !isAdmin()){
+    alert('你没有管理员权限');
+    sectionId='home';
+  }
+
+  cleanupExpiredReservations();
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(sectionId);
+  if (target) target.classList.add('active');
+  if (sectionId === 'catalog') renderItems(getSortedItems(items));
+  if (sectionId === 'reserve') renderReservations();
+  if (sectionId === 'pickup') renderPickupItems();
+  if (sectionId === 'return') renderReturnItems();
+  if (sectionId === 'admin-inventory') renderAdminInventoryTable();
+  if (sectionId === 'admin-returns') renderAdminPendingReturns();
+  if (sectionId === 'admin-damage') renderDamageAlerts();
+  if (sectionId === 'admin-history') renderLocalReturnRecords();
+  updateStats();
+}
+
+function updateStats(){
+  const availableCount = items.filter(item => getEffectiveItemStatus(item) === 'available').length;
+  const reservedCount = items.filter(item => getEffectiveItemStatus(item) === 'reserved').length;
+  const borrowedCount = items.filter(item => getEffectiveItemStatus(item) === 'borrowed').length;
+
+  const itemStat = document.getElementById('stat-items');
+  const reservationStat = document.getElementById('stat-reservations');
+  const returnStat = document.getElementById('stat-returns');
+
+  if (itemStat) itemStat.textContent = availableCount;
+  if (reservationStat) reservationStat.textContent = reservedCount;
+  if (returnStat) returnStat.textContent = borrowedCount;
+}
+
+function renderItems(filteredItems){
+  const grid = document.getElementById('items-grid');
+  grid.innerHTML = '';
+  if (filteredItems.length === 0){
+    grid.innerHTML = '<div class="empty-state"><p>没有找到符合条件的衣物</p></div>';
+    return;
+  }
+
+  filteredItems.forEach(item => {
+    const card = document.createElement('div');
+    card.className = `item-card item-card-${getEffectiveItemStatus(item)}`;
+    card.onclick = () => showItemDetail(item);
+
+    const effectiveStatus = getEffectiveItemStatus(item);
+    const statusClass = getCatalogStatusClass(effectiveStatus);
+    const statusText = getItemStatusText(effectiveStatus);
+
+    const adminPhotoControl = isAdmin()
+      ? `<button class="catalog-photo-edit-button"
+          onclick='event.stopPropagation(); openAdminPhotoEditor(${JSON.stringify(String(item.id))})'>
+          ${item.imageUrl ? '更换照片' : '添加照片'}
+        </button>`
+      : '';
+
+    card.innerHTML = `
+      <div class="catalog-image-area">
+        ${itemImageHtml(item, item.name)}
+        <span class="catalog-status-overlay ${statusClass}">${statusText}</span>
+        ${adminPhotoControl}
+      </div>
+      <div class="item-info">
+        <h3>${item.name}</h3>
+        <div class="item-tags">
+          <span class="item-tag">${item.category}</span>
+          <span class="item-tag">${item.size}</span>
+          <span class="item-tag">${item.gender}</span>
+        </div>
+        <p class="item-status ${statusClass}">${statusText}</p>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function showItemDetail(item){
+  const modal = document.getElementById('item-modal'); const modalBody = document.getElementById('modal-body');
+  const effectiveStatus = getEffectiveItemStatus(item);
+  let statusText = getItemStatusText(effectiveStatus);
+  const today = todayString();
+  const latest = maxReturnDate();
+  const pickupLatest = maxPickupDate();
+  const reserveControls = effectiveStatus === 'available' ? `<div class="form-group"><label>预计取衣时间</label><input type="date" id="reserve-pickup-date" min="${today}" max="${pickupLatest}"><div class="due-date-help">必须选择取衣时间。取衣时间最多距离预定当天一周。</div></div><div class="form-group"><label>选择归还时间</label><input type="date" id="reserve-due-date" min="${today}" max="${latest}"><div class="due-date-help">必须选择归还时间。最晚归还时间最多距离预定当天两周，并且必须晚于取衣时间。</div></div><button onclick="reserveItem(${item.id})" class="btn-primary reserve-btn">立即预定</button>` : '';
+  const adminPhotoButton = isAdmin()
+    ? `<button class="btn-secondary modal-admin-photo-button"
+        onclick='openAdminPhotoEditor(${JSON.stringify(String(item.id))})'>
+        ${item.imageUrl ? '更换这件衣物的照片' : '为这件衣物添加照片'}
+      </button>`
+    : '';
+  modalBody.innerHTML = `${modalImageHtml(item)}${adminPhotoButton}<h3>${item.name}</h3><div class="detail-row"><span class="detail-label">类别：</span>${item.category}</div><div class="detail-row"><span class="detail-label">尺寸：</span>${item.size}</div><div class="detail-row"><span class="detail-label">适合性别：</span>${item.gender}</div><div class="detail-row"><span class="detail-label">状态：</span>${statusText}</div><div class="detail-row"><span class="detail-label">捐赠人：</span>${item.donor}</div><div class="detail-row"><span class="detail-label">描述：</span>${item.description}</div>${reserveControls}`;
+  modal.style.display = 'flex';
+}
+function closeModal(){ document.getElementById('item-modal').style.display = 'none'; }
+
+function filterItems(){
+  const category = document.getElementById('category-filter').value;
+  const size = document.getElementById('size-filter').value;
+  const gender = document.getElementById('gender-filter').value;
+  const search = document.getElementById('search-input').value.toLowerCase();
+  const filtered = items.filter(item => (category === 'all' || item.category === category) && (size === 'all' || item.size === size) && (gender === 'all' || item.gender === gender) && (item.name.toLowerCase().includes(search) || item.description.toLowerCase().includes(search)));
+  renderItems(getSortedItems(filtered));
+}
+function filterByCategory(category){ showSection('catalog'); document.getElementById('category-filter').value = category; filterItems(); }
+
+function reserveItem(itemId){
+  if (!currentUser){ alert('请先登录后再预定'); closeModal(); showSection('login'); return; }
+  const item = getItemById(itemId);
+  if (!item || getEffectiveItemStatus(item) !== 'available') return;
+  const today = todayString();
+  const latest = maxReturnDate();
+  const pickupLatest = maxPickupDate();
+  const pickupInput = document.getElementById('reserve-pickup-date');
+  const dueInput = document.getElementById('reserve-due-date');
+  let pickupDate = pickupInput && pickupInput.value ? pickupInput.value : '';
+  let dueDate = dueInput && dueInput.value ? dueInput.value : '';
+  if (!pickupDate || !dueDate){ alert('请先选择取衣时间和归还时间后再预定'); return; }
+  if (pickupDate < today || pickupDate > pickupLatest){ alert('取衣时间必须在预定当天一周内'); return; }
+  if (dueDate < today){ alert('归还时间不能早于今天'); return; }
+  if (dueDate > latest){ alert('归还时间不能超过两周'); return; }
+  if (pickupDate >= dueDate){ alert('取衣时间必须早于归还时间'); return; }
+  item.status = 'reserved';
+  const reservation = { id: Date.now(), itemId: item.id, itemName: item.name, reservedAt: today, pickupDate, dueDate, reservedBy: currentUser.name, reservedByUsername: currentUser.username, userUid: currentUser.uid || currentUser.id || '', email: currentUser.email || '', status: 'reserved' };
+  reservations.push(reservation);
+  save('items', items); save('reservations', reservations);
+  syncReservationRecord(reservation);
+  closeModal(); renderItems(getSortedItems(items)); alert(`预定成功！请在 ${dueDate} 前归还。`);
+}
+
+function userReservations(){ return isAdmin() ? reservations : reservations.filter(r => currentUser && ((r.userUid && r.userUid === (currentUser.uid || currentUser.id)) || (!r.userUid && r.reservedByUsername === currentUser.username))); }
+function renderReservations(){
+  const list = document.getElementById('reserved-reservations-list');
+  const count = document.getElementById('reserved-count');
+  if (!list || !count) return;
+
+  list.innerHTML = '';
+
+  if (!currentUser){
+    count.textContent = '0 件预定';
+    list.innerHTML = '<div class="reservation-empty"><p>请先登录查看预定记录。</p></div>';
+    return;
+  }
+
+  cleanupExpiredReservations();
+
+  const reserved = userReservations()
+    .filter(r => (r.status || 'reserved') === 'reserved')
+    .sort((a,b) => (pickupDeadline(a)?.getTime() || Infinity) - (pickupDeadline(b)?.getTime() || Infinity));
+
+  count.textContent = `${reserved.length} 件预定`;
+
+  if (!reserved.length){
+    list.innerHTML = `
+      <div class="reservation-empty">
+        <p>目前没有尚未取衣的预定。</p>
+        <button onclick="showSection('catalog')" class="btn-primary">浏览衣物</button>
+      </div>`;
+    return;
+  }
+
+  reserved.forEach(r => {
+    const item = items.find(i => i.id === r.itemId);
+    const remaining = pickupTimeRemaining(r);
+    const card = document.createElement('div');
+    card.className = 'reservation-card reserved-view-card';
+    card.innerHTML = `
+      ${itemImageHtml(item || {}, r.itemName)}
+      <div class="reservation-view-body">
+        <div class="reservation-card-status reserved">已预定，尚未取衣</div>
+        <h3>${r.itemName}</h3>
+        <div class="reservation-date-grid">
+          <div><span>预约取衣</span><strong>${r.pickupDate || '未设置'}</strong></div>
+          <div><span>最晚归还</span><strong>${getDueDate(r)}</strong></div>
+        </div>
+        <p class="small">取衣截止：${r.pickupDate || '取衣日'} 23:59 · 剩余 ${formatPickupCountdown(remaining)}</p>
+        <div class="reservation-action-area">
+          <button onclick="cancelReservation(${r.id})" class="reservation-cancel-action reservation-only-action">取消预定</button>
+        </div>
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+function pickupDeadline(reservation){
+  if (!reservation || !reservation.pickupDate) return null;
+  const deadline = dateFromString(reservation.pickupDate);
+  deadline.setHours(23, 59, 59, 999);
+  return deadline;
+}
+
+function pickupTimeRemaining(reservation){
+  const deadline = pickupDeadline(reservation);
+  return deadline ? deadline.getTime() - Date.now() : null;
+}
+
+function formatPickupCountdown(milliseconds){
+  if (milliseconds === null) return '未设置截止时间';
+  if (milliseconds <= 0) return '即将自动取消';
+  const totalMinutes = Math.max(1, Math.ceil(milliseconds / 60000));
+  const days = Math.floor(totalMinutes / 1440);
+  const hours = Math.floor((totalMinutes % 1440) / 60);
+  const minutes = totalMinutes % 60;
+  if (days > 0) return `${days} 天 ${hours} 小时`;
+  if (hours > 0) return `${hours} 小时 ${minutes} 分钟`;
+  return `${minutes} 分钟`;
+}
+
+function pickupUrgencyClass(milliseconds){
+  if (milliseconds === null || milliseconds > 24 * 60 * 60 * 1000) return 'safe';
+  if (milliseconds > 2 * 60 * 60 * 1000) return 'warning';
+  return 'urgent';
+}
+
+function renderPickupItems(){
+  cleanupExpiredReservations();
+
+  const list = document.getElementById('pickup-list');
+  const empty = document.getElementById('no-pickup-items');
+  const banner = document.getElementById('pickup-urgent-banner');
+  const pageCount = document.getElementById('pickup-page-count');
+  if (!list || !empty || !banner || !pageCount) return;
+
+  list.innerHTML = '';
+  banner.style.display = 'none';
+
+  if (!currentUser){
+    pageCount.textContent = '0 件待取';
+    empty.style.display = 'block';
+    empty.innerHTML = '<p>请先登录后查看待取衣物。</p><button onclick="showSection(\'login\')" class="btn-primary">登录</button>';
+    updatePickupNavCount();
+    return;
+  }
+
+  const pickupReservations = userReservations()
+    .filter(r => (r.status || 'reserved') === 'reserved')
+    .sort((a,b) => (pickupDeadline(a)?.getTime() || Infinity) - (pickupDeadline(b)?.getTime() || Infinity));
+
+  pageCount.textContent = `${pickupReservations.length} 件待取`;
+  empty.style.display = pickupReservations.length ? 'none' : 'block';
+  if (!pickupReservations.length){
+    empty.innerHTML = '<p>目前没有等待取衣的预定。</p><button onclick="showSection(\'catalog\')" class="btn-primary">浏览衣物</button>';
+    updatePickupNavCount();
+    return;
+  }
+
+  const mostUrgent = pickupReservations[0];
+  const mostUrgentRemaining = pickupTimeRemaining(mostUrgent);
+  banner.className = `pickup-urgent-banner ${pickupUrgencyClass(mostUrgentRemaining)}`;
+  banner.style.display = 'flex';
+  banner.innerHTML = `
+    <div class="pickup-banner-icon">⏳</div>
+    <div>
+      <strong>请在取衣日结束前确认取衣</strong>
+      <p>最紧急的一件还剩 <b data-pickup-countdown="${mostUrgent.id}">${formatPickupCountdown(mostUrgentRemaining)}</b>。
+      超过截止时间后，预约将自动取消，衣服会重新开放给其他同学。</p>
+    </div>`;
+
+  pickupReservations.forEach(r => {
+    const remaining = pickupTimeRemaining(r);
+    const urgency = pickupUrgencyClass(remaining);
+    const item = items.find(i => i.id === r.itemId);
+    const card = document.createElement('div');
+    card.className = `reservation-card pickup-card ${urgency}`;
+    card.innerHTML = `
+      ${itemImageHtml(item || {}, r.itemName)}
+      <div class="pickup-card-body">
+        <div class="pickup-card-topline">
+          <span class="reservation-card-status reserved">已预定，待取衣</span>
+          <span class="pickup-countdown-badge ${urgency}" data-pickup-countdown="${r.id}">
+            ${formatPickupCountdown(remaining)}
+          </span>
+        </div>
+        <h3>${r.itemName}</h3>
+        <div class="pickup-date-grid">
+          <div><span>预约取衣</span><strong>${r.pickupDate || '未设置'}</strong></div>
+          <div><span>最晚归还</span><strong>${getDueDate(r)}</strong></div>
+        </div>
+        <p class="pickup-deadline-copy">请在 <strong>${r.pickupDate || '取衣日'} 23:59</strong> 前完成确认。</p>
+        <div class="reservation-action-area">
+          <button onclick="confirmPickup(${r.id})" class="btn-primary reservation-main-action">确认已经取到衣服</button>
+          <button onclick="cancelReservation(${r.id}); renderPickupItems();" class="reservation-cancel-action">取消这次预定</button>
+        </div>
+      </div>`;
+    list.appendChild(card);
+  });
+
+  updatePickupNavCount();
+}
+
+function updatePickupCountdowns(){
+  const activeSection = document.getElementById('pickup');
+  if (!activeSection || !activeSection.classList.contains('active')) return;
+
+  let expired = false;
+  document.querySelectorAll('[data-pickup-countdown]').forEach(el => {
+    const id = Number(el.dataset.pickupCountdown);
+    const reservation = reservations.find(r => r.id === id);
+    if (!reservation) return;
+    const remaining = pickupTimeRemaining(reservation);
+    if (remaining <= 0) expired = true;
+    el.textContent = formatPickupCountdown(remaining);
+  });
+
+  if (expired) renderPickupItems();
+}
+
+function updatePickupNavCount(){
+  const navCount = document.getElementById('pickup-nav-count');
+  if (!navCount) return;
+  const count = currentUser
+    ? userReservations().filter(r => (r.status || 'reserved') === 'reserved').length
+    : 0;
+  navCount.textContent = count ? `(${count})` : '';
+}
+
+setInterval(updatePickupCountdowns, 1000);
+
+let pendingPickupReservationId = null;
+
+function confirmPickup(reservationId){
+  const reservation = reservations.find(r => r.id === reservationId);
+  if (!reservation) return;
+  pendingPickupReservationId = reservationId;
+  const note = document.getElementById('pickup-damage-note');
+  if (note) note.value = '';
+  const modal = document.getElementById('pickup-damage-modal');
+  if (modal) modal.style.display = 'flex';
+}
+
+function closePickupDamageModal(){
+  const modal = document.getElementById('pickup-damage-modal');
+  if (modal) modal.style.display = 'none';
+  pendingPickupReservationId = null;
+}
+
+function submitPickupConfirmation(){
+  if (pendingPickupReservationId === null) return;
+  const reservationId = pendingPickupReservationId;
+  const noteInput = document.getElementById('pickup-damage-note');
+  const pickupDamageNote = noteInput ? noteInput.value.trim() : '';
+  closePickupDamageModal();
+  pickUpReservation(reservationId, pickupDamageNote);
+}
+
+function pickUpReservation(reservationId, pickupDamageNote=''){
+  const reservation = reservations.find(r => r.id === reservationId);
+  if (!reservation) return;
+
+  if (!isAdmin() && (!currentUser || !((reservation.userUid && reservation.userUid === (currentUser.uid || currentUser.id)) || (!reservation.userUid && reservation.reservedByUsername === currentUser.username)))){
+    alert('只能确认自己的预定');
+    return;
+  }
+
+  if ((reservation.status || 'reserved') !== 'reserved'){
+    alert('这件衣服已经取走了，不能重复确认');
+    return;
+  }
+
+  reservation.status = 'borrowed';
+
+  const item = items.find(i => i.id === reservation.itemId);
+  if (item) item.status = 'borrowed';
+
+  if (pickupDamageNote){
+    const pickupDamageRecord = {
+      id: Date.now(),
+      recordType: 'pickupDamage',
+      itemId: reservation.itemId,
+      itemName: reservation.itemName,
+      returnedBy: reservation.reservedBy,
+      returnedByUsername: reservation.reservedByUsername,
+      userUid: reservation.userUid || (currentUser && (currentUser.uid || currentUser.id)) || '',
+      reportedBy: reservation.reservedBy,
+      reportedAt: new Date().toLocaleString(),
+      returnedAt: new Date().toLocaleString(),
+      date: todayString(),
+      dueDate: getDueDate(reservation),
+      damageNote: pickupDamageNote,
+      photoUrl: item && item.imageUrl ? item.imageUrl : '',
+      damageResolved: false
+    };
+    returnRecords.push(pickupDamageRecord);
+    save('returnRecords', returnRecords);
+  }
+
+  save('reservations', reservations);
+  save('items', items);
+  syncReservationStatus(reservation, 'borrowed');
+
+  renderReservations();
+  renderPickupItems();
+  renderItems(getSortedItems(items));
+  updateStats();
+  if (isAdmin()) renderAdminInventoryTable();
+
+  updateAdminNavCounts();
+  alert(pickupDamageNote
+    ? '已确认取衣，并已把取衣时发现的问题发送到管理员端的“损坏提醒”。如果不愿继续借用，请前往“归还衣物”完成拍照归还。'
+    : '已确认取衣。现在这件衣服不能取消预定，只能通过“归还衣物”页面归还。');
+}
+
+function cancelReservation(reservationId){
+  const index = reservations.findIndex(r => r.id === reservationId);
+  if (index === -1) return;
+
+  const reservation = reservations[index];
+
+  if (!isAdmin() && (!currentUser || !((reservation.userUid && reservation.userUid === (currentUser.uid || currentUser.id)) || (!reservation.userUid && reservation.reservedByUsername === currentUser.username)))){
+    alert('只能取消自己的预定');
+    return;
+  }
+
+  if ((reservation.status || 'reserved') !== 'reserved'){
+    alert('这件衣服已经取走，不能取消预定。请到“归还衣物”页面归还。');
+    return;
+  }
+
+  const item = items.find(i => i.id === reservation.itemId);
+  if (item) item.status = 'available';
+  syncReservationStatus(reservation, 'cancelled');
+
+  reservations.splice(index, 1);
+  deleteFirestoreDoc('reservations', reservation.id);
+  save('reservations', reservations);
+  save('items', items);
+
+  renderReservations();
+  renderPickupItems();
+  renderItems(getSortedItems(items));
+  updateStats();
+  if (isAdmin()) renderAdminInventoryTable();
+
+  alert('预定已取消');
+}
+
+function renderReturnItems(){
+  const borrowedList = document.getElementById('return-items-list');
+  const pendingList = document.getElementById('return-pending-list');
+  const borrowedCount = document.getElementById('return-borrowed-count');
+  const pendingCount = document.getElementById('return-pending-count');
+  if (!borrowedList || !pendingList || !borrowedCount || !pendingCount) return;
+
+  borrowedList.innerHTML = '';
+  pendingList.innerHTML = '';
+
+  if (!currentUser){
+    borrowedCount.textContent = '0 件';
+    pendingCount.textContent = '0 件';
+    borrowedList.innerHTML = '<div class="reservation-empty"><p>请先登录查看待归还衣物。</p></div>';
+    pendingList.innerHTML = '<div class="reservation-empty"><p>请先登录查看归还处理状态。</p></div>';
+    return;
+  }
+
+  const data = userReservations();
+  const borrowed = data.filter(r => r.status === 'borrowed');
+  const pending = data.filter(r => r.status === 'pendingReturn');
+
+  borrowedCount.textContent = `${borrowed.length} 件`;
+  pendingCount.textContent = `${pending.length} 件`;
+
+  if (!borrowed.length){
+    borrowedList.innerHTML = '<div class="reservation-empty"><p>目前没有待归还的衣服。</p></div>';
+  }
+
+  if (!pending.length){
+    pendingList.innerHTML = '<div class="reservation-empty"><p>目前没有等待管理员处理的归还。</p></div>';
+  }
+
+  borrowed.forEach(r => {
+    const item = items.find(i => i.id === r.itemId);
+    const card = document.createElement('div');
+    card.className = 'reservation-card return-action-card';
+    card.innerHTML = `
+      ${itemImageHtml(item || {}, r.itemName)}
+      <div class="reservation-view-body">
+        <div class="reservation-card-status borrowed">待归还</div>
+        <h3>${r.itemName}</h3>
+        <div class="reservation-date-grid">
+          <div><span>取衣日期</span><strong>${r.pickupDate || '未设置'}</strong></div>
+          <div><span>最晚归还</span><strong>${getDueDate(r)}</strong></div>
+        </div>
+        ${isOverdue(r) ? '<p class="overdue">已超过归还时间，请尽快归还。</p>' : ''}
+        <div class="reservation-action-area">
+          <button onclick="openReturnModal(${r.id})" class="btn-primary reservation-main-action">上传照片并归还</button>
+        </div>
+      </div>`;
+    borrowedList.appendChild(card);
+  });
+
+  pending.forEach(r => {
+    const item = items.find(i => i.id === r.itemId);
+    const card = document.createElement('div');
+    card.className = 'reservation-card pending-admin-card';
+    card.innerHTML = `
+      ${itemImageHtml(item || {}, r.itemName)}
+      <div class="reservation-view-body">
+        <div class="reservation-card-status pending">等待管理员处理</div>
+        <h3>${r.itemName}</h3>
+        <div class="reservation-date-grid">
+          <div><span>原定归还</span><strong>${getDueDate(r)}</strong></div>
+          <div><span>提交时间</span><strong>${r.returnedAt || '已提交'}</strong></div>
+        </div>
+        <p class="small">归还照片已经提交。管理员确认后，这件衣服会重新开放借用。</p>
+      </div>`;
+    pendingList.appendChild(card);
+  });
+}
+
+
+function openReturnModal(reservationId){
+  const reservation = reservations.find(r => r.id === reservationId);
+  if (!reservation){
+    alert('找不到这条借用记录');
+    return;
+  }
+  if (!currentUser || !((reservation.userUid && reservation.userUid === (currentUser.uid || currentUser.id)) || (!reservation.userUid && reservation.reservedByUsername === currentUser.username))){
+    alert('只能归还自己的衣物');
+    return;
+  }
+  if (reservation.status !== 'borrowed'){
+    alert('这件衣服目前不在待归还状态');
+    renderReturnItems();
+    return;
+  }
+
+  const modal = document.getElementById('item-modal');
+  const modalBody = document.getElementById('modal-body');
+  if (!modal || !modalBody){
+    alert('归还窗口无法打开，请刷新页面后重试');
+    return;
+  }
+
+  const item = items.find(i => i.id === reservation.itemId);
+  modalBody.innerHTML = `
+    <div class="return-modal-heading">
+      <span class="return-modal-eyebrow">RETURN COSTUME</span>
+      <h2>上传照片并归还</h2>
+      <p>请拍摄衣物目前的状态。提交后，将等待管理员确认。</p>
+    </div>
+
+    <div class="return-modal-item">
+      ${itemImageHtml(item || {}, reservation.itemName)}
+      <div>
+        <h3>${reservation.itemName}</h3>
+        <p>最晚归还：<strong>${getDueDate(reservation)}</strong></p>
+        ${isOverdue(reservation) ? '<p class="overdue">这件衣服已经逾期，请尽快提交归还。</p>' : ''}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="modal-return-photo"><strong>归还照片（必填）</strong></label>
+      <input type="file" accept="image/*" capture="environment" id="modal-return-photo">
+      <img id="modal-return-preview" class="return-photo" alt="归还照片预览" style="display:none;">
+      <p class="small">请确保照片清楚显示整件衣服和任何损坏或污渍。</p>
+    </div>
+
+    <div class="form-group">
+      <label for="modal-return-note"><strong>衣物状态备注</strong></label>
+      <textarea id="modal-return-note" rows="3" placeholder="例如：没有问题；袖口有污渍；拉链损坏"></textarea>
+    </div>
+
+    <div class="progress" id="modal-return-progress-wrap" style="display:none;">
+      <div id="modal-return-progress"></div>
+    </div>
+
+    <button id="modal-return-submit" class="btn-primary return-submit-button"
+      onclick="returnItemFromModal(${reservation.id})">确认归还并上传</button>
+  `;
+
+  const photoInput = document.getElementById('modal-return-photo');
+  const preview = document.getElementById('modal-return-preview');
+  if (photoInput && preview){
+    photoInput.addEventListener('change', () => {
+      if (photoInput.files && photoInput.files[0]){
+        preview.src = URL.createObjectURL(photoInput.files[0]);
+        preview.style.display = 'block';
+      } else {
+        preview.removeAttribute('src');
+        preview.style.display = 'none';
+      }
+    });
+  }
+
+  modal.style.display = 'flex';
+}
+
+async function uploadToCloudinary(file, reservation, damageNote=''){
+  const date = todayString();
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', UPLOAD_PRESET);
+  formData.append('asset_folder', `returned costumes/${date}`);
+  formData.append('folder', `returned costumes/${date}`);
+  formData.append('tags', `${RETURN_TAG},return_${date.replaceAll('-', '_')}`);
+  formData.append(
+    'context',
+    `returned_by=${reservation.reservedBy}|item=${reservation.itemName}|date=${date}|due_date=${getDueDate(reservation)}|reservation_id=${reservation.id}|damage_note=${damageNote || '无'}`
+  );
+
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    { method: 'POST', body: formData }
+  );
+  const result = await response.json();
+  if (!response.ok){
+    throw new Error(result?.error?.message || 'Cloudinary 上传失败');
+  }
+  return result;
+}
+
+async function returnItemFromModal(reservationId){
+  const input = document.getElementById('modal-return-photo');
+  const noteInput = document.getElementById('modal-return-note');
+  const submitButton = document.getElementById('modal-return-submit');
+  const progressWrap = document.getElementById('modal-return-progress-wrap');
+  const progress = document.getElementById('modal-return-progress');
+
+  if (!input || !input.files || input.files.length === 0){
+    alert('请先拍照或上传归还照片');
+    return;
+  }
+
+  const reservation = reservations.find(r => r.id === reservationId);
+  if (!reservation){
+    alert('找不到这条借用记录');
+    return;
+  }
+  if (!currentUser || !((reservation.userUid && reservation.userUid === (currentUser.uid || currentUser.id)) || (!reservation.userUid && reservation.reservedByUsername === currentUser.username))){
+    alert('只能归还自己的衣物');
+    return;
+  }
+  if (reservation.status !== 'borrowed'){
+    alert('这件衣服已经不在待归还状态');
+    closeModal();
+    renderReturnItems();
+    return;
+  }
+
+  const damageNote = noteInput ? noteInput.value.trim() : '';
+
+  if (submitButton){
+    submitButton.disabled = true;
+    submitButton.textContent = '正在上传……';
+  }
+  if (progressWrap && progress){
+    progressWrap.style.display = 'block';
+    progress.style.width = '30%';
+  }
+
+  try {
+    const uploadResult = await uploadToCloudinary(
+      input.files[0],
+      reservation,
+      damageNote
+    );
+
+    if (progress) progress.style.width = '80%';
+
+    const record = {
+      id: Date.now(),
+      itemId: reservation.itemId,
+      itemName: reservation.itemName,
+      returnedBy: reservation.reservedBy,
+      returnedByUsername: reservation.reservedByUsername,
+      userUid: reservation.userUid || (currentUser && (currentUser.uid || currentUser.id)) || '',
+      returnedAt: new Date().toLocaleString(),
+      date: todayString(),
+      dueDate: getDueDate(reservation),
+      damageNote: damageNote || '无',
+      photoUrl: uploadResult.secure_url,
+      publicId: uploadResult.public_id,
+      folder: uploadResult.folder || `returned costumes/${todayString()}`
+    };
+
+    returnRecords.push(record);
+    save('returnRecords', returnRecords);
+
+    reservation.status = 'pendingReturn';
+    reservation.returnRecordId = record.id;
+    reservation.returnedAt = record.returnedAt;
+    reservation.returnPhotoUrl = record.photoUrl;
+
+    const item = items.find(i => i.id === reservation.itemId);
+    if (item) item.status = 'pendingReturn';
+
+    save('items', items);
+    save('reservations', reservations);
+    syncReservationStatus(reservation, 'pendingReturn');
+
+    if (progress) progress.style.width = '100%';
+
+    closeModal();
+    alert('归还照片已上传。现在等待管理员处理。');
+
+    renderReturnItems();
+    renderReservations();
+    renderPickupItems();
+    renderItems(getSortedItems(items));
+    updateStats();
+    updatePickupNavCount();
+    if (isAdmin()){
+      renderAdminInventoryTable();
+      renderAdminPendingReturns();
+      updateAdminNavCounts();
+    }
+  } catch (error){
+    if (progressWrap) progressWrap.style.display = 'none';
+    if (submitButton){
+      submitButton.disabled = false;
+      submitButton.textContent = '确认归还并上传';
+    }
+    alert('归还失败：' + error.message);
+  }
+}
+
+
+function openAdminPhotoEditor(itemId){
+  if (!isAdmin()){
+    alert('你没有管理员权限');
+    return;
+  }
+
+  const item = getItemById(itemId);
+  if (!item){
+    alert('找不到这件衣物');
+    return;
+  }
+
+  const modal = document.getElementById('item-modal');
+  const modalBody = document.getElementById('modal-body');
+  if (!modal || !modalBody){
+    alert('无法打开照片编辑窗口，请刷新页面后重试');
+    return;
+  }
+
+  modalBody.innerHTML = `
+    <div class="admin-photo-editor-heading">
+      <span class="admin-photo-editor-eyebrow">ADMIN PHOTO EDITOR</span>
+      <h2>修改衣物照片</h2>
+      <p>无论这件衣物现在是否已有照片，都可以上传新照片进行替换。上传成功后，首页和衣物目录会立即更新。</p>
+    </div>
+
+    <div class="admin-photo-editor-current">
+      ${itemImageHtml(item, item.name)}
+      <div>
+        <h3>${item.name}</h3>
+        <p class="small">${item.category} / ${item.size} / ${item.gender}</p>
+        <p class="small">${getItemPhotoUrl(item) ? '当前已有照片，可以上传新照片替换。' : '当前还没有衣物照片。'}</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="admin-item-photo-input"><strong>选择新照片</strong></label>
+      <input id="admin-item-photo-input" type="file" accept="image/*" capture="environment">
+      <img id="admin-item-photo-preview" class="return-photo" alt="新衣物照片预览" style="display:none;">
+    </div>
+
+    <div class="progress" id="admin-item-photo-progress-wrap" style="display:none;">
+      <div id="admin-item-photo-progress"></div>
+    </div>
+
+    <button id="admin-item-photo-submit" class="btn-primary admin-photo-submit"
+      onclick='saveAdminItemPhoto(${JSON.stringify(String(item.id))})'>上传并替换照片</button>
+
+    ${getItemPhotoUrl(item) ? `<button class="cancel-btn admin-photo-remove" onclick='removeAdminItemPhoto(${JSON.stringify(String(item.id))})'>删除当前照片</button>` : ''}
+  `;
+
+  const input = document.getElementById('admin-item-photo-input');
+  const preview = document.getElementById('admin-item-photo-preview');
+  if (input && preview){
+    input.addEventListener('change', () => {
+      if (input.files && input.files[0]){
+        preview.src = URL.createObjectURL(input.files[0]);
+        preview.style.display = 'block';
+      } else {
+        preview.removeAttribute('src');
+        preview.style.display = 'none';
+      }
+    });
+  }
+
+  modal.style.display = 'flex';
+}
+
+async function uploadAdminItemPhoto(file, item){
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', UPLOAD_PRESET);
+  formData.append('asset_folder', 'costume catalog');
+  formData.append('folder', 'costume catalog');
+  formData.append('tags', `costume_catalog,item_${item.id}`);
+  formData.append(
+    'context',
+    `item_id=${item.id}|item_name=${item.name}|updated_by=${currentUser ? currentUser.username : 'admin'}|updated_at=${new Date().toISOString()}`
+  );
+
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    { method: 'POST', body: formData }
+  );
+  const result = await response.json();
+
+  if (!response.ok){
+    throw new Error(result?.error?.message || '照片上传失败');
+  }
+  return result;
+}
+
+async function saveAdminItemPhoto(itemId){
+  if (!isAdmin()){
+    alert('你没有管理员权限');
+    return;
+  }
+
+  const item = getItemById(itemId);
+  const input = document.getElementById('admin-item-photo-input');
+  const submit = document.getElementById('admin-item-photo-submit');
+  const progressWrap = document.getElementById('admin-item-photo-progress-wrap');
+  const progress = document.getElementById('admin-item-photo-progress');
+
+  if (!item){
+    alert('找不到这件衣物');
+    return;
+  }
+  if (!input || !input.files || input.files.length === 0){
+    alert('请先选择一张新照片');
+    return;
+  }
+
+  if (submit){
+    submit.disabled = true;
+    submit.textContent = '正在上传……';
+  }
+  if (progressWrap && progress){
+    progressWrap.style.display = 'block';
+    progress.style.width = '35%';
+  }
+
+  try{
+    const result = await uploadAdminItemPhoto(input.files[0], item);
+    if (progress) progress.style.width = '85%';
+
+    setItemPhotoUrl(item, result.secure_url);
+    item.imagePublicId = result.public_id;
+    item.imageUpdatedAt = new Date().toLocaleString();
+    item.imageUpdatedBy = currentUser.username;
+
+    save('items', items);
+
+    if (progress) progress.style.width = '100%';
+    closeModal();
+
+    renderItems(getSortedItems(items));
+    renderAdminInventoryTable();
+    updateStats();
+
+    alert('衣物照片已更新。首页和衣物目录现在会显示新照片。');
+  } catch(error){
+    if (progressWrap) progressWrap.style.display = 'none';
+    if (submit){
+      submit.disabled = false;
+      submit.textContent = '上传并替换照片';
+    }
+    alert('照片更新失败：' + error.message);
+  }
+}
+
+function removeAdminItemPhoto(itemId){
+  if (!isAdmin()){
+    alert('你没有管理员权限');
+    return;
+  }
+
+  const item = getItemById(itemId);
+  if (!item){
+    alert('找不到这件衣物');
+    return;
+  }
+
+  if (!confirm(`确定删除“${item.name}”当前显示的照片吗？`)){
+    return;
+  }
+
+  setItemPhotoUrl(item, '');
+  delete item.imagePublicId;
+  item.imageUpdatedAt = new Date().toLocaleString();
+  item.imageUpdatedBy = currentUser.username;
+
+  save('items', items);
+  closeModal();
+  renderItems(getSortedItems(items));
+  renderAdminInventoryTable();
+  alert('当前衣物照片已从网站中移除。');
+}
+
+function previewDonatePhoto(){
+  const input = document.getElementById('donate-photo');
+  const preview = document.getElementById('donate-photo-preview');
+  if (input.files && input.files[0]){
+    preview.src = URL.createObjectURL(input.files[0]);
+    preview.style.display = 'block';
+  } else {
+    preview.removeAttribute('src');
+    preview.style.display = 'none';
+  }
+}
+
+async function uploadDonationToCloudinary(file, itemData){
+  const date = todayString();
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', UPLOAD_PRESET);
+  formData.append('asset_folder', `donated costumes/${date}`);
+  formData.append('folder', `donated costumes/${date}`);
+  formData.append('public_id', `${safeName(itemData.name)}_${Date.now()}`);
+  formData.append('tags', `${DONATION_TAG},donation_${date.replaceAll('-', '_')}`);
+  formData.append('context', `name=${itemData.name}|category=${itemData.category}|size=${itemData.size}|gender=${itemData.gender}|description=${itemData.description || ''}|donor=${itemData.donor}|date=${date}`);
+
+  const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, { method: 'POST', body: formData });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result?.error?.message || 'Cloudinary 上传失败');
+  return result;
+}
+
+async function handleDonate(event){
+  event.preventDefault();
+  const photoInput = document.getElementById('donate-photo');
+  if (!photoInput.files || photoInput.files.length === 0){
+    alert('请先上传衣物照片。');
+    return;
+  }
+
+  const itemData = {
+    name: document.getElementById('donate-name').value.trim(),
+    category: document.getElementById('donate-category').value,
+    size: document.getElementById('donate-size').value,
+    gender: document.getElementById('donate-gender').value,
+    description: document.getElementById('donate-desc').value.trim(),
+    donor: document.getElementById('donate-donor').value.trim()
+  };
+
+  const submit = document.getElementById('donate-submit');
+  const progressWrap = document.getElementById('donate-progress-wrap');
+  const progress = document.getElementById('donate-progress');
+  submit.disabled = true;
+  submit.textContent = '正在上传照片...';
+  progressWrap.style.display = 'block';
+  progress.style.width = '35%';
+
+  try {
+    const uploadResult = await uploadDonationToCloudinary(photoInput.files[0], itemData);
+    progress.style.width = '85%';
+    const newItem = {
+      id: Date.now(),
+      ...itemData,
+      status: 'available',
+      imageUrl: uploadResult.secure_url,
+      cloudPublicId: uploadResult.public_id,
+      donatedAt: todayString(),
+      source: 'cloudinary',
+      donatedByUid: currentUser ? (currentUser.uid || currentUser.id || '') : ''
+    };
+    items.push(newItem);
+    save('items', items);
+    document.getElementById('donate-form').reset();
+    document.getElementById('donate-photo-preview').style.display = 'none';
+    progress.style.width = '100%';
+    alert('捐赠成功！照片已经上传，并会显示在衣物目录里。');
+    showSection('catalog');
+  } catch (error) {
+    alert('捐赠失败：' + error.message);
+  } finally {
+    submit.disabled = false;
+    submit.textContent = '确认捐赠并上传照片';
+    setTimeout(() => { progressWrap.style.display = 'none'; progress.style.width = '0%'; }, 800);
+  }
+}
+
+async function loadCloudDonations(){
+  try {
+    const response = await fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${DONATION_TAG}.json?_=${Date.now()}`);
+    if (!response.ok) return;
+    const data = await response.json();
+    const cloudItems = (data.resources || []).map(r => {
+      const context = r.context || {};
+      return {
+        id: 'cloud_' + r.public_id,
+        name: context.name || extractItemFromPublicId(r.public_id),
+        category: context.category || '通用',
+        size: context.size || '均码',
+        gender: context.gender || '通用',
+        description: context.description || '',
+        donor: context.donor || '未知捐赠人',
+        status: 'available',
+        imageUrl: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}.${r.format}`,
+        cloudPublicId: r.public_id,
+        donatedAt: context.date || extractDateFromPublicId(r.public_id),
+        source: 'cloudinary'
+      };
+    });
+    let changed = false;
+    cloudItems.forEach(cloudItem => {
+      if (!items.some(item => item.cloudPublicId === cloudItem.cloudPublicId)) {
+        items.push(cloudItem);
+        changed = true;
+      }
+    });
+    if (changed) save('items', items);
+    renderItems(getSortedItems(items));
+    updateStats();
+  } catch (error) {
+    console.warn('无法读取云端捐赠衣物：', error);
+  }
+}
+
+
+async function handleLogin(event){
+  event.preventDefault();
+  if (!requireFirebase()) return;
+
+  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  const password = document.getElementById('login-password').value;
+  const submitButton = document.getElementById('login-submit');
+
+  if (submitButton){
+    submitButton.disabled = true;
+    submitButton.textContent = '正在登录……';
+  }
+
+  try{
+    await firebaseAuth.signInWithEmailAndPassword(email, password);
+    document.getElementById('login-form').reset();
+    showSection('home');
+  } catch(error){
+    alert(firebaseErrorMessage(error));
+  } finally{
+    if (submitButton){
+      submitButton.disabled = false;
+      submitButton.textContent = '登录';
+    }
+  }
+}
+
+async function handleRegister(event){
+  event.preventDefault();
+  if (!requireFirebase()) return;
+
+  const username = document.getElementById('register-username').value.trim();
+  const password = document.getElementById('register-password').value;
+  const confirmPassword = document.getElementById('register-confirm-password').value;
+  const name = document.getElementById('register-name').value.trim();
+  const email = document.getElementById('register-email').value.trim().toLowerCase();
+  const studentIdInput = document.getElementById('register-student-id');
+  const studentId = studentIdInput ? studentIdInput.value.trim() : '';
+  const submitButton = document.getElementById('register-submit');
+
+  if (password !== confirmPassword){
+    alert('两次输入的密码不一致');
+    return;
+  }
+  if (password.length < 6){
+    alert('密码至少需要 6 个字符');
+    return;
+  }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    alert('请输入有效的邮箱地址');
+    return;
+  }
+
+  if (submitButton){
+    submitButton.disabled = true;
+    submitButton.textContent = '正在注册……';
+  }
+
+  let credential = null;
+  try{
+    const usernameKey = username.toLowerCase();
+
+    // Create the Firebase Authentication account first.
+    // Firestore rules do not allow unauthenticated users to query the users collection.
+    credential = await firebaseAuth.createUserWithEmailAndPassword(email, password);
+
+    await firebaseDb.collection('users').doc(credential.user.uid).set({
+      username,
+      usernameKey,
+      name,
+      email,
+      studentId,
+      role: 'user',
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    await credential.user.updateProfile({ displayName: name });
+
+    syncReminderService('upsertUser', {
+      userId: credential.user.uid,
+      username,
+      name,
+      email
+    });
+
+    document.getElementById('register-form').reset();
+    showSection('home');
+    alert('注册成功，已经自动登录。');
+  } catch(error){
+    // If Auth succeeded but Firestore profile creation failed, remove the incomplete account.
+    if (credential && credential.user){
+      try{ await credential.user.delete(); } catch(deleteError){ console.warn(deleteError); }
+    }
+    alert(firebaseErrorMessage(error));
+  } finally{
+    if (submitButton){
+      submitButton.disabled = false;
+      submitButton.textContent = '注册';
+    }
+  }
+}
+
+async function handleForgotPassword(){
+  if (!requireFirebase()) return;
+
+  let email = '';
+  const emailInput = document.getElementById('login-email');
+  if (emailInput) email = emailInput.value.trim().toLowerCase();
+
+  if (!email){
+    email = prompt('请输入注册时使用的邮箱：') || '';
+    email = email.trim().toLowerCase();
+  }
+  if (!email) return;
+
+  try{
+    await firebaseAuth.sendPasswordResetEmail(email);
+    alert('密码重置邮件已发送，请检查邮箱。');
+  } catch(error){
+    alert(firebaseErrorMessage(error));
+  }
+}
+
+async function logout(){
+  if (!firebaseReady){
+    currentUser = null;
+    updateAuthUI();
+    showSection('home');
+    return;
+  }
+  try{
+    await firebaseAuth.signOut();
+    showSection('home');
+  } catch(error){
+    alert(firebaseErrorMessage(error));
+  }
+}
+
+function startFirebaseAuthObserver(){
+  if (!initializeFirebase()){
+    currentUser = null;
+    authStateResolved = true;
+    updateAuthUI();
+    return;
+  }
+
+  firebaseAuth.onAuthStateChanged(async firebaseUser => {
+    try{
+      currentUser = firebaseUser ? await loadFirebaseUserProfile(firebaseUser) : null;
+    } catch(error){
+      console.error('读取用户资料失败：', error);
+      currentUser = firebaseUser ? {
+        id: firebaseUser.uid,
+        uid: firebaseUser.uid,
+        username: firebaseUser.email ? firebaseUser.email.split('@')[0] : 'user',
+        name: firebaseUser.displayName || firebaseUser.email || '用户',
+        email: firebaseUser.email || '',
+        role: 'user'
+      } : null;
+    }
+
+    authStateResolved = true;
+    updateAuthUI();
+    startFirestoreDataListeners();
+    renderReservations();
+    renderPickupItems();
+    renderReturnItems();
+    renderItems(getSortedItems(items));
+    updateStats();
+
+    if (currentUser){
+      console.log('Firebase 用户已登录：', currentUser.email);
+    }
+  });
+}
+
+function updateAdminNav(){
+  const group = document.getElementById('admin-nav-group');
+  if (!group) return;
+  group.style.display = isAdmin() ? 'inline-flex' : 'none';
+  updateAdminNavCounts();
+}
+
+function updateAuthUI(){
+  const authLinks = document.getElementById('auth-links');
+  const userInfo = document.getElementById('user-info');
+  const userName = document.getElementById('user-name');
+
+  if (currentUser){
+    authLinks.style.display = 'none';
+    userInfo.style.display = 'flex';
+    userName.textContent = currentUser.name + (isAdmin() ? '（管理员）' : '');
+  } else {
+    authLinks.style.display = 'flex';
+    userInfo.style.display = 'none';
+  }
+
+  updateAdminNav();
+  updatePickupNavCount();
+  renderItems(getSortedItems(items));
+}
+
+function findActiveReservationForItem(itemId){
+  return reservations.find(r => r.itemId === itemId && ((r.status || 'reserved') === 'reserved' || r.status === 'borrowed' || r.status === 'pendingReturn')) || null;
+}
+function findLatestReturnForItem(itemId){
+  return returnRecords.filter(r => r.itemId === itemId).sort((a,b) => String(b.returnedAt || b.date || '').localeCompare(String(a.returnedAt || a.date || '')))[0] || null;
+}
+function renderAdminSummaryCards(){
+  const box = document.getElementById('admin-summary-cards');
+  if (!box) return;
+  const borrowedCount = reservations.filter(r => r.status === 'borrowed').length;
+  const pendingCount = reservations.filter(r => r.status === 'pendingReturn').length;
+  const reservedCount = reservations.filter(r => (r.status || 'reserved') === 'reserved').length;
+  const availableCount = items.filter(item => item.status === 'available').length;
+  const todayReturns = returnRecords.filter(r => r.date === todayString()).length;
+  box.innerHTML = `
+    <div class="admin-summary-card borrowed"><span class="admin-summary-label">已取衣，待归还</span><span class="admin-summary-number">${borrowedCount}</span></div>
+    <div class="admin-summary-card pending"><span class="admin-summary-label">等待确认归还</span><span class="admin-summary-number">${pendingCount}</span></div>
+    <div class="admin-summary-card reserved"><span class="admin-summary-label">已预定，待取衣</span><span class="admin-summary-number">${reservedCount}</span></div>
+    <div class="admin-summary-card available"><span class="admin-summary-label">可借用</span><span class="admin-summary-number">${availableCount}</span></div>
+    <div class="admin-summary-card returned"><span class="admin-summary-label">今日上传归还</span><span class="admin-summary-number">${todayReturns}</span></div>
+  `;
+}
+
+function getActualStatusCell(item, active, latestReturn){
+  const status = item.status || 'available';
+
+  if (status === 'borrowed' && active){
+    return `👤 <b>借用人手中</b><br><span class="small">❌ 尚未归还</span><br><span class="small">借用人：${active.reservedBy}</span><br><span class="small">最晚归还：${getDueDate(active)}</span>`;
+  }
+
+  if (status === 'pendingReturn' && active){
+    const pendingReturn = latestReturn || returnRecords.find(r => r.id === active.returnRecordId) || {};
+    return `🧺 <b>已归还，等待管理员检查</b><br><span class="small">刚刚归还的人：${pendingReturn.returnedBy || active.reservedBy || '未知用户'}</span><br><span class="small">上传时间：${pendingReturn.returnedAt || pendingReturn.date || active.returnedAt || '未知时间'}</span>`;
+  }
+
+  if (status === 'reserved' && active){
+    return `📦 <b>在衣柜中（等待领取）</b><br><span class="small">预定人：${active.reservedBy}</span><br><span class="small">预定归还时间：${getDueDate(active)}</span>`;
+  }
+
+  if (latestReturn){
+    return `📦 <b>在衣柜中</b><br><span class="small">✅ 可借用</span><br><span class="small">最近归还：${latestReturn.returnedBy || '未知用户'}，${latestReturn.date || latestReturn.returnedAt || '未知时间'}</span>`;
+  }
+
+  return '📦 <b>在衣柜中</b><br><span class="small">✅ 可借用</span><br><span class="small">暂无已被取走</span>';
+}
+
+function getAdminPhotoCell(item, active, latestReturn){
+  if (item.status !== 'pendingReturn'){
+    return '<span class="admin-empty-photo">—</span>';
+  }
+
+  const record = returnRecords.find(r => active && r.id === active.returnRecordId) || latestReturn;
+  const url = record && record.photoUrl ? record.photoUrl : (active && active.returnPhotoUrl ? active.returnPhotoUrl : '');
+
+  if (!url){
+    return '<span class="admin-empty-photo">待处理，但暂无照片</span>';
+  }
+
+  return `<button class="btn-secondary" onclick='openPhotoModal(${JSON.stringify(url)}, ${JSON.stringify(item.name)}, ${JSON.stringify((record&&record.returnedBy)||(active&&active.reservedBy)||"")}, ${JSON.stringify((record&&(record.returnedAt||record.date))||(active&&active.returnedAt)||"")}, ${JSON.stringify((record&&record.dueDate)||(active?getDueDate(active):""))})'>查看待确认照片</button>`;
+}
+
+function confirmReturn(itemId){
+  if (!isAdmin()){
+    alert('请先用管理员账号登录');
+    return;
+  }
+  const reservationIndex = reservations.findIndex(r => r.itemId === itemId && r.status === 'pendingReturn');
+  if (reservationIndex === -1){
+    alert('没有找到等待确认的已被取走');
+    return;
+  }
+  const reservation = reservations[reservationIndex];
+  const item = getItemById(itemId);
+  const record = returnRecords.find(r => r.id === reservation.returnRecordId) || findLatestReturnForItem(itemId);
+  if (record){
+    record.confirmed = true;
+    record.confirmedAt = new Date().toLocaleString();
+    record.confirmedBy = currentUser.name;
+  }
+  if (item) item.status = 'available';
+  syncReservationStatus(reservation, 'completed');
+  reservations.splice(reservationIndex, 1);
+  deleteFirestoreDoc('reservations', reservation.id);
+  save('items', items);
+  save('reservations', reservations);
+  save('returnRecords', returnRecords);
+  renderAdminInventoryTable();
+  renderLocalReturnRecords();
+  renderItems(getSortedItems(items));
+  updateStats();
+  updateAdminNavCounts();
+  alert('归还已确认。这件衣服现在重新变成可借用。');
+}
+
+
+function requireReturnReupload(itemId){
+  if (!isAdmin()){
+    alert('请先用管理员账号登录');
+    return;
+  }
+  const reservation = reservations.find(r => r.itemId === itemId && r.status === 'pendingReturn');
+  if (!reservation){
+    alert('没有找到等待确认的已被取走');
+    return;
+  }
+  if (!confirm('确定要要求重新上传归还照片吗？这件衣服会回到“已取衣，待归还”状态。')) return;
+
+  const record = returnRecords.find(r => r.id === reservation.returnRecordId);
+  if (record){
+    record.rejected = true;
+    record.rejectedAt = new Date().toLocaleString();
+    record.rejectedBy = currentUser.name;
+  }
+
+  reservation.status = 'borrowed';
+  syncReservationStatus(reservation, 'borrowed');
+  delete reservation.returnRecordId;
+  delete reservation.returnedAt;
+  delete reservation.returnPhotoUrl;
+
+  const item = getItemById(itemId);
+  if (item) item.status = 'borrowed';
+
+  save('items', items);
+  save('reservations', reservations);
+  save('returnRecords', returnRecords);
+
+  renderAdminInventoryTable();
+  renderLocalReturnRecords();
+  renderItems(getSortedItems(items));
+  updateStats();
+  updateAdminNavCounts();
+  alert('已要求重新上传。这件衣服现在重新显示为“已取衣，待归还”。');
+}
+
+function getAdminActionCell(item, active, latestReturn){
+  const status = item.status || 'available';
+  const editPhotoButton = `<button class="btn-secondary admin-photo-edit-btn" onclick='openAdminPhotoEditor(${JSON.stringify(String(item.id))})'>修改衣物照片</button>`;
+
+  if (status === 'pendingReturn'){
+    const photoUrl = latestReturn && latestReturn.photoUrl ? latestReturn.photoUrl : (active && active.returnPhotoUrl ? active.returnPhotoUrl : '');
+    return `${photoUrl ? `<button class="btn-secondary" onclick='openPhotoModal(${JSON.stringify(photoUrl)}, ${JSON.stringify(item.name)}, ${JSON.stringify((latestReturn&&latestReturn.returnedBy)||(active&&active.reservedBy)||"")}, ${JSON.stringify((latestReturn&&(latestReturn.returnedAt||latestReturn.date))||(active&&active.returnedAt)||"")}, ${JSON.stringify(active?getDueDate(active):"")})'>查看归还照片</button><br>` : ''}<button class="btn-primary" onclick="confirmReturn(${item.id})">确认归还</button><br><button class="cancel-btn" onclick="requireReturnReupload(${item.id})">要求重新上传</button><br>${editPhotoButton}`;
+  }
+
+  if (status === 'borrowed' && active){
+    return `<span class="small">借用中，可提醒借用人按时归还。</span><br>${editPhotoButton}`;
+  }
+
+  if (status === 'reserved' && active){
+    return `<button class="cancel-btn" onclick="cancelReservation(${active.id})">取消预定</button><br>${editPhotoButton}`;
+  }
+
+  if (status === 'available'){
+    return editPhotoButton;
+  }
+
+  return editPhotoButton;
+}
+
+let adminTableSort = { key: 'status', direction: 'asc' };
+function daysOverdue(reservation){
+  if (!reservation || !isOverdue(reservation)) return 0;
+  const due = dateFromString(getDueDate(reservation));
+  const today = dateFromString(todayString());
+  return Math.max(1, Math.floor((today - due) / 86400000));
+}
+function renderAdminTaskPanel(){
+  const box = document.getElementById('admin-task-panel');
+  if (!box) return;
+  const pending = reservations
+    .filter(r => r.status === 'pendingReturn')
+    .sort((a, b) => {
+      const recordA = getReturnRecordForReservation(a);
+      const recordB = getReturnRecordForReservation(b);
+      const timeA = new Date((recordA && (recordA.returnedAt || recordA.date)) || a.returnedAt || 0).getTime();
+      const timeB = new Date((recordB && (recordB.returnedAt || recordB.date)) || b.returnedAt || 0).getTime();
+      return timeB - timeA;
+    });
+  const overdue = reservations.filter(r => r.status === 'borrowed' && isOverdue(r));
+  const reserved = reservations.filter(r => (r.status || 'reserved') === 'reserved');
+  const tasks = [];
+  pending.forEach(r => tasks.push(`<div class="admin-task-item pending"><div><strong>等待确认归还：${r.itemName}</strong><span class="small">归还人：${r.reservedBy}</span></div><button class="btn-primary" onclick="renderAdminInventoryTable(); document.getElementById('admin-inventory-table').scrollIntoView({behavior:'smooth'})">处理</button></div>`));
+  overdue.forEach(r => tasks.push(`<div class="admin-task-item overdue-task"><div><strong>已逾期 ${daysOverdue(r)} 天：${r.itemName}</strong><span class="small">借用人：${r.reservedBy} · 最晚归还：${getDueDate(r)}</span></div><span class="overdue">需要跟进</span></div>`));
+  reserved.forEach(r => tasks.push(`<div class="admin-task-item reserved-task"><div><strong>等待领取：${r.itemName}</strong><span class="small">预定人：${r.reservedBy}</span></div><span class="small">${getDueDate(r)} 前归还</span></div>`));
+  box.innerHTML = `<h3>今日需要处理</h3>${tasks.length ? `<div class="admin-task-list">${tasks.join('')}</div>` : '<div class="admin-task-empty">今天没有待确认或逾期事项。</div>'}`;
+}
+function setAdminTableSort(key){
+  if (adminTableSort.key === key) adminTableSort.direction = adminTableSort.direction === 'asc' ? 'desc' : 'asc';
+  else { adminTableSort.key = key; adminTableSort.direction = 'asc'; }
+  renderAdminInventoryTable();
+}
+function adminSortIndicator(key){
+  if (adminTableSort.key !== key) return '<span class="sort-indicator">↕</span>';
+  return `<span class="sort-indicator">${adminTableSort.direction === 'asc' ? '▲' : '▼'}</span>`;
+}
+function sortAdminItems(list){
+  const dir = adminTableSort.direction === 'asc' ? 1 : -1;
+  return [...list].sort((a,b) => {
+    const activeA=findActiveReservationForItem(a.id), activeB=findActiveReservationForItem(b.id);
+    let av='', bv='';
+    if(adminTableSort.key==='name'){ av=a.name||''; bv=b.name||''; }
+    else if(adminTableSort.key==='status'){ av=getAdminStatusRank(getEffectiveItemStatus(a)); bv=getAdminStatusRank(getEffectiveItemStatus(b)); }
+    else if(adminTableSort.key==='due'){ av=activeA?getDueDate(activeA):'9999-99-99'; bv=activeB?getDueDate(activeB):'9999-99-99'; }
+    const cmp = typeof av === 'number' ? av-bv : String(av).localeCompare(String(bv),'zh-CN');
+    return cmp*dir || String(a.name).localeCompare(String(b.name),'zh-CN');
+  });
+}
+function openPhotoModal(url, itemName='', returnedBy='', returnedAt='', dueDate=''){
+  if(!url) return;
+  document.getElementById('photo-modal-image').src=url;
+  document.getElementById('photo-modal-info').innerHTML=`<b>${itemName || '归还照片'}</b>${returnedBy?`<br>归还人：${returnedBy}`:''}${returnedAt?`<br>归还时间：${returnedAt}`:''}${dueDate?`<br>原定最晚归还：${dueDate}`:''}`;
+  document.getElementById('photo-modal').style.display='flex';
+}
+function closePhotoModal(){ document.getElementById('photo-modal').style.display='none'; }
+function renderAdminInventoryTable(){
+  const box = document.getElementById('admin-inventory-table');
+  if (!box) return;
+  if (!isAdmin()){
+    box.innerHTML = '<div class="empty-state"><p>请先用管理员账号登录。</p></div>';
+    return;
+  }
+  renderAdminTaskPanel();
+  renderAdminSummaryCards();
+  const rows = sortAdminItems(items).map(item => {
+    const active = findActiveReservationForItem(item.id);
+    const latestReturn = findLatestReturnForItem(item.id);
+    const actualStatusText = getActualStatusCell(item, active, latestReturn);
+    const photoHtml = getAdminPhotoCell(item, active, latestReturn);
+    const actionHtml = getAdminActionCell(item, active, latestReturn);
+    const overdueText = active && isOverdue(active) && item.status !== 'pendingReturn' ? `<br><span class="overdue-days">已逾期 ${daysOverdue(active)} 天</span>` : '';
+    return `
+      <tr>
+        <td><b>${item.name}</b><br><span class="small">${item.category} / ${item.size} / ${item.gender}</span></td>
+        <td><span class="status-pill ${getStatusPillClass(item.status)}">${getItemStatusText(item.status)}</span>${overdueText}</td>
+        <td>${actualStatusText}<br><span class="small">预计取衣：${active && active.pickupDate ? active.pickupDate : "—"}<br>最晚归还：${active && active.dueDate ? active.dueDate : "—"}</span></td>
+        <td>${photoHtml}</td>
+        <td>${actionHtml}</td>
+      </tr>`;
+  }).join('');
+  box.innerHTML = `
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th class="sortable-th" onclick="setAdminTableSort('name')">衣服${adminSortIndicator('name')}</th>
+          <th class="sortable-th" onclick="setAdminTableSort('status')">前端显示${adminSortIndicator('status')}</th>
+          <th>实际状态<br><span class="small">取衣时间 / 最晚归还</span></th>
+          <th>查看照片</th>
+          <th>管理员操作<br><span class="small">包括修改目录照片</span></th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+
+let damageFilter = 'unresolved';
+
+function getReturnRecordForReservation(reservation){
+  return returnRecords.find(r => r.id === reservation.returnRecordId)
+    || returnRecords.find(r => r.itemId === reservation.itemId && !r.confirmed)
+    || findLatestReturnForItem(reservation.itemId);
+}
+
+function updateAdminNavCounts(){
+  const pendingCount = reservations.filter(r => r.status === 'pendingReturn').length;
+  const unresolvedDamageCount = returnRecords.filter(r =>
+    r.damageNote && r.damageNote.trim() && r.damageNote.trim() !== '无' && !r.damageResolved
+  ).length;
+
+  const returnBadge = pendingCount ? `<span class="admin-badge">${pendingCount}</span>` : '';
+  const damageBadge = unresolvedDamageCount ? `<span class="admin-badge">${unresolvedDamageCount}</span>` : '';
+
+  const returnCount = document.getElementById('admin-return-count');
+  const damageCount = document.getElementById('admin-damage-count');
+  const returnsTitle = document.getElementById('admin-returns-title-count');
+  const damageTitle = document.getElementById('admin-damage-title-count');
+
+  if (returnCount) returnCount.innerHTML = returnBadge;
+  if (damageCount) damageCount.innerHTML = damageBadge;
+  if (returnsTitle) returnsTitle.textContent = pendingCount ? `（${pendingCount}）` : '';
+  if (damageTitle) damageTitle.textContent = unresolvedDamageCount ? `（${unresolvedDamageCount} 未处理）` : '';
+}
+
+function renderAdminPendingReturns(){
+  const box = document.getElementById('admin-pending-returns-page');
+  if (!box) return;
+  if (!isAdmin()){
+    box.innerHTML = '<div class="empty-state">请先使用管理员账号登录。</div>';
+    return;
+  }
+
+  const pending = reservations.filter(r => r.status === 'pendingReturn');
+  updateAdminNavCounts();
+
+  if (!pending.length){
+    box.innerHTML = '<div class="empty-state">目前没有等待管理员确认的归还衣物。</div>';
+    return;
+  }
+
+  box.innerHTML = `<div class="admin-review-grid">${pending.map(r => {
+    const record = getReturnRecordForReservation(r);
+    const photoUrl = (record && record.photoUrl) || r.returnPhotoUrl || r.returnPhoto || '';
+    const damageNote = (record && record.damageNote) || r.damageNote || '无';
+    const returnedBy = (record && record.returnedBy) || r.returnedBy || r.reservedBy || '未知';
+    const returnedAt = (record && (record.returnedAt || record.date)) || r.returnedAt || '未知';
+
+    return `<article class="admin-review-card">
+      <span class="status-pill pill-pending">等待管理员确认</span>
+      <h3>${r.itemName}</h3>
+      <p><b>归还人：</b>${returnedBy}</p>
+      <p><b>实际归还：</b>${returnedAt}</p>
+      <p><b>原定最晚归还：</b>${getDueDate(r)}</p>
+      ${photoUrl ? `<button type="button" style="padding:0;border:0;background:none;cursor:pointer;width:auto;display:inline-block" onclick='openPhotoModal(${JSON.stringify(photoUrl)}, ${JSON.stringify(r.itemName)}, ${JSON.stringify(returnedBy)}, ${JSON.stringify(returnedAt)}, ${JSON.stringify(getDueDate(r))})'><img src="${photoUrl}" alt="${r.itemName} 归还照片"></button>` : '<div class="image-placeholder" style="height:190px">暂无归还照片</div>'}
+      <p><b>损坏/污渍备注：</b>${damageNote}</p>
+      <div class="admin-review-actions">
+        <button class="btn-primary" onclick="confirmReturn(${r.itemId}); renderAdminPendingReturns(); renderDamageAlerts(); updateAdminNavCounts();">确认归还</button>
+        <button class="cancel-btn" onclick="requireReturnReupload(${r.itemId}); renderAdminPendingReturns(); updateAdminNavCounts();">要求重新上传</button>
+      </div>
+    </article>`;
+  }).join('')}</div>`;
+}
+
+function setDamageFilter(filter){
+  damageFilter = filter;
+  renderDamageAlerts();
+}
+
+function markDamageResolved(recordId){
+  if (!isAdmin()){
+    alert('请先使用管理员账号登录');
+    return;
+  }
+  const record = returnRecords.find(r => String(r.id) === String(recordId));
+  if (!record) return;
+  record.damageResolved = true;
+  record.damageResolvedAt = new Date().toLocaleString();
+  record.damageResolvedBy = currentUser.name;
+  save('returnRecords', returnRecords);
+  renderDamageAlerts();
+  updateAdminNavCounts();
+}
+
+function markDamageUnresolved(recordId){
+  if (!isAdmin()) return;
+  const record = returnRecords.find(r => String(r.id) === String(recordId));
+  if (!record) return;
+  record.damageResolved = false;
+  delete record.damageResolvedAt;
+  delete record.damageResolvedBy;
+  save('returnRecords', returnRecords);
+  renderDamageAlerts();
+  updateAdminNavCounts();
+}
+
+function renderDamageAlerts(){
+  const box = document.getElementById('admin-damage-page');
+  if (!box) return;
+  if (!isAdmin()){
+    box.innerHTML = '<div class="empty-state">请先使用管理员账号登录。</div>';
+    return;
+  }
+
+  const damaged = returnRecords.filter(r =>
+    r.damageNote && r.damageNote.trim() && r.damageNote.trim() !== '无'
+  );
+
+  const filtered = damaged.filter(r => {
+    if (damageFilter === 'resolved') return !!r.damageResolved;
+    if (damageFilter === 'unresolved') return !r.damageResolved;
+    return true;
+  });
+
+  updateAdminNavCounts();
+
+  if (!filtered.length){
+    const text = damageFilter === 'resolved'
+      ? '目前没有已处理的损坏提醒。'
+      : damageFilter === 'unresolved'
+        ? '目前没有未处理的损坏提醒。'
+        : '暂无损坏提醒。';
+    box.innerHTML = `<div class="empty-state">${text}</div>`;
+    return;
+  }
+
+  box.innerHTML = `<div class="admin-review-grid">${filtered.map(r => {
+    const resolved = !!r.damageResolved;
+    return `<article class="admin-review-card ${resolved ? 'damage-resolved' : 'damage-unresolved'}">
+      <span class="damage-status ${resolved ? 'resolved' : 'unresolved'}">${resolved ? '✓ 已处理' : '● 未处理'}</span>
+      <h3>⚠️ ${r.itemName || '未知衣物'}</h3>
+      <p><b>${r.recordType === 'pickupDamage' ? '报告人' : '归还人'}：</b>${r.reportedBy || r.returnedBy || '未知'}</p>
+      <p><b>${r.recordType === 'pickupDamage' ? '取衣报告时间' : '归还时间'}：</b>${r.reportedAt || r.returnedAt || r.date || '未知'}</p>
+      <p><b>发现阶段：</b>${r.recordType === 'pickupDamage' ? '取衣时发现' : '归还时报告'}</p>
+      <p><b>问题：</b>${r.damageNote}</p>
+      ${r.photoUrl ? `<button type="button" style="padding:0;border:0;background:none;cursor:pointer;width:auto;display:inline-block" onclick='openPhotoModal(${JSON.stringify(r.photoUrl)}, ${JSON.stringify(r.itemName||"")}, ${JSON.stringify(r.returnedBy||"")}, ${JSON.stringify(r.returnedAt||r.date||"")}, ${JSON.stringify(r.dueDate||"")})'><img src="${r.photoUrl}" alt="损坏照片"></button>` : ''}
+      ${resolved
+        ? `<p class="small">处理人：${r.damageResolvedBy || '管理员'}<br>处理时间：${r.damageResolvedAt || '未知'}</p><button class="btn-secondary" onclick="markDamageUnresolved(${JSON.stringify(r.id)})">重新标记为未处理</button>`
+        : `<button class="btn-primary" onclick="markDamageResolved(${JSON.stringify(r.id)})">✓ 已处理</button>`}
+    </article>`;
+  }).join('')}</div>`;
+}
+
+let currentReturnHistoryRecords = [];
+let currentReturnHistoryEmptyText = '还没有已被取走。';
+
+function normalizeHistoryDate(record){
+  const raw = record.date || record.returnedAt || '';
+  const match = String(raw).match(/\d{4}-\d{2}-\d{2}/);
+  if (match) return match[0];
+  const parsed = new Date(raw);
+  if (!Number.isNaN(parsed.getTime())) return parsed.toISOString().split('T')[0];
+  return '日期未知';
+}
+
+function renderLocalReturnRecords(){
+  setReturnHistoryRecords(returnRecords.filter(r => r.recordType !== 'pickupDamage').slice().reverse(), 'Firestore 里还没有归还记录。');
+}
+
+async function loadAdminReturns(){
+  if (!isAdmin()){ alert('请先用管理员账号登录'); return; }
+  const list = document.getElementById('admin-return-list');
+  list.innerHTML = '<div class="empty-state"><p>正在读取 Cloudinary 照片...</p></div>';
+  try {
+    const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${RETURN_TAG}.json?_=${Date.now()}`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Cloudinary Resource list 没有开启，或照片没有 returned_costume tag');
+    const data = await response.json();
+    const resources = (data.resources || []).map(r => {
+      const context = r.context || {};
+      return { id: r.public_id, itemName: context.item || extractItemFromPublicId(r.public_id), returnedBy: context.returned_by || '未知用户', returnedAt: context.date || '', date: context.date || extractDateFromPublicId(r.public_id), dueDate: context.due_date || '', photoUrl: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}.${r.format}`, publicId: r.public_id, folder: r.public_id.split('/').slice(0,-1).join('/') };
+    }).sort((a,b) => normalizeHistoryDate(b).localeCompare(normalizeHistoryDate(a)));
+    setReturnHistoryRecords(resources, 'Cloudinary 里还没有归还照片。');
+  } catch (error){
+    list.innerHTML = `<div class="empty-state"><p>无法读取云端照片：${error.message}</p><p class="small">请看 README：需要开启 Resource list，并确保上传时带 returned_costume tag。</p></div>`;
+  }
+}
+
+function extractDateFromPublicId(publicId){ const m = String(publicId).match(/\d{4}-\d{2}-\d{2}/); return m ? m[0] : ''; }
+function extractItemFromPublicId(publicId){ return String(publicId).split('/').pop().replace(/_\d+$/, '').replaceAll('_',' '); }
+
+function setReturnHistoryRecords(records, emptyText){
+  currentReturnHistoryRecords = Array.isArray(records) ? records : [];
+  currentReturnHistoryEmptyText = emptyText || '还没有已被取走。';
+  filterReturnHistory();
+}
+
+function getReturnHistoryFieldLabel(field){
+  return {
+    all: '全部内容',
+    itemName: '衣服名称',
+    returnedBy: '归还人',
+    returnedAt: '归还时间',
+    dueDate: '原定最晚归还'
+  }[field] || '全部内容';
+}
+
+function getReturnHistorySearchText(record, field){
+  const values = {
+    itemName: record.itemName || '',
+    returnedBy: record.returnedBy || '',
+    returnedAt: `${record.returnedAt || ''} ${record.date || ''}`,
+    dueDate: record.dueDate || ''
+  };
+  if (field === 'all') return Object.values(values).join(' ');
+  return values[field] || '';
+}
+
+function updateReturnHistorySearchPlaceholder(){
+  const input = document.getElementById('return-history-search');
+  const fieldSelect = document.getElementById('return-history-field');
+  if (!input) return;
+  const field = fieldSelect ? fieldSelect.value : 'all';
+  const placeholders = {
+    all: '搜索衣服、归还人、归还时间或最晚归还…',
+    itemName: '按衣服名称搜索…',
+    returnedBy: '按归还人搜索…',
+    returnedAt: '按归还时间搜索，例如 2026-07-05…',
+    dueDate: '按原定最晚归还搜索，例如 2026-07-19…'
+  };
+  input.placeholder = placeholders[field] || placeholders.all;
+}
+
+function filterReturnHistory(){
+  const input = document.getElementById('return-history-search');
+  const fieldSelect = document.getElementById('return-history-field');
+  const field = fieldSelect ? fieldSelect.value : 'all';
+  const rawKeyword = input ? input.value.trim() : '';
+  const keyword = rawKeyword.toLowerCase();
+  const filtered = keyword
+    ? currentReturnHistoryRecords.filter(record =>
+        String(getReturnHistorySearchText(record, field)).toLowerCase().includes(keyword)
+      )
+    : currentReturnHistoryRecords;
+  const emptyMessage = keyword
+    ? `没有找到${getReturnHistoryFieldLabel(field)}包含“${rawKeyword}”的已被取走。`
+    : currentReturnHistoryEmptyText;
+  renderAdminCards(filtered, emptyMessage);
+}
+
+function clearReturnHistorySearch(){
+  const input = document.getElementById('return-history-search');
+  const fieldSelect = document.getElementById('return-history-field');
+  if (input) input.value = '';
+  if (fieldSelect) fieldSelect.value = 'all';
+  updateReturnHistorySearchPlaceholder();
+  filterReturnHistory();
+}
+
+function renderAdminCards(records, emptyText){
+  const list = document.getElementById('admin-return-list');
+  list.innerHTML = '';
+  if (!records || records.length === 0){
+    list.innerHTML = `<div class="empty-state history-no-results"><p>${emptyText}</p></div>`;
+    return;
+  }
+
+  const sorted = [...records].sort((a,b) => {
+    const dateCompare = normalizeHistoryDate(b).localeCompare(normalizeHistoryDate(a));
+    if (dateCompare !== 0) return dateCompare;
+    return String(b.returnedAt || '').localeCompare(String(a.returnedAt || ''));
+  });
+
+  const groups = new Map();
+  sorted.forEach(record => {
+    const date = normalizeHistoryDate(record);
+    if (!groups.has(date)) groups.set(date, []);
+    groups.get(date).push(record);
+  });
+
+  groups.forEach((groupRecords, date) => {
+    const section = document.createElement('section');
+    section.className = 'history-date-group';
+    const heading = document.createElement('h4');
+    heading.className = 'history-date-heading';
+    heading.innerHTML = `<span><span class="history-collapse-icon">▶</span>${date}</span><span class="history-date-count">${groupRecords.length} 条已被取走</span>`;
+    const row = document.createElement('div');
+    row.className = 'history-date-row is-collapsed';
+    heading.onclick = () => { const collapsed = row.classList.toggle('is-collapsed'); heading.querySelector('.history-collapse-icon').textContent = collapsed ? '▶' : '▼'; };
+
+    groupRecords.forEach(r => {
+      const card = document.createElement('div');
+      card.className = 'history-photo-card';
+      const photo = r.photoUrl
+        ? `<button type="button" style="padding:0;border:0;background:none;cursor:pointer;width:auto;display:inline-block" onclick='openPhotoModal(${JSON.stringify(r.photoUrl)}, ${JSON.stringify(r.itemName||"")}, ${JSON.stringify(r.returnedBy||"")}, ${JSON.stringify(r.returnedAt||r.date||"")}, ${JSON.stringify(r.dueDate||"")})'><img class="history-photo-thumb" src="${r.photoUrl}" alt="归还照片"></button>`
+        : '<div class="image-placeholder" style="height:130px;">暂无照片</div>';
+      card.innerHTML = `${photo}<h4>${r.itemName}</h4><p>归还人：${r.returnedBy || '未知用户'}</p><p>归还时间：${r.returnedAt || r.date || '未知时间'}</p>${r.dueDate ? `<p>原定最晚归还：${r.dueDate}</p>` : ''}`;
+      row.appendChild(card);
+    });
+
+    section.appendChild(heading);
+    section.appendChild(row);
+    list.appendChild(section);
+    if (list.children.length === 1) { row.classList.remove('is-collapsed'); heading.querySelector('.history-collapse-icon').textContent = '▼'; }
+  });
+}
+
+window.onclick = function(event){
+  const modal = document.getElementById('item-modal');
+  const photoModal = document.getElementById('photo-modal');
+  const pickupDamageModal = document.getElementById('pickup-damage-modal');
+  if (event.target === modal) modal.style.display = 'none';
+  if (event.target === photoModal) closePhotoModal();
+  if (event.target === pickupDamageModal) closePickupDamageModal();
+};
+document.addEventListener('DOMContentLoaded', () => {
+  updateReturnHistorySearchPlaceholder();
+  syncItemStatusFromReservations();
+  renderItems(getSortedItems(items));
+  updateAuthUI();
+  updateAdminNavCounts();
+  updateStats();
+  loadCloudDonations();
+  startFirebaseAuthObserver();
+});
+</script>
+</body>
+</html>
