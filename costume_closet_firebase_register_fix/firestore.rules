@@ -1,0 +1,38 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    match /users/{uid} {
+      // A signed-in user can read their own profile; admins can read all profiles.
+      allow read: if isOwner(uid) || isAdmin();
+
+      // New accounts may only create their own profile and must start as a normal user.
+      allow create: if isOwner(uid)
+        && request.resource.data.role == 'user'
+        && request.resource.data.email == request.auth.token.email;
+
+      // Users may edit their own profile but cannot promote themselves.
+      allow update: if isOwner(uid)
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.email == resource.data.email;
+
+      // Admins may update profiles, including assigning the admin role.
+      allow update: if isAdmin();
+
+      allow delete: if isAdmin();
+    }
+  }
+}
