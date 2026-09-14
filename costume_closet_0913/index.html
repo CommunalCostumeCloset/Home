@@ -1,0 +1,4139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Communal Costume Closet</title>
+  <style>
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,'PingFang SC','Microsoft YaHei',sans-serif;background:#faf7f2;color:#2f2a25}.header{background:#fff;padding:18px 28px;box-shadow:0 2px 12px #0001;position:sticky;top:0;z-index:10}.logo h1{margin:0;font-size:26px}.logo p{margin:6px 0 14px;color:#766b5f}.nav{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.nav a,.nav button{border:0;background:#f1e6d8;padding:9px 13px;border-radius:999px;text-decoration:none;color:#3a3028;cursor:pointer;font-size:14px}.nav a:hover,.nav button:hover{background:#e3d1bd}.nav .admin-link{background:#ded1ff}.nav .danger{background:#ffd8d8}.section{display:none;max-width:1100px;margin:0 auto;padding:28px}.section.active{display:block}.hero{background:linear-gradient(135deg,#fff,#f4e5d2);border-radius:24px;padding:48px;text-align:center}.hero h2{font-size:36px;margin:0 0 12px}.btn-primary{background:#8b5e3c;color:white;border:0;border-radius:10px;padding:11px 18px;cursor:pointer}.btn-secondary{background:#eadaca;color:#2f2a25;border:0;border-radius:10px;padding:10px 14px;cursor:pointer}.cancel-btn{background:#d9534f;color:white;border:0;border-radius:10px;padding:9px 13px;cursor:pointer}.stats,.features,.category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:24px}.stat-item,.feature-card,.item-card,.reservation-card,.auth-card{background:white;border-radius:18px;padding:18px;box-shadow:0 4px 18px #00000012}.stat-number{display:block;font-size:28px;font-weight:bold}.stat-label{color:#766b5f}.category-btn{background:white;border:1px solid #eadaca;border-radius:14px;padding:18px;cursor:pointer;font-size:16px}.filters{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 24px}.filters input,.filters select,.form-group input,.form-group select,.form-group textarea{padding:10px;border:1px solid #d8c8b8;border-radius:10px;background:white;width:100%}.items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}.item-card{cursor:pointer;transition:.15s}.item-card:hover{transform:translateY(-3px)}.item-image{height:150px;display:flex;align-items:center;justify-content:center;background:#f8efe6;border-radius:14px;overflow:hidden}.item-image img{width:100%;height:100%;object-fit:cover;display:block}.image-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;color:#8a7d70;font-size:14px;padding:16px;background:#f8efe6}.donate-preview{width:180px;max-width:100%;border-radius:12px;margin-top:10px;display:none}.item-tags{display:flex;gap:6px;flex-wrap:wrap}.item-tag{background:#f1e6d8;border-radius:999px;padding:4px 8px;font-size:12px}.item-status{font-weight:bold}.status-available{color:#2e8b57}.status-reserved{color:#c78000}.status-borrowed{color:#b94141}.status-pending{color:#8b5e3c}.reservations-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}.empty-state{text-align:center;background:white;border-radius:18px;padding:28px;margin-top:16px;color:#766b5f}.form-group{margin:14px 0}.auth-container{max-width:420px;margin:0 auto}.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:20px;z-index:20}.modal-content{background:white;max-width:520px;width:100%;max-height:90vh;overflow:auto;border-radius:20px;padding:24px;position:relative}.close{position:absolute;right:18px;top:12px;font-size:28px;cursor:pointer}.detail-row{margin:10px 0}.detail-label{font-weight:bold}.footer{text-align:center;padding:28px;color:#766b5f}.return-photo{width:100%;border-radius:12px;margin-top:8px}.admin-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.notice{background:#fff6d7;border:1px solid #f1d88a;border-radius:14px;padding:14px;margin:14px 0}.success{background:#e6f6ea;border:1px solid #90d3a2}.small{font-size:13px;color:#766b5f}#user-info{gap:8px;align-items:center}.progress{height:9px;background:#eee;border-radius:999px;overflow:hidden;margin-top:10px}.progress div{height:100%;background:#8b5e3c;width:0%}.due-date-help{font-size:13px;color:#766b5f;margin-top:6px}.overdue{color:#b94141;font-weight:bold}.admin-table-wrap{background:white;border-radius:18px;box-shadow:0 4px 18px #00000012;overflow:auto;margin:18px 0;padding:12px}.admin-table{width:100%;border-collapse:collapse;min-width:760px}.admin-table th,.admin-table td{padding:12px;border-bottom:1px solid #eadaca;text-align:left;vertical-align:top;font-size:14px}.admin-table th{background:#f8efe6;position:sticky;top:0;z-index:1}.admin-table tr:hover{background:#fffaf4}.status-pill{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:bold}.pill-available{background:#e6f6ea;color:#2e8b57}.pill-reserved{background:#fff2cf;color:#a96800}.pill-borrowed{background:#ffe1df;color:#b94141}.pill-pending{background:#f1e6d8;color:#8b5e3c}.admin-thumb{width:82px;height:62px;object-fit:cover;border-radius:10px;border:1px solid #eadaca}.admin-empty-photo{color:#8a7d70;font-size:13px}.history-photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}.history-photo-card{background:white;border-radius:16px;padding:12px;box-shadow:0 4px 18px #00000012;display:flex;flex-direction:column;gap:7px}.history-photo-card h4{margin:0;font-size:16px}.history-photo-thumb{width:100%;height:130px;object-fit:cover;border-radius:10px;border:1px solid #eadaca;display:block}.history-photo-card p{margin:0;font-size:13px;line-height:1.45}.photo-view-btn{display:inline-block;text-decoration:none;background:#eadaca;color:#2f2a25;border-radius:9px;padding:8px 11px;text-align:center;font-size:13px}.admin-subtitle{margin-top:28px}.admin-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:16px 0 18px}.admin-summary-card{background:white;border-radius:16px;padding:16px;box-shadow:0 4px 18px #00000012}.admin-summary-card .admin-summary-number{display:block;font-size:26px;font-weight:bold;margin-top:6px}.admin-summary-card .admin-summary-label{font-size:13px;color:#766b5f}.admin-summary-card.borrowed{border-left:6px solid #b94141}.admin-summary-card.reserved{border-left:6px solid #c78000}.admin-summary-card.pending{border-left:6px solid #8b5e3c}.admin-summary-card.available{border-left:6px solid #2e8b57}.admin-summary-card.returned{border-left:6px solid #8b5e3c}.history-search-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0 18px}.history-search-bar input{flex:1;min-width:240px;padding:11px 13px;border:1px solid #d8c8b8;border-radius:10px;background:white}.history-search-bar select{min-width:150px;padding:11px 13px;border:1px solid #d8c8b8;border-radius:10px;background:white;color:#2f2a25}.history-date-group{margin:0 0 22px}.history-date-heading{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px;padding:10px 14px;background:#f1e6d8;border-radius:12px;font-size:15px}.history-date-count{font-size:12px;color:#766b5f;font-weight:normal}.history-date-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}.history-no-results{grid-column:1/-1}
+.return-admin-card{background:white;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 4px 18px #00000012}
+.return-admin-card img{max-width:220px;height:160px;object-fit:cover;border-radius:12px}
+.damage-alert{border-left:6px solid #b94141;background:#fff6f5}
+
+
+.admin-task-panel{background:white;border-radius:18px;padding:18px;box-shadow:0 4px 18px #00000012;margin:16px 0}.admin-task-panel h3{margin:0 0 12px}.admin-task-list{display:grid;gap:10px}.admin-task-item{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:12px 14px;border-radius:12px;background:#faf7f2;border-left:5px solid #d8c8b8}.admin-task-item.pending{border-left-color:#8b5e3c}.admin-task-item.overdue-task{border-left-color:#b94141}.admin-task-item.reserved-task{border-left-color:#c78000}.admin-task-item strong{display:block}.admin-task-empty{color:#2e8b57;background:#e6f6ea;border-radius:12px;padding:12px 14px}.sortable-th{cursor:pointer;user-select:none;white-space:nowrap}.sortable-th:hover{background:#f1e6d8}.sort-indicator{font-size:11px;color:#766b5f;margin-left:4px}.photo-modal-info{margin-top:14px;line-height:1.65}.photo-modal-image{width:100%;max-height:68vh;object-fit:contain;border-radius:14px;background:#f8efe6}.history-date-heading{cursor:pointer;user-select:none}.history-date-heading:hover{background:#e8d7c4}.history-collapse-icon{display:inline-block;width:18px}.history-date-row.is-collapsed{display:none}.history-search-bar{position:sticky;top:104px;z-index:3;background:#faf7f2;padding:10px 0}.overdue-days{display:inline-block;margin-top:5px;color:#b94141;font-weight:bold}
+
+
+    .reservation-board{display:flex;flex-direction:column;gap:22px;margin-top:20px}
+    .reservation-module{border-radius:20px;overflow:hidden;box-shadow:0 4px 18px #00000012;background:white;border:1px solid transparent}
+    .reservation-module-header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 20px}
+    .reservation-module-header h3{margin:0;font-size:20px}
+    .reservation-module-header p{margin:5px 0 0;font-size:14px;color:#62584e}
+    .reservation-count{min-width:48px;text-align:center;padding:6px 11px;border-radius:999px;background:#fff9;font-size:13px;font-weight:bold}
+    .reservation-module-body{padding:18px 20px 20px}
+    .reservation-module-body .reservations-list{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+    .reservation-module.reserved-module{border-color:#efd99a}
+    .reservation-module.reserved-module .reservation-module-header{background:#fff3cf}
+    .reservation-module.borrowed-module{border-color:#e8b6b1}
+    .reservation-module.borrowed-module .reservation-module-header{background:#ffe4e1}
+    .reservation-module.pending-module{border-color:#d2c1e7}
+    .reservation-module.pending-module .reservation-module-header{background:#eee5f8}
+    .reservation-card-status{display:inline-block;margin:0 0 12px;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:bold}
+    .reservation-card-status.reserved{background:#fff2cf;color:#9a6200}
+    .reservation-card-status.borrowed{background:#ffe1df;color:#a93535}
+    .reservation-card-status.pending{background:#eee5f8;color:#6f4b8b}
+    .reservation-action-area{margin-top:16px;padding-top:14px;border-top:1px solid #eee1d5}
+    .reservation-main-action{display:block;width:100%;font-size:15px;font-weight:bold;padding:12px 16px}
+    .reservation-cancel-action{display:block;width:100%;margin-top:9px;background:transparent;color:#a33;border:1px solid #e4b0ad;border-radius:10px;padding:9px 13px;cursor:pointer}
+    .reservation-cancel-action:hover{background:#fff0ef}
+    .reservation-empty{padding:20px;text-align:center;color:#766b5f;background:#fff;border-radius:14px;border:1px dashed #dacbbb}
+    @media (max-width:640px){.reservation-module-header{align-items:flex-start}.reservation-module-header h3{font-size:18px}.reservation-module-body{padding:14px}.reservation-module-body .reservations-list{grid-template-columns:1fr}}
+  .admin-page-card{background:white;border-radius:18px;padding:20px;box-shadow:0 4px 18px #00000012;}\n.admin-menu-label{font-weight:700;color:#6f4b8b;padding:0 2px}
+.admin-badge{display:inline-block;min-width:20px;padding:2px 6px;border-radius:999px;background:#fff;color:#6f4b8b;font-size:11px;font-weight:700}
+.admin-review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.admin-review-card{background:white;border-radius:18px;padding:18px;box-shadow:0 4px 18px #00000012}
+.admin-review-card img{width:128px;height:96px;object-fit:cover;border-radius:10px;margin:8px 0;display:block}
+.admin-review-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.damage-resolved{border-left:6px solid #2e8b57;background:#f3fbf5}
+.damage-unresolved{border-left:6px solid #b94141;background:#fff6f5}
+.damage-status{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700}
+.damage-status.unresolved{background:#ffe1df;color:#b94141}
+.damage-status.resolved{background:#e6f6ea;color:#2e8b57}
+
+.home-guide{
+  margin:34px 0;
+  padding:28px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#fbf8ff 0%,#f4ecfb 100%);
+  border:1px solid #e4d7ef;
+  box-shadow:0 10px 30px rgba(92,58,112,.08);
+}
+.home-guide-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:18px;
+  margin-bottom:22px;
+}
+.home-guide-header h3{
+  margin:0;
+  font-size:1.45rem;
+  color:#5f3d73;
+}
+.home-guide-header p{
+  margin:5px 0 0;
+  color:#725f7c;
+}
+.home-guide-link{
+  white-space:nowrap;
+  font-weight:700;
+  color:#6f4b8b;
+  text-decoration:none;
+}
+.borrowing-steps{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.borrowing-step{
+  position:relative;
+  min-height:170px;
+  padding:18px;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 5px 18px rgba(70,42,87,.07);
+}
+.borrowing-step-number{
+  display:inline-flex;
+  width:30px;
+  height:30px;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#744d8e;
+  color:#fff;
+  font-weight:800;
+  margin-bottom:12px;
+}
+.borrowing-step h4{
+  margin:0 0 8px;
+  color:#51345f;
+  font-size:1.05rem;
+}
+.borrowing-step p{
+  margin:0;
+  color:#665b6c;
+  line-height:1.65;
+  font-size:.93rem;
+}
+.home-guide-notes{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:16px;
+}
+.home-guide-note{
+  padding:15px 17px;
+  border-radius:14px;
+  background:#fffaf0;
+  border:1px solid #efdfba;
+  color:#62563f;
+  line-height:1.55;
+}
+.home-guide-note strong{
+  color:#5a4930;
+}
+@media (max-width:900px){
+  .borrowing-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  .home-guide{padding:20px 16px}
+  .home-guide-header{display:block}
+  .home-guide-link{display:inline-block;margin-top:10px}
+  .borrowing-steps,.home-guide-notes{grid-template-columns:1fr}
+  .borrowing-step{min-height:auto}
+}
+
+
+.home-guide-top{
+  margin-top:24px;
+}
+.home-important-notice{
+  margin:18px 0 30px;
+  padding:20px 22px;
+  border-radius:18px;
+  background:#fff8e7;
+  border:1px solid #ebd39a;
+  box-shadow:0 8px 24px rgba(114,82,24,.08);
+}
+.home-important-title{
+  font-size:1.08rem;
+  font-weight:800;
+  color:#694f1d;
+  margin-bottom:14px;
+}
+.home-important-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.home-important-item{
+  padding:14px 16px;
+  border-radius:13px;
+  background:#fffdf7;
+  border:1px solid #f0dfb8;
+  line-height:1.55;
+}
+.home-important-item strong{
+  display:block;
+  color:#5a451d;
+  margin-bottom:4px;
+}
+.home-important-item span{
+  color:#6f624a;
+  font-size:.94rem;
+}
+@media (max-width:700px){
+  .home-important-grid{grid-template-columns:1fr}
+}
+
+
+/* Clean homepage redesign */
+.home-hero-clean{
+  padding:64px 34px 54px;
+  text-align:center;
+  border-radius:28px;
+  background:linear-gradient(145deg,#ffffff 0%,#f7effc 52%,#f2e7d9 100%);
+  box-shadow:0 16px 42px rgba(74,48,86,.08);
+  overflow:hidden;
+}
+.home-hero-kicker,.home-section-eyebrow{
+  display:block;
+  margin-bottom:10px;
+  color:#806091;
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+.home-hero-clean h2{
+  max-width:800px;
+  margin:0 auto;
+  color:#4c3458;
+  font-size:clamp(2.2rem,5vw,4rem);
+  line-height:1.05;
+  letter-spacing:-.045em;
+}
+.home-hero-clean p{
+  max-width:620px;
+  margin:18px auto 0;
+  color:#6e6173;
+  font-size:1.05rem;
+  line-height:1.7;
+}
+.home-hero-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+.home-hero-actions button{
+  min-width:132px;
+  padding:12px 20px;
+}
+.home-alert-strip{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:16px;
+  margin:24px 0 0;
+  padding:18px 22px;
+  border:1px solid #ead39a;
+  border-left:6px solid #d5a838;
+  border-radius:16px;
+  background:#fffaf0;
+  box-shadow:0 6px 20px rgba(116,82,20,.06);
+}
+.home-alert-icon{
+  font-size:1.35rem;
+  line-height:1.2;
+}
+.home-alert-content h3{
+  margin:0 0 8px;
+  color:#59451e;
+  font-size:1rem;
+}
+.home-alert-points{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.home-alert-points p{
+  margin:0;
+  color:#6e624a;
+  font-size:.92rem;
+  line-height:1.55;
+}
+.home-process-section{
+  margin-top:28px;
+  padding:30px;
+  border-radius:26px;
+  background:#6f4b83;
+  color:#fff;
+  box-shadow:0 14px 34px rgba(72,42,88,.16);
+}
+.home-section-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:22px;
+}
+.home-section-heading h3{
+  margin:0;
+  font-size:1.55rem;
+  color:inherit;
+}
+.home-section-heading p{
+  margin:5px 0 0;
+  opacity:.78;
+}
+.home-process-section .home-section-eyebrow{
+  color:#d9c5e6;
+}
+.home-process-link{
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  white-space:nowrap;
+}
+.home-process-line{
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;
+  gap:12px;
+  align-items:stretch;
+}
+.home-process-step{
+  display:flex;
+  gap:13px;
+  min-width:0;
+  padding:17px;
+  border-radius:17px;
+  background:rgba(255,255,255,.11);
+  border:1px solid rgba(255,255,255,.14);
+}
+.home-process-number{
+  display:flex;
+  flex:0 0 30px;
+  width:30px;
+  height:30px;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#fff;
+  color:#6f4b83;
+  font-weight:900;
+}
+.home-process-step h4{
+  margin:2px 0 7px;
+  font-size:1rem;
+}
+.home-process-step p{
+  margin:0;
+  color:rgba(255,255,255,.77);
+  font-size:.87rem;
+  line-height:1.55;
+}
+.home-process-arrow{
+  align-self:center;
+  color:rgba(255,255,255,.48);
+  font-size:1.35rem;
+}
+.home-stats-section{
+  margin-top:34px;
+}
+.home-stats-heading{
+  margin-bottom:14px;
+}
+.home-stats-heading h3,
+.home-categories-clean .home-section-heading h3{
+  color:#4f3b59;
+}
+.home-stats-clean{
+  margin-top:0;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.home-stats-clean .stat-item{
+  padding:28px 20px;
+  text-align:center;
+  box-shadow:none;
+  border:1px solid #eadfeb;
+  background:#fff;
+}
+.home-stats-clean .stat-number{
+  color:#6f4b83;
+  font-size:2.3rem;
+}
+.home-stats-clean .stat-label{
+  display:block;
+  margin-top:6px;
+}
+.home-categories-clean{
+  margin-top:40px;
+}
+.home-categories-clean .category-grid{
+  margin-top:0;
+}
+@media (max-width:900px){
+  .home-alert-points{grid-template-columns:1fr}
+  .home-process-line{grid-template-columns:1fr}
+  .home-process-arrow{display:none}
+}
+@media (max-width:620px){
+  .home-hero-clean{padding:46px 20px 40px}
+  .home-alert-strip{grid-template-columns:1fr;padding:17px}
+  .home-process-section{padding:22px 17px}
+  .home-section-heading{align-items:flex-start;display:block}
+  .home-process-link{display:inline-block;margin-top:10px}
+  .home-stats-clean{grid-template-columns:1fr}
+}
+
+
+/* Pickup page */
+.pickup-page-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
+  margin-bottom:18px;
+}
+.pickup-page-heading h2{margin:2px 0 6px}
+.pickup-page-heading p{margin:0;color:#766b5f}
+.pickup-eyebrow{
+  color:#806091;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.15em;
+}
+.pickup-page-count{
+  white-space:nowrap;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#eee5f8;
+  color:#6f4b8b;
+  font-weight:800;
+}
+.pickup-urgent-banner{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  padding:17px 19px;
+  margin:0 0 20px;
+  border-radius:16px;
+  border:1px solid;
+}
+.pickup-urgent-banner p{margin:5px 0 0;line-height:1.55}
+.pickup-urgent-banner.safe{background:#eef8f1;border-color:#b7ddc1;color:#315e3c}
+.pickup-urgent-banner.warning{background:#fff7df;border-color:#ead087;color:#765d1e}
+.pickup-urgent-banner.urgent{background:#fff0ef;border-color:#e7aaa5;color:#8f302a}
+.pickup-banner-icon{font-size:1.35rem}
+.pickup-list{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.pickup-card{
+  padding:0;
+  overflow:hidden;
+  border:1px solid #eadfeb;
+}
+.pickup-card.urgent{border-color:#e3a09b}
+.pickup-card.warning{border-color:#e5ca7d}
+.pickup-card .item-image{
+  height:180px;
+  border-radius:0;
+}
+.pickup-card-body{padding:18px}
+.pickup-card-topline{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.pickup-countdown-badge{
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.pickup-countdown-badge.safe{background:#e6f6ea;color:#2e7d4d}
+.pickup-countdown-badge.warning{background:#fff0c4;color:#9a6800}
+.pickup-countdown-badge.urgent{background:#ffe0dd;color:#b13b34}
+.pickup-date-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:14px 0;
+}
+.pickup-date-grid div{
+  padding:11px 12px;
+  border-radius:12px;
+  background:#faf7f2;
+}
+.pickup-date-grid span{
+  display:block;
+  margin-bottom:4px;
+  color:#766b5f;
+  font-size:12px;
+}
+.pickup-date-grid strong{font-size:14px}
+.pickup-deadline-copy{
+  margin:0 0 14px;
+  color:#6f6258;
+  font-size:13px;
+}
+@media(max-width:620px){
+  .pickup-page-heading{display:block}
+  .pickup-page-count{display:inline-block;margin-top:12px}
+  .pickup-date-grid{grid-template-columns:1fr}
+}
+
+
+/* Reservation / Pickup / Return page clarification */
+.page-heading-row{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:16px;
+}
+.page-heading-row h2{margin:0 0 5px}
+.page-heading-row p{margin:0;color:#746a61}
+.page-count-badge{
+  display:inline-block;
+  white-space:nowrap;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#eee5f8;
+  color:#6f4b8b;
+  font-weight:800;
+}
+.reserved-view-card,
+.return-action-card,
+.pending-admin-card{
+  padding:0;
+  overflow:hidden;
+}
+.reserved-view-card .item-image,
+.return-action-card .item-image,
+.pending-admin-card .item-image{
+  height:180px;
+  border-radius:0;
+}
+.reservation-view-body{padding:18px}
+.reservation-date-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:14px 0;
+}
+.reservation-date-grid div{
+  padding:11px 12px;
+  border-radius:12px;
+  background:#faf7f2;
+}
+.reservation-date-grid span{
+  display:block;
+  margin-bottom:4px;
+  color:#796f65;
+  font-size:12px;
+}
+.reservation-date-grid strong{font-size:14px}
+.reservation-only-action{
+  width:100%;
+  margin-top:4px;
+}
+.return-status-section{
+  margin-top:22px;
+  padding:22px;
+  border:1px solid #e8dfe8;
+  border-radius:20px;
+  background:#fff;
+}
+.pending-admin-section{
+  background:#faf8fc;
+}
+.return-status-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:16px;
+}
+.return-status-header > div:first-child{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+.return-status-icon{font-size:1.35rem}
+.return-status-header h3{margin:0 0 4px}
+.return-status-header p{margin:0;color:#776d75;font-size:.92rem}
+@media(max-width:620px){
+  .page-heading-row,.return-status-header{display:block}
+  .page-count-badge{margin-top:10px}
+  .reservation-date-grid{grid-template-columns:1fr}
+}
+
+
+/* Return upload modal fix */
+.return-modal-heading h2{margin:4px 0 7px}
+.return-modal-heading p{margin:0;color:#766b5f;line-height:1.5}
+.return-modal-eyebrow{
+  color:#806091;
+  font-size:.74rem;
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.return-modal-item{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:15px;
+  align-items:center;
+  margin:18px 0;
+  padding:13px;
+  border-radius:15px;
+  background:#faf7f2;
+}
+.return-modal-item .item-image{
+  height:100px;
+  border-radius:11px;
+}
+.return-modal-item h3{margin:0 0 7px}
+.return-modal-item p{margin:4px 0}
+.return-submit-button{
+  width:100%;
+  margin-top:8px;
+}
+.return-submit-button:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+}
+@media(max-width:520px){
+  .return-modal-item{grid-template-columns:1fr}
+  .return-modal-item .item-image{height:160px}
+}
+
+
+/* Admin catalog photo editor */
+.admin-photo-edit-btn{
+  margin-top:7px;
+}
+.admin-photo-editor-heading h2{
+  margin:4px 0 7px;
+}
+.admin-photo-editor-heading p{
+  margin:0;
+  color:#756a61;
+  line-height:1.55;
+}
+.admin-photo-editor-eyebrow{
+  display:block;
+  color:#806091;
+  font-size:.74rem;
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.admin-photo-editor-current{
+  display:grid;
+  grid-template-columns:130px 1fr;
+  gap:16px;
+  align-items:center;
+  margin:18px 0;
+  padding:14px;
+  border-radius:15px;
+  background:#faf7f2;
+}
+.admin-photo-editor-current .item-image{
+  height:115px;
+  border-radius:11px;
+}
+.admin-photo-editor-current h3{
+  margin:0 0 7px;
+}
+.admin-photo-editor-current p{
+  margin:4px 0;
+}
+.admin-photo-submit{
+  width:100%;
+  margin-top:8px;
+}
+.admin-photo-submit:disabled{
+  cursor:not-allowed;
+  opacity:.65;
+}
+.admin-photo-remove{
+  width:100%;
+  margin-top:9px;
+}
+@media(max-width:520px){
+  .admin-photo-editor-current{
+    grid-template-columns:1fr;
+  }
+  .admin-photo-editor-current .item-image{
+    height:180px;
+  }
+}
+
+
+/* Admin can replace both existing and missing catalog photos */
+.catalog-image-area{
+  position:relative;
+}
+.catalog-photo-edit-button{
+  position:absolute;
+  right:9px;
+  bottom:9px;
+  z-index:2;
+  border:0;
+  border-radius:999px;
+  padding:7px 11px;
+  background:rgba(255,255,255,.94);
+  color:#5f3f73;
+  box-shadow:0 3px 12px rgba(0,0,0,.18);
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+.catalog-photo-edit-button:hover{
+  background:#eee5f8;
+}
+
+.catalog-admin-controls{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.catalog-admin-controls button{font-size:12px;padding:7px 10px}
+.catalog-hidden-badge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 9px;border-radius:999px;background:#ece7f3;color:#5f4b6e;font-size:12px;font-weight:800}
+.catalog-hidden-corner{position:absolute;top:10px;right:10px;z-index:5;margin:0;padding:6px 10px;border-radius:999px;background:#4f3d5f;color:#fff;font-size:11px;font-weight:900;letter-spacing:.05em;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.catalog-delete-btn{background:#fff1f1;color:#9b2c2c;border:1px solid #efcaca;border-radius:10px;padding:7px 10px;cursor:pointer;font-weight:700}
+.catalog-delete-btn:hover{background:#ffe6e6}
+.admin-catalogue-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.admin-catalogue-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.admin-catalogue-danger-zone{margin-top:24px;padding-top:18px;border-top:1px solid #eadaca}
+.admin-hide-btn{background:#ede6f4;color:#5d4770;border:0;border-radius:10px;padding:9px 13px;cursor:pointer}
+@media(max-width:650px){.admin-catalogue-form-grid{grid-template-columns:1fr}}
+.modal-admin-photo-button{
+  width:100%;
+  margin:12px 0 4px;
+  font-weight:800;
+}
+
+
+.catalog-photo-edit-button{
+  pointer-events:auto !important;
+  z-index:20 !important;
+}
+.catalog-image-area{
+  position:relative;
+  isolation:isolate;
+}
+
+
+/* Homepage/catalog status distinction */
+.item-card{
+  transition:opacity .2s ease, filter .2s ease, transform .2s ease;
+}
+.item-card-reserved,
+.item-card-borrowed,
+.item-card-pendingReturn{
+  opacity:.66;
+}
+.item-card-reserved:hover,
+.item-card-borrowed:hover,
+.item-card-pendingReturn:hover{
+  opacity:.86;
+}
+.item-card-reserved .catalog-image-area::after,
+.item-card-borrowed .catalog-image-area::after,
+.item-card-pendingReturn .catalog-image-area::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.item-card-reserved .catalog-image-area::after{
+  background:rgba(226,184,83,.12);
+}
+.item-card-borrowed .catalog-image-area::after{
+  background:rgba(94,134,171,.13);
+}
+.item-card-pendingReturn .catalog-image-area::after{
+  background:rgba(117,92,139,.16);
+}
+.catalog-status-overlay{
+  position:absolute;
+  left:10px;
+  top:10px;
+  z-index:4;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:850;
+  line-height:1;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  backdrop-filter:blur(5px);
+}
+.catalog-status-overlay.status-available{
+  background:rgba(231,248,236,.94);
+  color:#2f7447;
+}
+.catalog-status-overlay.status-reserved{
+  background:rgba(255,241,198,.94);
+  color:#8d6500;
+}
+.catalog-status-overlay.status-borrowed{
+  background:rgba(224,238,250,.94);
+  color:#3d6687;
+}
+.catalog-status-overlay.status-pending{
+  background:rgba(235,226,244,.95);
+  color:#6e4a83;
+}
+.item-card-reserved .item-image img,
+.item-card-borrowed .item-image img,
+.item-card-pendingReturn .item-image img{
+  filter:saturate(.72) brightness(.97);
+}
+
+
+/* Firebase Authentication */
+.auth-text-button{
+  display:block;
+  width:100%;
+  margin-top:10px;
+  border:0;
+  background:transparent;
+  color:#6f4a82;
+  font-weight:700;
+  cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.firebase-auth-note{
+  margin:12px 0 0;
+  color:#80756c;
+  font-size:.82rem;
+  line-height:1.5;
+  text-align:center;
+}
+.auth-card button:disabled{
+  opacity:.62;
+  cursor:not-allowed;
+}
+
+
+.firestore-sync-status{
+  margin:14px 0;
+  padding:11px 14px;
+  border-radius:12px;
+  background:#eef7f0;
+  border:1px solid #c8e2ce;
+  color:#356244;
+  font-size:.9rem;
+  font-weight:700;
+}
+.firestore-sync-status.error{
+  background:#fff0ef;
+  border-color:#e6b0ab;
+  color:#9a3832;
+}
+
+.nav a.pickup-has-items{
+  background:#d9c8ff;
+  color:#38265f;
+  font-weight:800;
+  box-shadow:0 0 0 3px rgba(126,92,190,.14);
+}
+.nav a.pickup-has-items:hover{background:#cdb7ff;}
+
+/* Automatic navigation attention states */
+#pickup-nav-link,
+#return-nav-link{
+  transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+
+#pickup-nav-link.nav-pickup-attention{
+  background:#6f4b8b !important;
+  color:#fff !important;
+  box-shadow:0 7px 18px rgba(111,75,139,.26);
+  font-weight:850;
+}
+
+#return-nav-link.nav-return-attention{
+  background:#9a5d57 !important;
+  color:#fff !important;
+  box-shadow:0 7px 18px rgba(154,93,87,.24);
+  font-weight:850;
+}
+
+#pickup-nav-link.nav-needs-attention:hover,
+#return-nav-link.nav-needs-attention:hover{
+  transform:translateY(-1px);
+}
+
+#pickup-nav-link.nav-needs-attention #pickup-nav-count,
+#return-nav-link.nav-needs-attention #return-nav-count{
+  color:inherit;
+}
+
+#return-nav-link.nav-waiting-only{
+  background:#eee7f4 !important;
+  color:#6b5476 !important;
+  font-weight:750;
+}
+
+#pickup-nav-count,
+#return-nav-count{
+  font-weight:900;
+}
+
+
+/* Admin-only inventory intake */
+#donate .admin-only-note{
+  margin-bottom:18px;
+  background:#f3ecf8;
+  border-color:#d8c4e5;
+  color:#644b72;
+}
+
+
+.admin-reservation-owner{display:inline-block;margin:4px 0 9px;padding:5px 9px;border-radius:8px;background:#f1eaf5;color:#674d74;font-size:.84rem;font-weight:800}
+.admin-user-cancel{margin-left:8px}
+
+
+/* User-facing catalog is cleaner: status still affects opacity/color, but no status text in cards/details. */
+
+/* Admin cross-user labels/actions */
+.admin-reservation-owner{
+  display:inline-block;
+  margin:4px 0 9px;
+  padding:5px 9px;
+  border-radius:8px;
+  background:#f1eaf5;
+  color:#674d74;
+  font-size:.84rem;
+  font-weight:800;
+}
+
+/* Automatic nav attention, visible before opening pages */
+#pickup-nav-link.nav-pickup-attention{
+  background:#6f4b8b !important;
+  color:#fff !important;
+  box-shadow:0 7px 18px rgba(111,75,139,.28) !important;
+  font-weight:850 !important;
+}
+#return-nav-link.nav-return-attention{
+  background:#9a5d57 !important;
+  color:#fff !important;
+  box-shadow:0 7px 18px rgba(154,93,87,.26) !important;
+  font-weight:850 !important;
+}
+#return-nav-link.nav-waiting-only{
+  background:#eee7f4 !important;
+  color:#6b5476 !important;
+  font-weight:750 !important;
+}
+#pickup-nav-count,#return-nav-count{font-weight:900}
+
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <h1>🧥 Communal Costume Closet</h1>
+      <p>Give every costume another moment on stage</p>
+    </div>
+    <nav class="nav">
+      <a href="#home" onclick="showSection('home')">Home</a>
+      <a href="#reserve" onclick="showSection('reserve')">Cancel Reservation</a>
+      <a href="#catalog" onclick="showSection('catalog')">Clothing Catalogue</a>
+      <a id="pickup-nav-link" href="#pickup" onclick="showSection('pickup')">Pickup <span id="pickup-nav-count"></span></a>
+      <a id="return-nav-link" href="#return" onclick="showSection('return')">Return Costume <span id="return-nav-count"></span></a>
+      <span id="admin-nav-group" style="display:none;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span class="admin-menu-label">🔒 Admin</span>
+        <a class="admin-link" href="#admin-inventory" onclick="showSection('admin-inventory')">📋 Inventory Status <span id="admin-inventory-count"></span></a>
+        <a class="admin-link" href="#admin-returns" onclick="showSection('admin-returns')">📦 Manage Returns <span id="admin-return-count"></span></a>
+        <a class="admin-link" href="#admin-damage" onclick="showSection('admin-damage')">⚠️ Damage Reports <span id="admin-damage-count"></span></a>
+        <a class="admin-link" href="#admin-history" onclick="showSection('admin-history')">📷 Return History</a>
+        <a class="admin-link" href="#donate" onclick="showSection('donate')">🎁 Add Costume</a>
+      </span>
+      <div id="auth-links">
+        <a href="#login" onclick="showSection('login')">Log In</a>
+        <a href="#register" onclick="showSection('register')">Sign Up</a>
+      </div>
+      <div id="user-info" style="display:none;">
+        <span id="user-name">User</span>
+        <button onclick="logout()">Log Out</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="home" class="section active">
+      <div class="home-hero-clean">
+        <div class="home-hero-kicker">DANA HALL COSTUME CLOSET</div>
+        <h2>Browse. Borrow. Return. Share.</h2>
+        <p>Find the costume you need, reserve it, pick it up, and complete your return with a photo.</p>
+        <div class="home-hero-actions">
+          <button onclick="showSection('catalog')" class="btn-primary">Browse Costumes</button>
+          <button onclick="showSection('reserve')" class="btn-secondary">Cancel Reservation</button>
+        </div>
+      </div>
+
+      <div class="home-alert-strip">
+        <div class="home-alert-icon">⚠️</div>
+        <div class="home-alert-content">
+          <h3>Before You Borrow</h3>
+          <div class="home-alert-points">
+            <p><strong>Once pickup is confirmed, the reservation can no longer be cancelled.</strong> The costume will become available again only after it is returned and confirmed by an admin.</p>
+            <p><strong>After physically picking up the costume, click “Confirm Pickup” right away.</strong> Otherwise, the system may still show it as being in the closet and another student could reserve it by mistake.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-process-section">
+        <div class="home-section-heading">
+          <div>
+            <span class="home-section-eyebrow">FIRST TIME HERE?</span>
+            <h3>First time here?</h3>
+            <p>Borrowing a costume takes four simple steps.</p>
+          </div>
+          <a class="home-process-link" href="#catalog" onclick="showSection('catalog')">Start Browsing →</a>
+        </div>
+
+        <div class="home-process-line">
+          <div class="home-process-step">
+            <span class="home-process-number">1</span>
+            <div>
+              <h4>Browse & Reserve</h4>
+              <p>Choose pickup and return dates. The maximum borrowing period is two weeks.</p>
+            </div>
+          </div>
+          <div class="home-process-arrow">→</div>
+          <div class="home-process-step">
+            <span class="home-process-number">2</span>
+            <div>
+              <h4>Pick Up & Confirm</h4>
+              <p>After pickup, click “Confirm Pickup.” You can optionally report any existing damage.</p>
+            </div>
+          </div>
+          <div class="home-process-arrow">→</div>
+          <div class="home-process-step">
+            <span class="home-process-number">3</span>
+            <div>
+              <h4>Upload & Return</h4>
+              <p>Upload a return photo and note any new damage if needed.</p>
+            </div>
+          </div>
+          <div class="home-process-arrow">→</div>
+          <div class="home-process-step">
+            <span class="home-process-number">4</span>
+            <div>
+              <h4>Admin Confirmation</h4>
+              <p>After confirmation, the costume becomes available again. Overdue returns receive email reminders.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-stats-section">
+        <div class="home-section-heading home-stats-heading">
+          <div>
+            <span class="home-section-eyebrow">COSTUME CLOSET TODAY</span>
+            <h3>Closet Overview</h3>
+          </div>
+        </div>
+        <div class="stats home-stats-clean">
+          <div class="stat-item">
+            <span class="stat-number" id="stat-items">0</span>
+            <span class="stat-label"> costumes</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="stat-reservations">0</span>
+            <span class="stat-label"> reservations / loans</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="stat-returns">0</span>
+            <span class="stat-label"> returns</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-categories home-categories-clean">
+        <div class="home-section-heading">
+          <div>
+            <span class="home-section-eyebrow">BROWSE BY CATEGORY</span>
+            <h3>Popular Categories</h3>
+          </div>
+        </div>
+        <div class="category-grid">
+          <button onclick="filterByCategory('Wigs')" class="category-btn">👩‍🦰 Wigs</button>
+          <button onclick="filterByCategory('Dresses')" class="category-btn">👗 Dresses</button>
+          <button onclick="filterByCategory('Outfits')" class="category-btn">👔 Outfits</button>
+          <button onclick="filterByCategory('Accessories')" class="category-btn">🎩 Accessories</button>
+          <button onclick="filterByCategory('Props')" class="category-btn">🎭 Props</button>
+          <button onclick="filterByCategory('Shoes')" class="category-btn">👠 Shoes</button>
+        </div>
+      </div>
+    </section>
+
+<section id="catalog" class="section">
+      <div class="section-header">
+        <h2>Clothing Catalogue</h2>
+        <div class="filters">
+          <select id="category-filter" onchange="filterItems()"><option value="all">All Categories</option><option value="Wigs">Wigs</option><option value="Dresses">Dresses</option><option value="Outfits">Outfits</option><option value="Accessories">Accessories</option><option value="Props">Props</option><option value="Shoes">Shoes</option></select>
+          <select id="size-filter" onchange="filterItems()"><option value="all">All Sizes</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="One Size">One Size</option><option value="38">38</option><option value="42">42</option></select>
+          <select id="gender-filter" onchange="filterItems()"><option value="all">All Genders</option><option value="Men">Men</option><option value="Women">Women</option><option value="Unisex">Unisex</option></select>
+          <input type="text" id="search-input" placeholder="Search costumes..." onkeyup="filterItems()">
+        </div>
+      </div>
+      <div id="items-grid" class="items-grid"></div>
+    </section>
+
+    
+    <section id="reserve" class="section">
+      <div class="page-heading-row">
+        <div>
+          <h2>Cancel Reservation</h2>
+          <p>Reserved costumes that have not yet been picked up appear here.</p>
+        </div>
+        <span id="reserved-count" class="page-count-badge">0 reservations</span>
+      </div>
+      <div class="notice">View or cancel reservations here. When you are ready to collect a costume, go to the Pickup page.</div>
+      <div id="reserved-reservations-list" class="reservations-list"></div>
+    </section>
+
+<section id="pickup" class="section">
+      <div class="pickup-page-heading">
+        <div>
+          <span class="pickup-eyebrow">PICKUP</span>
+          <h2>Pickup</h2>
+          <p>Reservations that have not yet been confirmed as picked up appear here.</p>
+        </div>
+        <span id="pickup-page-count" class="pickup-page-count">0 awaiting pickup</span>
+      </div>
+
+      <div id="pickup-urgent-banner" class="pickup-urgent-banner" style="display:none;"></div>
+      <div id="pickup-list" class="reservations-list pickup-list"></div>
+      <div id="no-pickup-items" class="empty-state" style="display:none;">
+        <p>There are no reservations awaiting pickup.</p>
+        <button onclick="showSection('catalog')" class="btn-primary">Browse Costumes</button>
+      </div>
+    </section>
+
+    
+    <section id="return" class="section">
+      <div class="page-heading-row">
+        <div>
+          <h2>Return Costume</h2>
+          <p>See costumes you need to return and returns awaiting admin confirmation.</p>
+        </div>
+      </div>
+
+      <div class="return-status-section">
+        <div class="return-status-header">
+          <div>
+            <span class="return-status-icon">↩️</span>
+            <div>
+              <h3>To Return</h3>
+              <p>Costumes that have been picked up but not yet submitted for return.</p>
+            </div>
+          </div>
+          <span id="return-borrowed-count" class="page-count-badge">0 items</span>
+        </div>
+        <div id="return-items-list" class="reservations-list"></div>
+      </div>
+
+      <div class="return-status-section pending-admin-section">
+        <div class="return-status-header">
+          <div>
+            <span class="return-status-icon">⏳</span>
+            <div>
+              <h3>Awaiting Admin Review</h3>
+              <p>Your return photo has been uploaded. The costume becomes available again after admin confirmation.</p>
+            </div>
+          </div>
+          <span id="return-pending-count" class="page-count-badge">0 items</span>
+        </div>
+        <div id="return-pending-list" class="reservations-list"></div>
+      </div>
+    </section>
+
+<section id="donate" class="section">
+      <h2>🎁 Admin · Add Costume</h2>
+      <div class="notice admin-only-note">This page is visible only to admins. Added costumes will appear in the shared catalogue.</div>
+      <form id="donate-form" onsubmit="handleDonate(event)">
+        <div class="form-group"><label>Costume Name</label><input type="text" id="donate-name" required></div>
+        <div class="form-group"><label>Category</label><select id="donate-category" required><option value="">Select a category</option><option value="Wigs">Wigs</option><option value="Dresses">Dresses</option><option value="Outfits">Outfits</option><option value="Accessories">Accessories</option><option value="Props">Props</option><option value="Shoes">Shoes</option></select></div>
+        <div class="form-group"><label>Size</label><select id="donate-size" required><option value="">Select a size</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="One Size">One Size</option></select></div>
+        <div class="form-group"><label>Description</label><textarea id="donate-desc" rows="3"></textarea></div>
+        <div class="form-group"><label>Source / Donor Name (optional)</label><input type="text" id="donate-donor" placeholder="Optional"></div>
+        <div class="form-group">
+          <label>Upload Costume Photo (required)</label>
+          <input type="file" id="donate-photo" accept="image/*" required onchange="previewDonatePhoto()">
+          <img id="donate-photo-preview" class="donate-preview" alt="Costume photo preview">
+          <div class="due-date-help">This photo will appear in the clothing catalogue.</div>
+        </div>
+        <div class="progress" id="donate-progress-wrap" style="display:none;"><div id="donate-progress"></div></div>
+        <button type="submit" id="donate-submit" class="btn-primary">Add Costume & Upload Photo</button>
+      </form>
+    </section>
+
+
+    <section id="admin-inventory" class="section">
+      <h2>📋 Inventory Status</h2>
+      <div class="notice small">Use this table to review each costume’s catalogue visibility, displayed status, actual status, photo, and admin actions. Hidden costumes remain visible here for admins.</div>
+      <div id="admin-task-panel" class="admin-task-panel"></div>
+      <div id="admin-summary-cards" class="admin-summary-grid"></div>
+      <div id="firestore-sync-status" class="firestore-sync-status">Connecting to cloud data…</div>
+      <div class="admin-toolbar">
+        <button class="btn-primary" onclick="renderAdminInventoryTable()">Refresh Inventory</button>
+        <button class="btn-secondary" onclick="syncAdminDashboardToGoogleSheet(true)">Sync Google Sheet</button>
+        <button class="btn-secondary" onclick="openAdminGoogleSheet()">Open Google Sheet Dashboard</button>
+        <button class="btn-secondary" onclick="migrateLocalDataToFirestore()">Migrate This Device’s Legacy Data to Firestore</button>
+        <button class="btn-secondary" onclick="restartFirestoreDataListeners()">Reconnect Cloud Data</button>
+      </div>
+      <div class="notice small">
+        Google Sheet is a read-only admin dashboard. The website and Firestore remain the source of truth. Opening the admin site automatically syncs the latest inventory, reservations, loans, pending returns, and history.
+      </div>
+      <div id="admin-inventory-table" class="admin-table-wrap"></div>
+    </section>
+
+    <section id="admin-returns" class="section">
+      <h2>📦 Manage Returns <span id="admin-returns-title-count"></span></h2>
+      <div class="notice small">Shows returns with uploaded photos that are awaiting admin confirmation, newest first.</div>
+      <div id="admin-pending-returns-page"></div>
+    </section>
+
+    <section id="admin-damage" class="section">
+      <h2>⚠️ Damage Reports <span id="admin-damage-title-count"></span></h2>
+      <div class="notice small">Shows all reported damage, stains, or other issues. Marking a report resolved keeps it in history.</div>
+      <div class="admin-toolbar">
+        <button class="btn-primary" onclick="setDamageFilter('unresolved')">Unresolved</button>
+        <button class="btn-secondary" onclick="setDamageFilter('resolved')">Resolved</button>
+        <button class="btn-secondary" onclick="setDamageFilter('all')">All</button>
+      </div>
+      <div id="admin-damage-page"></div>
+    </section>
+
+    <section id="admin-history" class="section">
+      <h2>📷 Return History</h2>
+      <div class="notice small">View all return history with search and date grouping.</div>
+      <div class="admin-toolbar">
+        <button class="btn-primary" onclick="renderLocalReturnRecords()">Show Firestore Records</button>
+        <button class="btn-secondary" onclick="loadAdminReturns()">Refresh Cloud Records</button>
+      </div>
+      <div class="history-search-bar">
+        <select id="return-history-field" onchange="updateReturnHistorySearchPlaceholder(); filterReturnHistory()" aria-label="Choose search field">
+          <option value="all">All</option>
+          <option value="itemName">Costume Name</option>
+          <option value="returnedBy">Returned By</option>
+          <option value="returnedAt">Return Time</option>
+          <option value="dueDate">Original Due Date</option>
+        </select>
+        <input type="search" id="return-history-search" placeholder="Search all return history…" oninput="filterReturnHistory()">
+        <button class="btn-secondary" type="button" onclick="clearReturnHistorySearch()">Clear Search</button>
+      </div>
+      <div id="admin-return-list"></div>
+    </section>
+
+    <section id="login" class="section">
+      <div class="auth-container"><div class="auth-card">
+        <h2>🔐 User Login</h2>
+        <form id="login-form" onsubmit="handleLogin(event)">
+          <div class="form-group"><label>Email</label><input type="email" id="login-email" autocomplete="email" required></div>
+          <div class="form-group"><label>Password</label><input type="password" id="login-password" autocomplete="current-password" required></div>
+          <button type="submit" class="btn-primary" id="login-submit">Log In</button>
+          <button type="button" class="auth-text-button" onclick="handleForgotPassword()">Forgot password?</button>
+          <p class="firebase-auth-note">Accounts are securely managed by Firebase Authentication.</p>
+        </form>
+        
+      </div></div>
+    </section>
+
+    <section id="register" class="section">
+      <div class="auth-container"><div class="auth-card">
+        <h2>📝 Create Account</h2>
+        <form id="register-form" onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label>Preferred Name</label>
+            <input type="text" id="register-name" autocomplete="nickname" placeholder="e.g. Ann" required>
+            <div class="due-date-help">This is the name shown on your account and throughout the costume checkout system.</div>
+          </div>
+          <div class="form-group">
+            <label>Legal Name</label>
+            <input type="text" id="register-username" autocomplete="name" placeholder="e.g. Ann Che" required>
+            <div class="due-date-help">Please enter your legal name so administrators can keep accurate records.</div>
+          </div>
+          <div class="form-group"><label>Password</label><input type="password" id="register-password" autocomplete="new-password" minlength="6" required></div>
+          <div class="form-group"><label>Confirm Password</label><input type="password" id="register-confirm-password" autocomplete="new-password" minlength="6" required></div>
+          <div class="form-group"><label>Email</label><input type="email" id="register-email" placeholder="Used for overdue return reminders" required></div>
+          <div class="due-date-help">Email is required. The system will send a reminder if a costume is overdue.</div>
+          <button type="submit" class="btn-primary" id="register-submit">Sign Up</button>
+          <p class="firebase-auth-note">You will be logged in automatically after registration. User profiles are stored in Cloud Firestore.</p>
+        </form>
+      </div></div>
+    </section>
+  </main>
+
+  <div id="item-modal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal()">&times;</span><div id="modal-body"></div></div></div>
+
+  <div id="pickup-damage-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closePickupDamageModal()">&times;</span>
+      <h2>Confirm Pickup</h2>
+      <div class="notice">
+        If you notice existing damage, stains, or missing pieces at pickup, note them below. This is optional and will not prevent the costume from being checked out to your account.
+        <br><br>
+        If the damage is serious enough that you do not want to borrow the costume, confirm pickup first, then go to Return Costume and submit a photo return so it can enter admin review.
+      </div>
+      <div class="form-group">
+        <label for="pickup-damage-note">Issues Found at Pickup (optional)</label>
+        <textarea id="pickup-damage-note" rows="4" placeholder="Example: existing stain on cuff; left button missing"></textarea>
+      </div>
+      <div class="admin-review-actions">
+        <button type="button" class="btn-primary" onclick="submitPickupConfirmation()">Confirm Pickup</button>
+        <button type="button" class="btn-secondary" onclick="closePickupDamageModal()">Not Yet</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="photo-modal" class="modal"><div class="modal-content"><span class="close" onclick="closePhotoModal()">&times;</span><img id="photo-modal-image" class="photo-modal-image" alt="Return Photo"><div id="photo-modal-info" class="photo-modal-info"></div></div></div>
+  <footer class="footer"><p>&copy; 2026 Communal Costume Closet</p></footer>
+
+
+<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore-compat.js"></script>
+
+<script>
+
+// ============================================================
+// Configuration / synchronization note.
+// Configuration / synchronization note.
+// Configuration / synchronization note.
+// Configuration / synchronization note.
+// Configuration / synchronization note.
+// ============================================================
+const firebaseConfig = {
+  apiKey: "AIzaSyC2hOZELkeT6vl6BSNZjGj8GtYH-ihcCFg",
+  authDomain: "communalcostumecloset-612db.firebaseapp.com",
+  projectId: "communalcostumecloset-612db",
+  storageBucket: "communalcostumecloset-612db.firebasestorage.app",
+  messagingSenderId: "670370383868",
+  appId: "1:670370383868:web:fa2da6d6eea5a15a405479",
+  measurementId: "G-JC0EQXG5P0"
+};
+
+let firebaseAuth = null;
+let firebaseDb = null;
+let firebaseReady = false;
+let authStateResolved = false;
+
+function hasFirebaseConfig(){
+  return firebaseConfig.apiKey &&
+    !firebaseConfig.apiKey.includes('PASTE_') &&
+    firebaseConfig.projectId &&
+    !firebaseConfig.projectId.includes('PASTE_');
+}
+
+function initializeFirebase(){
+  if (!hasFirebaseConfig()){
+    console.warn('Firebase is not configured. Replace firebaseConfig with your project configuration.');
+    return false;
+  }
+
+  try{
+    if (!firebase.apps.length){
+      firebase.initializeApp(firebaseConfig);
+    }
+    firebaseAuth = firebase.auth();
+    firebaseDb = firebase.firestore();
+    firebaseReady = true;
+    return true;
+  } catch(error){
+    console.error('Firebase initialization failed: ', error);
+    return false;
+  }
+}
+
+function firebaseErrorMessage(error){
+  const code = error && error.code ? error.code : '';
+  const messages = {
+    'auth/invalid-email': 'Invalid email format.',
+    'auth/missing-password': 'Please enter your password.',
+    'auth/weak-password': 'Password must be at least 6 characters.',
+    'auth/email-already-in-use': 'An account already exists for this email.',
+    'auth/invalid-credential': 'Incorrect email or password.',
+    'auth/user-not-found': 'Account not found.',
+    'auth/wrong-password': 'Incorrect email or password.',
+    'auth/too-many-requests': 'Too many attempts. Please try again later.',
+    'auth/network-request-failed': 'Network error. Check your connection and try again.',
+    'auth/operation-not-allowed': 'Firebase Email/Password sign-in is not enabled.',
+    'permission-denied': 'Insufficient Firestore permissions. Check the security rules.'
+  };
+  return messages[code] || (error && error.message ? error.message : 'Operation failed. Please try again later.');
+}
+
+async function loadFirebaseUserProfile(firebaseUser){
+  if (!firebaseDb || !firebaseUser) return null;
+  const ref = firebaseDb.collection('users').doc(firebaseUser.uid);
+  const snapshot = await ref.get();
+
+  if (snapshot.exists){
+    const data = snapshot.data();
+    return {
+      id: firebaseUser.uid,
+      uid: firebaseUser.uid,
+      username: data.username || firebaseUser.email.split('@')[0],
+      name: data.name || data.username || firebaseUser.email,
+      email: firebaseUser.email || data.email || '',
+      studentId: data.studentId || '',
+      role: data.role === 'admin' ? 'admin' : 'user',
+      createdAt: data.createdAt || null
+    };
+  }
+
+  // Older Authentication accounts without a Firestore profile get a safe user profile.
+  const fallbackProfile = {
+    username: firebaseUser.email ? firebaseUser.email.split('@')[0] : 'user',
+    name: firebaseUser.displayName || (firebaseUser.email ? firebaseUser.email.split('@')[0] : 'User'),
+    email: firebaseUser.email || '',
+    studentId: '',
+    role: 'user',
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  };
+  await ref.set(fallbackProfile, { merge: true });
+
+  return {
+    id: firebaseUser.uid,
+    uid: firebaseUser.uid,
+    ...fallbackProfile,
+    createdAt: null
+  };
+}
+
+function requireFirebase(){
+  if (!firebaseReady){
+    alert('Firebase is not connected. Configure firebaseConfig in index.html and enable Email/Password and Firestore in Firebase Console.');
+    return false;
+  }
+  return true;
+}
+
+const CLOUD_NAME = 'vicummbs';
+const UPLOAD_PRESET = 'returned_costumes_upload';
+const RETURN_TAG = 'returned_costume';
+const DONATION_TAG = 'donated_costume';
+
+// Configuration / synchronization note.
+// Configuration / synchronization note.
+const REMINDER_SERVICE_URL = 'https://script.google.com/macros/s/AKfycbymwPJ7hMdnE_SWqdwUY_m7oGOd465mb3Mk_U3-qLmhU0suVbaROISHOQHUNM6EoO9s/exec';
+
+function syncReminderService(action, payload = {}){
+  if (!REMINDER_SERVICE_URL) return;
+  const data = { action, ...payload, sentAt: new Date().toISOString() };
+  fetch(REMINDER_SERVICE_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(data)
+  }).catch(error => console.warn('Reminder service sync failed: ', error));
+}
+
+function syncReservationRecord(reservation){
+  syncReminderService('upsertReservation', {
+    reservationId: reservation.id,
+    itemId: reservation.itemId,
+    itemName: reservation.itemName,
+    borrowerName: reservation.reservedBy,
+    username: reservation.reservedByUsername,
+    email: reservation.email || '',
+    reservedAt: reservation.reservedAt,
+    dueDate: getDueDate(reservation),
+    status: reservation.status || 'reserved'
+  });
+}
+
+function syncReservationStatus(reservation, status){
+  syncReminderService('updateReservationStatus', {
+    reservationId: reservation.id,
+    status,
+    dueDate: getDueDate(reservation),
+    email: reservation.email || ''
+  });
+}
+
+let adminSheetSyncTimer = null;
+
+function scheduleAdminSheetSync(){
+  if (!isAdmin() || !REMINDER_SERVICE_URL) return;
+  clearTimeout(adminSheetSyncTimer);
+  adminSheetSyncTimer = setTimeout(() => {
+    syncAdminDashboardToGoogleSheet(false);
+  }, 1200);
+}
+
+async function syncAdminDashboardToGoogleSheet(showMessage = true){
+  if (!isAdmin()){
+    if (showMessage) alert('Only admins can sync the Google Sheet dashboard.');
+    return;
+  }
+  if (!REMINDER_SERVICE_URL){
+    if (showMessage) alert('The Google Apps Script Web App URL has not been configured.');
+    return;
+  }
+
+  // Pull the authoritative user profiles directly from Firestore.
+  // This fixes cases where the old Apps Script "Users" tab missed a newly-created user.
+  let dashboardUsers = [];
+  try {
+    if (firebaseDb){
+      const userSnapshot = await firebaseDb.collection('users').get();
+      dashboardUsers = userSnapshot.docs.map(doc => {
+        const data = doc.data() || {};
+        return {
+          userId: doc.id,
+          username: data.username || '',
+          name: data.name || '',
+          email: data.email || ''
+        };
+      });
+    }
+  } catch (error){
+    console.warn('Failed to load user profiles for Google Sheet sync: ', error);
+  }
+
+  syncReminderService('syncAdminDashboard', {
+    users: dashboardUsers,
+    items: items.map(item => ({
+      id: item.id,
+      name: item.name || '',
+      category: item.category || '',
+      size: item.size || '',
+      gender: item.gender || '',
+      description: item.description || '',
+      status: item.status || 'available',
+      hidden: !!item.hidden,
+      donor: item.donor || '',
+      imageUrl: item.imageUrl || ''
+    })),
+    reservations: reservations.map(r => ({
+      id: r.id,
+      itemId: r.itemId,
+      itemName: r.itemName || '',
+      reservedBy: r.reservedBy || '',
+      reservedByUsername: r.reservedByUsername || '',
+      userUid: r.userUid || '',
+      email: r.email || '',
+      reservedAt: r.reservedAt || '',
+      pickupDate: r.pickupDate || '',
+      dueDate: r.dueDate || '',
+      returnedAt: r.returnedAt || '',
+      returnPhotoUrl: r.returnPhotoUrl || '',
+      status: r.status || 'reserved'
+    })),
+    returnRecords: returnRecords.map(r => ({
+      id: r.id,
+      itemId: r.itemId,
+      itemName: r.itemName || '',
+      returnedBy: r.returnedBy || '',
+      returnedByUsername: r.returnedByUsername || '',
+      userUid: r.userUid || '',
+      reportedBy: r.reportedBy || '',
+      recordType: r.recordType || 'return',
+      returnedAt: r.returnedAt || '',
+      reportedAt: r.reportedAt || '',
+      date: r.date || '',
+      dueDate: r.dueDate || '',
+      damageNote: r.damageNote || '',
+      photoUrl: r.photoUrl || '',
+      confirmed: !!r.confirmed,
+      confirmedAt: r.confirmedAt || ''
+    }))
+  });
+
+  if (showMessage) {
+    alert('Google Sheet sync requested. New user profiles are included and should appear within a few seconds.');
+  }
+}
+
+function openAdminGoogleSheet(){
+  if (!isAdmin()){
+    alert('Only admins can open the dashboard.');
+    return;
+  }
+  if (!REMINDER_SERVICE_URL){
+    alert('The Google Apps Script Web App URL has not been configured.');
+    return;
+  }
+  window.open(REMINDER_SERVICE_URL + '?open=sheet', '_blank', 'noopener');
+}
+
+
+const defaultItems = [
+  { id: 1, name: 'Pink Long Curly Wig', category: 'Wigs', size: 'One Size', gender: 'Women', description: 'Sweet pink long-curly wig, ideal for princess costumes', donor: 'Student Li', status: 'available', imageUrl: '' },
+  { id: 2, name: 'Black Bob Wig', category: 'Wigs', size: 'One Size', gender: 'Women', description: 'Classic black bob wig for retro looks', donor: 'Student Wang', status: 'available', imageUrl: '' },
+  { id: 3, name: 'Golden Wavy Wig', category: 'Wigs', size: 'One Size', gender: 'Women', description: 'Shimmering golden waves, perfect for dances and performances', donor: 'Student Zhang', status: 'available', imageUrl: '' },
+  { id: 4, name: 'Rainbow Afro Wig', category: 'Wigs', size: 'One Size', gender: 'Unisex', description: 'Bright rainbow afro wig for playful costumes', donor: 'Student Zhao', status: 'available', imageUrl: '' },
+  { id: 5, name: 'Vintage Court Dress', category: 'Dresses', size: 'M', gender: 'Women', description: 'Elegant European-inspired court gown', donor: 'Student Chen', status: 'available', imageUrl: '' },
+  { id: 6, name: 'Pink Princess Dress', category: 'Dresses', size: 'S', gender: 'Women', description: 'Full pink dress with a fairy-tale princess look', donor: 'Student Liu', status: 'available', imageUrl: '' },
+  { id: 7, name: 'Qipao', category: 'Dresses', size: 'M', gender: 'Women', description: 'Elegant vintage-style Chinese qipao', donor: 'Student Sun', status: 'available', imageUrl: '' },
+  { id: 8, name: 'Wizard Robe', category: 'Outfits', size: 'L', gender: 'Unisex', description: 'Black wizard robe, great for Halloween', donor: 'Student Zhou', status: 'available', imageUrl: '' },
+  { id: 9, name: 'Superhero Costume', category: 'Outfits', size: 'M', gender: 'Men', description: 'Spider-Man-inspired superhero costume', donor: 'Student Wu', status: 'available', imageUrl: '' },
+  { id: 10, name: 'Police Uniform', category: 'Outfits', size: 'L', gender: 'Men', description: 'Classic police uniform for role-play', donor: 'Student Zheng', status: 'available', imageUrl: '' },
+  { id: 11, name: 'Doctor Lab Coat', category: 'Outfits', size: 'XL', gender: 'Unisex', description: 'Professional-style white lab coat', donor: 'Student Huang', status: 'available', imageUrl: '' },
+  { id: 12, name: 'Crown Headpiece', category: 'Accessories', size: 'One Size', gender: 'Women', description: 'Gold crown for princess costumes', donor: 'Student Lin', status: 'available', imageUrl: '' },
+  { id: 13, name: 'Gentleman Top Hat', category: 'Accessories', size: 'One Size', gender: 'Men', description: 'Black top hat with a vintage look', donor: 'Student He', status: 'available', imageUrl: '' },
+  { id: 14, name: 'Novelty Glasses', category: 'Accessories', size: 'One Size', gender: 'Unisex', description: 'Oversized novelty glasses for parties', donor: 'Student Ma', status: 'available', imageUrl: '' },
+  { id: 15, name: 'Magic Wand', category: 'Props', size: 'One Size', gender: 'Unisex', description: 'Sparkly magic wand for fantasy costumes', donor: 'Student Luo', status: 'available', imageUrl: '' },
+  { id: 16, name: 'Toy Sword', category: 'Props', size: 'One Size', gender: 'Men', description: 'Plastic toy sword for knight costumes', donor: 'Student Liang', status: 'available', imageUrl: '' },
+  { id: 17, name: 'Microphone Prop', category: 'Props', size: 'One Size', gender: 'Unisex', description: 'Realistic microphone prop for singer costumes', donor: 'Student Xie', status: 'available', imageUrl: '' },
+  { id: 18, name: 'Silver Heels', category: 'Shoes', size: '38', gender: 'Women', description: 'Silver high heels for formal or stage looks', donor: 'Student Song', status: 'available', imageUrl: '' },
+  { id: 19, name: 'Combat Boots', category: 'Shoes', size: '42', gender: 'Men', description: 'Black combat boots with a punk-inspired look', donor: 'Student Tang', status: 'available', imageUrl: '' },
+  { id: 20, name: 'Magic Slippers', category: 'Shoes', size: 'One Size', gender: 'Unisex', description: 'Playful and comfortable costume slippers', donor: 'Student Han', status: 'available', imageUrl: '' }
+]
+
+let items = load('items', defaultItems);
+let reservations = load('reservations', []);
+let returnRecords = load('returnRecords', []);
+let currentUser = null;
+
+const legacyLocalData = {
+  items: JSON.parse(JSON.stringify(items)),
+  reservations: JSON.parse(JSON.stringify(reservations)),
+  returnRecords: JSON.parse(JSON.stringify(returnRecords))
+};
+
+let applyingFirestoreSnapshot = false;
+let firestoreUnsubscribers = [];
+let firestoreCollectionsLoaded = { items: false, reservations: false, returnRecords: false };
+let firestoreWriteTimers = {};
+
+function load(key, fallback){
+  try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+  catch { return fallback; }
+}
+
+function cleanFirestoreValue(value){
+  return JSON.parse(JSON.stringify(value, (key, val) => val === undefined ? null : val));
+}
+
+function saveLocalOnly(key, value){
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function save(key, value){
+  saveLocalOnly(key, value);
+  if (applyingFirestoreSnapshot || !firebaseReady || !firebaseDb) return;
+  if (!['items','reservations','returnRecords'].includes(key)) return;
+  scheduleFirestoreArrayUpsert(key, value);
+}
+
+function scheduleFirestoreArrayUpsert(collectionName, values){
+  clearTimeout(firestoreWriteTimers[collectionName]);
+  firestoreWriteTimers[collectionName] = setTimeout(() => {
+    upsertFirestoreArray(collectionName, values).catch(error => {
+      console.error(`Failed to sync ${collectionName} to Firestore: `, error);
+      showFirestoreSyncStatus(`Cloud save failed: ${firebaseErrorMessage(error)}`, true);
+    });
+  }, 80);
+}
+
+async function upsertFirestoreArray(collectionName, values){
+  if (!firebaseReady || !firebaseDb) return;
+  const safeValues = (values || []).map(cleanFirestoreValue);
+  for (let start = 0; start < safeValues.length; start += 400){
+    const batch = firebaseDb.batch();
+    safeValues.slice(start, start + 400).forEach(value => {
+      if (value.id === undefined || value.id === null) return;
+      const ref = firebaseDb.collection(collectionName).doc(String(value.id));
+      batch.set(ref, value, { merge: true });
+    });
+    await batch.commit();
+  }
+  showFirestoreSyncStatus('Connected to Firestore · Data syncs across devices');
+}
+
+async function deleteFirestoreDoc(collectionName, id){
+  if (!firebaseReady || !firebaseDb || id === undefined || id === null) return;
+  try{
+    await firebaseDb.collection(collectionName).doc(String(id)).delete();
+  } catch(error){
+    console.error(`Failed to delete ${collectionName}/${id}: `, error);
+    showFirestoreSyncStatus(`Cloud delete failed: ${firebaseErrorMessage(error)}`, true);
+  }
+}
+
+function showFirestoreSyncStatus(text, error=false){
+  const box = document.getElementById('firestore-sync-status');
+  if (!box) return;
+  box.textContent = text;
+  box.classList.toggle('error', !!error);
+}
+
+function renderAfterCloudSync(){
+  cleanupExpiredReservations();
+  renderItems(getSortedItems(items));
+  renderReservations();
+  renderPickupItems();
+  renderReturnItems();
+  updateActionNavs();
+  updateStats();
+  updateActionNavs();
+  updateAdminNavCounts();
+  if (isAdmin()){
+    renderAdminInventoryTable();
+    renderAdminPendingReturns();
+    renderDamageAlerts();
+    scheduleAdminSheetSync();
+  }
+}
+
+function stopFirestoreDataListeners(){
+  firestoreUnsubscribers.forEach(unsubscribe => {
+    try { unsubscribe(); } catch(e){}
+  });
+  firestoreUnsubscribers = [];
+}
+
+function listenToFirestoreCollection(collectionName, onData, options={}){
+  let query = firebaseDb.collection(collectionName);
+
+  // Firestore rules are not filters. Normal users are allowed to read only
+  // documents whose userUid matches their own UID, so their listener must use
+  // the same condition. Admins can read the full collection.
+  if (options.userUid){
+    query = query.where('userUid', '==', options.userUid);
+  }
+
+  const unsubscribe = query.onSnapshot(snapshot => {
+    const data = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.data().id ?? doc.id }));
+    firestoreCollectionsLoaded[collectionName] = true;
+    applyingFirestoreSnapshot = true;
+    try{
+      onData(data);
+      saveLocalOnly(collectionName, data);
+    } finally {
+      applyingFirestoreSnapshot = false;
+    }
+    renderAfterCloudSync();
+    showFirestoreSyncStatus('Connected to Firestore · Data syncs across devices');
+  }, error => {
+    console.error(`Failed to listen to ${collectionName}: `, error);
+    if (!options.silent) {
+      showFirestoreSyncStatus(`Failed to read ${collectionName} cloud data: ${firebaseErrorMessage(error)}`, true);
+    }
+  });
+  firestoreUnsubscribers.push(unsubscribe);
+}
+
+function startFirestoreDataListeners(){
+  if (!firebaseReady || !firebaseDb) return;
+  stopFirestoreDataListeners();
+  firestoreCollectionsLoaded = { items: false, reservations: false, returnRecords: false };
+  showFirestoreSyncStatus('Connecting to Firestore…');
+
+  // Catalog data is shared by everyone.
+  listenToFirestoreCollection('items', data => {
+    // If Firestore is still empty, preserve this device's local catalog so the admin can migrate it.
+    if (data.length) items = data;
+  });
+
+  if (!currentUser){
+    reservations = [];
+    returnRecords = [];
+    saveLocalOnly('reservations', reservations);
+    saveLocalOnly('returnRecords', returnRecords);
+    renderAfterCloudSync();
+    return;
+  }
+
+  if (isAdmin()){
+    // Admin sees all users' reservations and return records.
+    listenToFirestoreCollection('reservations', data => { reservations = data; });
+    listenToFirestoreCollection('returnRecords', data => { returnRecords = data; });
+  } else {
+    // Normal users may only read their own documents under the published rules.
+    // Querying by userUid makes Firestore cross-device sync work without exposing
+    // other students' reservation/return records.
+    const uid = currentUser.uid || currentUser.id;
+    listenToFirestoreCollection(
+      'reservations',
+      data => { reservations = data; },
+      { userUid: uid }
+    );
+    listenToFirestoreCollection(
+      'returnRecords',
+      data => { returnRecords = data; },
+      { userUid: uid }
+    );
+  }
+}
+
+function restartFirestoreDataListeners(){
+  if (!requireFirebase()) return;
+  startFirestoreDataListeners();
+}
+
+async function migrateLocalDataToFirestore(){
+  if (!isAdmin()){
+    alert('Only admins can migrate legacy local data.');
+    return;
+  }
+  if (!requireFirebase()) return;
+  if (!confirm('Upload this device’s legacy costumes, reservations, and return records to Firestore? Existing cloud records with the same ID will be updated; other cloud records will not be deleted.')) return;
+
+  const migratedReservations = legacyLocalData.reservations.map(r => ({
+    ...r,
+    userUid: r.userUid || (currentUser && r.reservedByUsername === currentUser.username ? currentUser.uid : '')
+  }));
+  const migratedReturns = legacyLocalData.returnRecords.map(r => ({
+    ...r,
+    userUid: r.userUid || (currentUser && r.returnedByUsername === currentUser.username ? currentUser.uid : '')
+  }));
+
+  try{
+    showFirestoreSyncStatus('Migrating this device’s legacy data…');
+    await upsertFirestoreArray('items', legacyLocalData.items);
+    await upsertFirestoreArray('reservations', migratedReservations);
+    await upsertFirestoreArray('returnRecords', migratedReturns);
+    alert('Migration complete. Other devices will now read this data from Firestore.');
+    startFirestoreDataListeners();
+  } catch(error){
+    alert('Migration failed: ' + firebaseErrorMessage(error));
+  }
+}
+
+function todayString(){ return new Date().toISOString().split('T')[0]; }
+function dateFromString(value){ const [y,m,d] = String(value).split('-').map(Number); return new Date(y, m - 1, d); }
+function addDaysString(dateString, days){ const date = dateFromString(dateString || todayString()); date.setDate(date.getDate() + days); return date.toISOString().split('T')[0]; }
+function maxReturnDate(){ return addDaysString(todayString(), 14); }
+function maxPickupDate(){ return addDaysString(todayString(), 7); }
+function cleanupExpiredReservations(){
+  let changed = false;
+  reservations = reservations.filter(r => {
+    if ((r.status || 'reserved') === 'reserved' && r.pickupDate){
+      const deadline = dateFromString(r.pickupDate);
+      deadline.setHours(23, 59, 59, 999);
+      if (Date.now() > deadline.getTime()){
+        const item = items.find(i => String(i.id) === String(r.itemId));
+        if (item) item.status = 'available';
+        deleteFirestoreDoc('reservations', r.id);
+        changed = true;
+        return false;
+      }
+    }
+    return true;
+  });
+  if (changed){
+    save('reservations', reservations);
+    save('items', items);
+    updateActionNavs();
+  }
+}
+function getDueDate(reservation){ return reservation.dueDate || addDaysString(reservation.reservedAt, 14); }
+function isOverdue(reservation){ return getDueDate(reservation) < todayString(); }
+function safeName(text){ return String(text || '').replace(/[\\/:*?"<>|#%&{}$!'@+`=]/g, '_').replace(/\s+/g, '_').slice(0, 60); }
+
+function escapeHtml(value){
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function isItemHidden(item){
+  return !!(item && item.hidden);
+}
+
+function catalogueItemsForCurrentViewer(sourceItems){
+  const source = Array.isArray(sourceItems) ? sourceItems : [];
+  return isAdmin() ? source : source.filter(item => !isItemHidden(item));
+}
+
+
+function cloudinaryUploadStamp(date = new Date()){
+  const pad = n => String(n).padStart(2, '0');
+  return `${date.getFullYear()}${pad(date.getMonth()+1)}${pad(date.getDate())}-${pad(date.getHours())}${pad(date.getMinutes())}${pad(date.getSeconds())}`;
+}
+
+function isAdmin(){ return currentUser && currentUser.role === 'admin'; }
+function getEffectiveItemStatus(item){
+  const active = reservations.find(r => r.itemId === item.id && ['reserved','borrowed','pendingReturn'].includes(r.status || 'reserved'));
+  return active ? (active.status || 'reserved') : (item.status || 'available');
+}
+function syncItemStatusFromReservations(){
+  items.forEach(item => {
+    const active = reservations.find(r => r.itemId === item.id && ['reserved','borrowed','pendingReturn'].includes(r.status || 'reserved'));
+    item.status = active ? (active.status || 'reserved') : (item.status === 'pendingReturn' || item.status === 'borrowed' || item.status === 'reserved' ? 'available' : item.status || 'available');
+  });
+  save('items', items);
+}
+function getStatusRank(status){ return { available: 0, reserved: 1, borrowed: 2, pendingReturn: 3 }[status] ?? 4; }
+function getSortedItems(itemList){ return [...itemList].sort((a,b) => getStatusRank(getEffectiveItemStatus(a)) - getStatusRank(getEffectiveItemStatus(b)) || String(a.name).localeCompare(String(b.name), 'zh-CN')); }
+function getAdminStatusRank(status){ return { borrowed: 0, pendingReturn: 1, reserved: 2, available: 3 }[status] ?? 4; }
+function getAdminSortedItems(itemList){ return [...itemList].sort((a,b) => getAdminStatusRank(getEffectiveItemStatus(a)) - getAdminStatusRank(getEffectiveItemStatus(b)) || String(a.name).localeCompare(String(b.name), 'zh-CN')); }
+function getItemStatusText(status){ return status === 'available' ? 'Available' : status === 'reserved' ? 'Reserved · Awaiting Pickup' : status === 'borrowed' ? 'Borrowed · Return Due' : status === 'pendingReturn' ? 'Awaiting Admin Confirmation' : 'Unknown'; }
+function getStatusPillClass(status){ return status === 'available' ? 'pill-available' : status === 'reserved' ? 'pill-reserved' : status === 'borrowed' ? 'pill-borrowed' : status === 'pendingReturn' ? 'pill-pending' : ''; }
+function getCatalogStatusClass(status){ return status === 'available' ? 'status-available' : status === 'reserved' ? 'status-reserved' : status === 'borrowed' ? 'status-borrowed' : status === 'pendingReturn' ? 'status-pending' : 'status-available'; }
+
+function getItemById(itemId){
+  return items.find(item => String(item.id) === String(itemId));
+}
+
+function getItemPhotoUrl(item){
+  if (!item) return '';
+  return item.imageUrl || item.photoUrl || item.image || item.photo || item.url || '';
+}
+
+function setItemPhotoUrl(item, url){
+  item.imageUrl = url || '';
+  // Keep older saved item formats synchronized too.
+  if (Object.prototype.hasOwnProperty.call(item, 'photoUrl')) item.photoUrl = url || '';
+  if (Object.prototype.hasOwnProperty.call(item, 'image')) item.image = url || '';
+  if (Object.prototype.hasOwnProperty.call(item, 'photo')) item.photo = url || '';
+  if (Object.prototype.hasOwnProperty.call(item, 'url')) item.url = url || '';
+}
+
+function itemImageHtml(item, label='Costume Photo'){
+  const photoUrl = getItemPhotoUrl(item);
+  if (photoUrl) {
+    return `<div class="item-image"><img src="${photoUrl}" alt="${label}"></div>`;
+  }
+  return `<div class="item-image"><div class="image-placeholder">No Photo Yet<br>Please upload a costume photo</div></div>`;
+}
+function modalImageHtml(item){
+  const photoUrl = getItemPhotoUrl(item);
+  if (photoUrl) {
+    return `<div class="item-image" style="height:250px;"><img src="${photoUrl}" alt="${item.name}"></div>`;
+  }
+  return `<div class="item-image" style="height:250px;"><div class="image-placeholder">No Photo Yet</div></div>`;
+}
+
+
+const adminSectionIds = ['admin-inventory','admin-returns','admin-damage','admin-history','donate'];
+
+function showSection(sectionId){
+  if(adminSectionIds.includes(sectionId) && !isAdmin()){
+    alert('You do not have admin permission.');
+    sectionId='home';
+  }
+
+  cleanupExpiredReservations();
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(sectionId);
+  if (target) target.classList.add('active');
+  if (sectionId === 'catalog') renderItems(getSortedItems(items));
+  if (sectionId === 'reserve') renderReservations();
+  if (sectionId === 'pickup') renderPickupItems();
+  if (sectionId === 'return') renderReturnItems();
+  if (sectionId === 'admin-inventory') renderAdminInventoryTable();
+  if (sectionId === 'admin-returns') renderAdminPendingReturns();
+  if (sectionId === 'admin-damage') renderDamageAlerts();
+  if (sectionId === 'admin-history') renderLocalReturnRecords();
+  updateStats();
+}
+
+function updateStats(){
+  const visibleCatalogueItems = items.filter(item => !isItemHidden(item));
+  const availableCount = visibleCatalogueItems.filter(item => getEffectiveItemStatus(item) === 'available').length;
+  const reservedCount = visibleCatalogueItems.filter(item => getEffectiveItemStatus(item) === 'reserved').length;
+  const borrowedCount = visibleCatalogueItems.filter(item => getEffectiveItemStatus(item) === 'borrowed').length;
+
+  const itemStat = document.getElementById('stat-items');
+  const reservationStat = document.getElementById('stat-reservations');
+  const returnStat = document.getElementById('stat-returns');
+
+  if (itemStat) itemStat.textContent = availableCount;
+  if (reservationStat) reservationStat.textContent = reservedCount;
+  if (returnStat) returnStat.textContent = borrowedCount;
+  updateActionNavs();
+}
+
+function renderItems(filteredItems){
+  const grid = document.getElementById('items-grid');
+  grid.innerHTML = '';
+  const catalogueItems = catalogueItemsForCurrentViewer(filteredItems);
+  if (catalogueItems.length === 0){
+    grid.innerHTML = '<div class="empty-state"><p>No costumes match your filters.</p></div>';
+    return;
+  }
+
+  catalogueItems.forEach(item => {
+    const card = document.createElement('div');
+    card.className = `item-card item-card-${getEffectiveItemStatus(item)}`;
+    card.onclick = () => showItemDetail(item);
+
+    const effectiveStatus = getEffectiveItemStatus(item);
+    const statusClass = getCatalogStatusClass(effectiveStatus);
+    const statusText = getItemStatusText(effectiveStatus);
+
+    const adminPhotoControl = isAdmin()
+      ? `<button class="catalog-photo-edit-button"
+          onclick='event.stopPropagation(); openAdminPhotoEditor(${JSON.stringify(String(item.id))})'>
+          ${item.imageUrl ? 'Change Photo' : 'Add Photo'}
+        </button>`
+      : '';
+
+    const adminCatalogueControls = isAdmin()
+      ? `<div class="catalog-admin-controls">
+          <button class="btn-secondary" onclick='event.stopPropagation(); openAdminItemEditor(${JSON.stringify(String(item.id))})'>Edit Details</button>
+          <button class="admin-hide-btn" onclick='event.stopPropagation(); toggleItemHidden(${JSON.stringify(String(item.id))})'>${isItemHidden(item) ? 'Unhide' : 'Hide'}</button>
+          <button class="catalog-delete-btn" onclick='event.stopPropagation(); deleteAdminCatalogueItem(${JSON.stringify(String(item.id))})'>Delete</button>
+        </div>`
+      : '';
+    const adminHiddenCorner = isAdmin() && isItemHidden(item)
+      ? '<span class="catalog-hidden-corner">HIDDEN</span>'
+      : '';
+
+    card.innerHTML = `
+      <div class="catalog-image-area">
+        ${itemImageHtml(item, item.name)}
+        <span class="catalog-status-overlay ${statusClass}">${statusText}</span>
+        ${adminHiddenCorner}
+        ${adminPhotoControl}
+      </div>
+      <div class="item-info">
+        <h3>${item.name}</h3>
+        <div class="item-tags">
+          <span class="item-tag">${item.category}</span>
+          <span class="item-tag">${item.size}</span>
+          
+        </div>
+        
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function showItemDetail(item){
+  const modal = document.getElementById('item-modal'); const modalBody = document.getElementById('modal-body');
+  const effectiveStatus = getEffectiveItemStatus(item);
+  let statusText = getItemStatusText(effectiveStatus);
+  const today = todayString();
+  const latest = maxReturnDate();
+  const pickupLatest = maxPickupDate();
+  const reserveControls = effectiveStatus === 'available' ? `<div class="form-group"><label>Pickup Date</label><input type="date" id="reserve-pickup-date" min="${today}" max="${pickupLatest}"><div class="due-date-help">Pickup date is required and must be within one week of the reservation date.</div></div><div class="form-group"><label>Return Date</label><input type="date" id="reserve-due-date" min="${today}" max="${latest}"><div class="due-date-help">Return date is required, must be after pickup, and no more than two weeks from the reservation date.</div></div><button onclick='reserveItem(${JSON.stringify(String(item.id))})' class="btn-primary reserve-btn">Reserve Now</button>` : '';
+  const adminPhotoButton = isAdmin()
+    ? `<button class="btn-secondary modal-admin-photo-button"
+        onclick='openAdminPhotoEditor(${JSON.stringify(String(item.id))})'>
+        ${item.imageUrl ? 'Change This Costume’s Photo' : 'Add a Photo for This Costume'}
+      </button>`
+    : '';
+  const adminCatalogueButtons = isAdmin()
+    ? `<div class="admin-catalogue-actions">
+        <button class="btn-secondary" onclick='openAdminItemEditor(${JSON.stringify(String(item.id))})'>Edit Costume Details</button>
+        <button class="admin-hide-btn" onclick='toggleItemHidden(${JSON.stringify(String(item.id))})'>${isItemHidden(item) ? 'Unhide from Catalogue' : 'Hide from Catalogue'}</button>
+        <button class="catalog-delete-btn" onclick='deleteAdminCatalogueItem(${JSON.stringify(String(item.id))})'>Delete Costume</button>
+      </div>`
+    : '';
+  modalBody.innerHTML = `${modalImageHtml(item)}${adminPhotoButton}<h3>${item.name}</h3>${isItemHidden(item) && isAdmin() ? '<span class="catalog-hidden-badge">🙈 Hidden from students</span>' : ''}<div class="detail-row"><span class="detail-label">Category: </span>${item.category}</div><div class="detail-row"><span class="detail-label">Size: </span>${item.size}</div><div class="detail-row"><span class="detail-label">Donor: </span>${item.donor}</div><div class="detail-row"><span class="detail-label">Description: </span>${item.description}</div>${adminCatalogueButtons}${reserveControls}`;
+  modal.style.display = 'flex';
+}
+function closeModal(){ document.getElementById('item-modal').style.display = 'none'; }
+
+function filterItems(){
+  const category = document.getElementById('category-filter').value;
+  const size = document.getElementById('size-filter').value;
+  const gender = document.getElementById('gender-filter').value;
+  const search = document.getElementById('search-input').value.toLowerCase();
+  const filtered = items.filter(item => (category === 'all' || item.category === category) && (size === 'all' || item.size === size) && (gender === 'all' || item.gender === gender) && (item.name.toLowerCase().includes(search) || item.description.toLowerCase().includes(search)));
+  renderItems(getSortedItems(filtered));
+}
+function filterByCategory(category){ showSection('catalog'); document.getElementById('category-filter').value = category; filterItems(); }
+
+function reserveItem(itemId){
+  if (!currentUser){ alert('Please log in before making a reservation.'); closeModal(); showSection('login'); return; }
+  const item = getItemById(itemId);
+  if (!item || isItemHidden(item) || getEffectiveItemStatus(item) !== 'available') return;
+  const today = todayString();
+  const latest = maxReturnDate();
+  const pickupLatest = maxPickupDate();
+  const pickupInput = document.getElementById('reserve-pickup-date');
+  const dueInput = document.getElementById('reserve-due-date');
+  let pickupDate = pickupInput && pickupInput.value ? pickupInput.value : '';
+  let dueDate = dueInput && dueInput.value ? dueInput.value : '';
+  if (!pickupDate || !dueDate){ alert('Choose pickup and return dates before reserving.'); return; }
+  if (pickupDate < today || pickupDate > pickupLatest){ alert('Pickup must be within one week of the reservation date.'); return; }
+  if (dueDate < today){ alert('Return date cannot be earlier than today.'); return; }
+  if (dueDate > latest){ alert('Return date cannot be more than two weeks away.'); return; }
+  if (pickupDate >= dueDate){ alert('Pickup must be before the return date.'); return; }
+  item.status = 'reserved';
+  const reservation = { id: Date.now(), itemId: item.id, itemName: item.name, reservedAt: today, pickupDate, dueDate, reservedBy: currentUser.name, reservedByUsername: currentUser.username, userUid: currentUser.uid || currentUser.id || '', email: currentUser.email || '', status: 'reserved' };
+  reservations.push(reservation);
+  save('items', items); save('reservations', reservations);
+  syncReservationRecord(reservation);
+  closeModal(); renderItems(getSortedItems(items)); alert(`Reservation confirmed! Please return it by ${dueDate} .`);
+}
+
+function userReservations(){
+  if (!currentUser) return [];
+  if (isAdmin()) return reservations;
+  return reservations.filter(r =>
+    (r.userUid && r.userUid === (currentUser.uid || currentUser.id)) ||
+    (!r.userUid && r.reservedByUsername === currentUser.username)
+  );
+}
+function reservationOwnerLabel(r){
+  return r.reservedByName || r.userName || r.name || r.reservedBy || r.reservedByUsername || r.username || r.userEmail || r.email || r.userUid || 'Unknown User';
+}
+
+
+async function adminCancelReservation(reservationId){
+  if (!isAdmin()){
+    alert("Only admins can cancel another user\'s reservation.");
+    return;
+  }
+
+  const reservation = reservations.find(r => String(r.id) === String(reservationId));
+  if (!reservation) {
+    alert('Reservation not found.');
+    return;
+  }
+
+  const status = reservation.status || 'reserved';
+  if (status !== 'reserved'){
+    alert('This record is no longer Reserved · Awaiting Pickup.');
+    return;
+  }
+
+  const owner = reservationOwnerLabel(reservation);
+  if (!confirm(`Cancel ${owner} 's reservation?`)) return;
+
+  const item = items.find(i => String(i.id) === String(reservation.itemId));
+  if (item) item.status = 'available';
+
+  try{
+    if (firebaseReady && firebaseDb){
+      const batch = firebaseDb.batch();
+      batch.delete(firebaseDb.collection('reservations').doc(String(reservation.id)));
+      if (item){
+        batch.set(firebaseDb.collection('items').doc(String(item.id)), {
+          ...cleanFirestoreValue(item),
+          status: 'available',
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        }, {merge:true});
+      }
+      await batch.commit();
+    } else {
+      reservations = reservations.filter(r => String(r.id) !== String(reservation.id));
+      save('reservations', reservations);
+      if (item) save('items', items);
+      renderAfterCloudSync();
+    }
+    alert("The user\'s reservation has been cancelled.");
+  }catch(error){
+    console.error(error);
+    alert('Cancellation failed: ' + (error.message || error));
+  }
+}
+
+async function adminUndoPickup(reservationId){
+  if (!isAdmin()){
+    alert("Only admins can undo another user\'s pickup.");
+    return;
+  }
+
+  const reservation = reservations.find(r => String(r.id) === String(reservationId));
+  if (!reservation) {
+    alert('This loan record could not be found.');
+    return;
+  }
+
+  if (reservation.status !== 'borrowed'){
+    alert('Only Borrowed · Return Due records can have pickup undone.');
+    return;
+  }
+
+  const owner = reservationOwnerLabel(reservation);
+  if (!confirm(`Cancel ${owner} 's pickup? The costume will become available again.`)) return;
+
+  const item = items.find(i => String(i.id) === String(reservation.itemId));
+  if (item) item.status = 'available';
+
+  try{
+    if (firebaseReady && firebaseDb){
+      const batch = firebaseDb.batch();
+      batch.delete(firebaseDb.collection('reservations').doc(String(reservation.id)));
+      if (item){
+        batch.set(firebaseDb.collection('items').doc(String(item.id)), {
+          ...cleanFirestoreValue(item),
+          status: 'available',
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        }, {merge:true});
+      }
+      await batch.commit();
+    } else {
+      reservations = reservations.filter(r => String(r.id) !== String(reservation.id));
+      save('reservations', reservations);
+      if (item) save('items', items);
+      renderAfterCloudSync();
+    }
+    alert("The user\'s pickup has been undone and the costume is available again.");
+  }catch(error){
+    console.error(error);
+    alert('Cancellation failed: ' + (error.message || error));
+  }
+}
+
+function renderReservations(){
+  const list = document.getElementById('reserved-reservations-list');
+  const count = document.getElementById('reserved-count');
+  if (!list || !count) return;
+
+  list.innerHTML = '';
+
+  if (!currentUser){
+    count.textContent = '0 reservations';
+    list.innerHTML = '<div class="reservation-empty"><p>Please log in to view your reservations.</p></div>';
+    return;
+  }
+
+  cleanupExpiredReservations();
+
+  const reserved = userReservations()
+    .filter(r => (r.status || 'reserved') === 'reserved')
+    .sort((a,b) => (pickupDeadline(a)?.getTime() || Infinity) - (pickupDeadline(b)?.getTime() || Infinity));
+
+  count.textContent = `${reserved.length}  reservations`;
+
+  if (!reserved.length){
+    list.innerHTML = `<div class="reservation-empty"><p>There are no reservations awaiting pickup.</p></div>`;
+    return;
+  }
+
+  reserved.forEach(r => {
+    const item = items.find(i => String(i.id) === String(r.itemId));
+    const remaining = pickupTimeRemaining(r);
+    const card = document.createElement('div');
+    card.className = 'reservation-card reserved-view-card';
+    card.innerHTML = `
+      ${itemImageHtml(item || {}, r.itemName)}
+      <div class="reservation-view-body">
+        <div class="reservation-card-status reserved">Reserved · Not Yet Picked Up</div>
+        <h3>${r.itemName || (item && item.name) || 'Costume'}</h3>
+        ${isAdmin() ? `<p class="admin-reservation-owner">User：${reservationOwnerLabel(r)}</p>` : ''}
+        <div class="reservation-date-grid">
+          <div><span>Scheduled Pickup</span><strong>${r.pickupDate || 'Not set'}</strong></div>
+          <div><span>Due Date</span><strong>${getDueDate(r)}</strong></div>
+        </div>
+        <p class="small">Pickup Deadline：${r.pickupDate || 'pickup date'} 23:59 · Time remaining: ${formatPickupCountdown(remaining)}</p>
+        <div class="reservation-action-area">
+          ${isAdmin()
+            ? `<button onclick='adminCancelReservation(${JSON.stringify(String(r.id))})' class="reservation-cancel-action reservation-only-action">Cancel User Reservation</button>`
+            : `<button onclick='cancelReservation(${JSON.stringify(r.id)})' class="reservation-cancel-action reservation-only-action">Cancel Reservation</button>`}
+        </div>
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+function pickupDeadline(reservation){
+  if (!reservation || !reservation.pickupDate) return null;
+  const deadline = dateFromString(reservation.pickupDate);
+  deadline.setHours(23, 59, 59, 999);
+  return deadline;
+}
+
+function pickupTimeRemaining(reservation){
+  const deadline = pickupDeadline(reservation);
+  return deadline ? deadline.getTime() - Date.now() : null;
+}
+
+function formatPickupCountdown(milliseconds){
+  if (milliseconds === null) return 'No deadline set';
+  if (milliseconds <= 0) return 'Expiring Soon';
+  const totalMinutes = Math.max(1, Math.ceil(milliseconds / 60000));
+  const days = Math.floor(totalMinutes / 1440);
+  const hours = Math.floor((totalMinutes % 1440) / 60);
+  const minutes = totalMinutes % 60;
+  if (days > 0) return `${days} days ${hours} hours`;
+  if (hours > 0) return `${hours} hours ${minutes} minutes`;
+  return `${minutes} minutes`;
+}
+
+function pickupUrgencyClass(milliseconds){
+  if (milliseconds === null || milliseconds > 24 * 60 * 60 * 1000) return 'safe';
+  if (milliseconds > 2 * 60 * 60 * 1000) return 'warning';
+  return 'urgent';
+}
+
+function renderPickupItems(){
+  cleanupExpiredReservations();
+
+  const list = document.getElementById('pickup-list');
+  const empty = document.getElementById('no-pickup-items');
+  const banner = document.getElementById('pickup-urgent-banner');
+  const pageCount = document.getElementById('pickup-page-count');
+  if (!list || !empty || !banner || !pageCount) return;
+
+  list.innerHTML = '';
+  banner.style.display = 'none';
+
+  if (!currentUser){
+    pageCount.textContent = '0 awaiting pickup';
+    empty.style.display = 'block';
+    empty.innerHTML = '<p>Please log in to view your pickups.</p>';
+    updateActionNavs();
+    return;
+  }
+
+  const pickupReservations = userReservations()
+    .filter(r => (r.status || 'reserved') === 'reserved')
+    .sort((a,b) => (pickupDeadline(a)?.getTime() || Infinity) - (pickupDeadline(b)?.getTime() || Infinity));
+
+  pageCount.textContent = `${pickupReservations.length}  awaiting pickup`;
+  empty.style.display = pickupReservations.length ? 'none' : 'block';
+  if (!pickupReservations.length){
+    empty.innerHTML = '<p>There are no reservations awaiting pickup.</p>';
+    updateActionNavs();
+    return;
+  }
+
+  const mostUrgent = pickupReservations[0];
+  const mostUrgentRemaining = pickupTimeRemaining(mostUrgent);
+  banner.className = `pickup-urgent-banner ${pickupUrgencyClass(mostUrgentRemaining)}`;
+  banner.style.display = 'flex';
+  banner.innerHTML = `
+    <div class="pickup-banner-icon">⏳</div>
+    <div>
+      <strong>Confirm Pickup Before the End of Pickup Day</strong>
+      <p>The most urgent pickup expires in <b data-pickup-countdown="${mostUrgent.id}">${formatPickupCountdown(mostUrgentRemaining)}</b>。
+      After the deadline, the reservation will be cancelled automatically and the costume will become available to other students.</p>
+    </div>`;
+
+  pickupReservations.forEach(r => {
+    const item = items.find(i => String(i.id) === String(r.itemId));
+    const remaining = pickupTimeRemaining(r);
+    const urgency = pickupUrgencyClass(remaining);
+    const card = document.createElement('div');
+    card.className = `reservation-card pickup-card ${urgency}`;
+    card.innerHTML = `
+      ${itemImageHtml(item || {}, r.itemName)}
+      <div class="pickup-card-body">
+        <div class="pickup-card-topline">
+          <span class="reservation-card-status reserved">Reserved · Awaiting Pickup</span>
+          <span class="pickup-countdown-badge ${urgency}" data-pickup-countdown="${r.id}">
+            ${formatPickupCountdown(remaining)}
+          </span>
+        </div>
+        <h3>${r.itemName || (item && item.name) || 'Costume'}</h3>
+        ${isAdmin() ? `<p class="admin-reservation-owner">User：${reservationOwnerLabel(r)}</p>` : ''}
+        <div class="pickup-date-grid">
+          <div><span>Scheduled Pickup</span><strong>${r.pickupDate || 'Not set'}</strong></div>
+          <div><span>Due Date</span><strong>${getDueDate(r)}</strong></div>
+        </div>
+        <p class="pickup-deadline-copy">Please confirm by <strong>${r.pickupDate || 'pickup date'} 23:59</strong> before the deadline.</p>
+        <div class="reservation-action-area">
+          ${isAdmin()
+            ? `<button onclick='confirmPickup(${JSON.stringify(r.id)})' class="btn-primary reservation-main-action">Admin ConfirmationPickup</button>
+               <button onclick='adminCancelReservation(${JSON.stringify(String(r.id))})' class="reservation-cancel-action">Cancel User Reservation</button>`
+            : `<button onclick='confirmPickup(${JSON.stringify(r.id)})' class="btn-primary reservation-main-action">Confirm Costume Pickup</button>
+               <button onclick='cancelReservation(${JSON.stringify(r.id)}); renderPickupItems();' class="reservation-cancel-action">Cancel This Reservation</button>`}
+        </div>
+      </div>`;
+    list.appendChild(card);
+  });
+
+  updateActionNavs();
+}
+
+function updatePickupCountdowns(){
+  const activeSection = document.getElementById('pickup');
+  if (!activeSection || !activeSection.classList.contains('active')) return;
+
+  let expired = false;
+  document.querySelectorAll('[data-pickup-countdown]').forEach(el => {
+    const id = Number(el.dataset.pickupCountdown);
+    const reservation = reservations.find(r => r.id === id);
+    if (!reservation) return;
+    const remaining = pickupTimeRemaining(reservation);
+    if (remaining <= 0) expired = true;
+    el.textContent = formatPickupCountdown(remaining);
+  });
+
+  if (expired) renderPickupItems();
+}
+
+
+
+
+
+
+
+
+function updatePickupNavCount(){
+  const navCount = document.getElementById('pickup-nav-count');
+  const navLink = document.getElementById('pickup-nav-link');
+  const count = currentUser
+    ? userReservations().filter(r => (r.status || 'reserved') === 'reserved').length
+    : 0;
+
+  if (navCount) navCount.textContent = count ? `(${count})` : '';
+  if (navLink){
+    navLink.classList.toggle('nav-pickup-attention', count > 0);
+  }
+}
+
+function updateReturnNavCount(){
+  const navCount = document.getElementById('return-nav-count');
+  const navLink = document.getElementById('return-nav-link');
+  const data = currentUser ? userReservations() : [];
+  const borrowedCount = data.filter(r => r.status === 'borrowed').length;
+  const pendingCount = data.filter(r => r.status === 'pendingReturn').length;
+  const total = borrowedCount + pendingCount;
+
+  if (navCount) navCount.textContent = total ? `(${total})` : '';
+  if (navLink){
+    navLink.classList.toggle('nav-return-attention', borrowedCount > 0);
+    navLink.classList.toggle('nav-waiting-only', borrowedCount === 0 && pendingCount > 0);
+  }
+}
+
+function updateActionNavs(){
+  updatePickupNavCount();
+  updateReturnNavCount();
+}
+
+function confirmPickup(reservationId){
+  const reservation = reservations.find(r => r.id === reservationId);
+  if (!reservation) return;
+  pendingPickupReservationId = reservationId;
+  const note = document.getElementById('pickup-damage-note');
+  if (note) note.value = '';
+  const modal = document.getElementById('pickup-damage-modal');
+  if (modal) modal.style.display = 'flex';
+}
+
+function closePickupDamageModal(){
+  const modal = document.getElementById('pickup-damage-modal');
+  if (modal) modal.style.display = 'none';
+  pendingPickupReservationId = null;
+}
+
+function submitPickupConfirmation(){
+  if (pendingPickupReservationId === null) return;
+  const reservationId = pendingPickupReservationId;
+  const noteInput = document.getElementById('pickup-damage-note');
+  const pickupDamageNote = noteInput ? noteInput.value.trim() : '';
+  closePickupDamageModal();
+  pickUpReservation(reservationId, pickupDamageNote);
+}
+
+function pickUpReservation(reservationId, pickupDamageNote=''){
+  const reservation = reservations.find(r => r.id === reservationId);
+  if (!reservation) return;
+
+  if (!isAdmin() && (!currentUser || !((reservation.userUid && reservation.userUid === (currentUser.uid || currentUser.id)) || (!reservation.userUid && reservation.reservedByUsername === currentUser.username)))){
+    alert('You can only confirm your own reservation.');
+    return;
+  }
+
+  if ((reservation.status || 'reserved') !== 'reserved'){
+    alert('This costume has already been picked up and cannot be confirmed again.');
+    return;
+  }
+
+  reservation.status = 'borrowed';
+
+  const item = items.find(i => i.id === reservation.itemId);
+  if (item) item.status = 'borrowed';
+
+  if (pickupDamageNote){
+    const pickupDamageRecord = {
+      id: Date.now(),
+      recordType: 'pickupDamage',
+      itemId: reservation.itemId,
+      itemName: reservation.itemName,
+      returnedBy: reservation.reservedBy,
+      returnedByUsername: reservation.reservedByUsername,
+      userUid: reservation.userUid || (currentUser && (currentUser.uid || currentUser.id)) || '',
+      reportedBy: reservation.reservedBy,
+      reportedAt: new Date().toLocaleString(),
+      returnedAt: new Date().toLocaleString(),
+      date: todayString(),
+      dueDate: getDueDate(reservation),
+      damageNote: pickupDamageNote,
+      photoUrl: item && item.imageUrl ? item.imageUrl : '',
+      damageResolved: false
+    };
+    returnRecords.push(pickupDamageRecord);
+    save('returnRecords', returnRecords);
+  }
+
+  save('reservations', reservations);
+  save('items', items);
+  syncReservationStatus(reservation, 'borrowed');
+
+  renderReservations();
+  renderPickupItems();
+  renderItems(getSortedItems(items));
+  updateStats();
+  updateActionNavs();
+  if (isAdmin()) renderAdminInventoryTable();
+
+  updateAdminNavCounts();
+  alert(pickupDamageNote
+    ? 'Pickup confirmed. The issue found at pickup has been sent to the admin Damage Reports. If you do not want to keep borrowing it, go to Return Costume and submit a photo return.'
+    : 'Pickup confirmed. This costume can no longer be cancelled; it must be returned through the Return Costume page.');
+}
+
+function cancelReservation(reservationId){
+  const index = reservations.findIndex(r => r.id === reservationId);
+  if (index === -1) return;
+
+  const reservation = reservations[index];
+
+  if (!isAdmin() && (!currentUser || !((reservation.userUid && reservation.userUid === (currentUser.uid || currentUser.id)) || (!reservation.userUid && reservation.reservedByUsername === currentUser.username)))){
+    alert('You can only cancel your own reservation.');
+    return;
+  }
+
+  if ((reservation.status || 'reserved') !== 'reserved'){
+    alert('This costume has already been picked up and can no longer be cancelled. Use the Return Costume page.');
+    return;
+  }
+
+  const item = items.find(i => i.id === reservation.itemId);
+  if (item) item.status = 'available';
+  syncReservationStatus(reservation, 'cancelled');
+
+  reservations.splice(index, 1);
+  deleteFirestoreDoc('reservations', reservation.id);
+  save('reservations', reservations);
+  save('items', items);
+
+  renderReservations();
+  renderPickupItems();
+  renderItems(getSortedItems(items));
+  updateStats();
+  updateActionNavs();
+  if (isAdmin()) renderAdminInventoryTable();
+
+  alert('ReserveCancelled');
+}
+
+
+function renderReturnItems(){
+  const borrowedList = document.getElementById('return-items-list');
+  const pendingList = document.getElementById('return-pending-list');
+  const borrowedCount = document.getElementById('return-borrowed-count');
+  const pendingCount = document.getElementById('return-pending-count');
+  if (!borrowedList || !pendingList || !borrowedCount || !pendingCount) return;
+
+  borrowedList.innerHTML = '';
+  pendingList.innerHTML = '';
+
+  if (!currentUser){
+    borrowedCount.textContent = '0 items';
+    pendingCount.textContent = '0 items';
+    borrowedList.innerHTML = '<div class="reservation-empty"><p>Please log in to view costumes to return.</p></div>';
+    pendingList.innerHTML = '<div class="reservation-empty"><p>Please log in to view return status.</p></div>';
+    return;
+  }
+
+  const data = userReservations();
+  const borrowed = data.filter(r => r.status === 'borrowed');
+  const pending = data.filter(r => r.status === 'pendingReturn');
+
+  borrowedCount.textContent = `${borrowed.length}  items`;
+  pendingCount.textContent = `${pending.length}  items`;
+
+  if (!borrowed.length){
+    borrowedList.innerHTML = '<div class="reservation-empty"><p>There are no costumes to return.</p></div>';
+  }
+  if (!pending.length){
+    pendingList.innerHTML = '<div class="reservation-empty"><p>There are no returns awaiting admin review.</p></div>';
+  }
+
+  borrowed.forEach(r => {
+    const item = items.find(i => String(i.id) === String(r.itemId));
+    const card = document.createElement('div');
+    card.className = 'reservation-card return-action-card';
+    card.innerHTML = `
+      ${itemImageHtml(item || {}, r.itemName)}
+      <div class="reservation-view-body">
+        <div class="reservation-card-status borrowed">To Return</div>
+        <h3>${r.itemName || (item && item.name) || 'Costume'}</h3>
+        ${isAdmin() ? `<p class="admin-reservation-owner">User：${reservationOwnerLabel(r)}</p>` : ''}
+        <div class="reservation-date-grid">
+          <div><span>Pickup Date</span><strong>${r.pickupDate || 'Not set'}</strong></div>
+          <div><span>Due Date</span><strong>${getDueDate(r)}</strong></div>
+        </div>
+        ${isOverdue(r) ? '<p class="overdue">This costume is overdue. Please return it as soon as possible.</p>' : ''}
+        <div class="reservation-action-area">
+          ${isAdmin()
+            ? `<button onclick='adminUndoPickup(${JSON.stringify(String(r.id))})' class="reservation-cancel-action">Undo User Pickup</button>`
+            : `<button onclick='openReturnModal(${JSON.stringify(r.id)})' class="btn-primary reservation-main-action">Upload Photo & Return</button>`}
+        </div>
+      </div>`;
+    borrowedList.appendChild(card);
+  });
+
+  pending.forEach(r => {
+    const item = items.find(i => String(i.id) === String(r.itemId));
+    const card = document.createElement('div');
+    card.className = 'reservation-card pending-admin-card';
+    card.innerHTML = `
+      ${itemImageHtml(item || {}, r.itemName)}
+      <div class="reservation-view-body">
+        <div class="reservation-card-status pending">Awaiting Admin Review</div>
+        <h3>${r.itemName || (item && item.name) || 'Costume'}</h3>
+        ${isAdmin() ? `<p class="admin-reservation-owner">User：${reservationOwnerLabel(r)}</p>` : ''}
+        <div class="reservation-date-grid">
+          <div><span>Original Due Date</span><strong>${getDueDate(r)}</strong></div>
+          <div><span>Submitted At</span><strong>${r.returnedAt || 'Submitted'}</strong></div>
+        </div>
+        <p class="small">Return photo submitted. After admin confirmation, this costume will become available again.</p>
+      </div>`;
+    pendingList.appendChild(card);
+  });
+}
+
+function openReturnModal(reservationId){
+  const reservation = reservations.find(r => r.id === reservationId);
+  if (!reservation){
+    alert('Loan record not found.');
+    return;
+  }
+  if (!currentUser || !((reservation.userUid && reservation.userUid === (currentUser.uid || currentUser.id)) || (!reservation.userUid && reservation.reservedByUsername === currentUser.username))){
+    alert('You can only return costumes borrowed by your account.');
+    return;
+  }
+  if (reservation.status !== 'borrowed'){
+    alert('This costume is not currently awaiting return.');
+    renderReturnItems();
+    return;
+  }
+
+  const modal = document.getElementById('item-modal');
+  const modalBody = document.getElementById('modal-body');
+  if (!modal || !modalBody){
+    alert('The return window could not be opened. Refresh the page and try again.');
+    return;
+  }
+
+  const item = items.find(i => i.id === reservation.itemId);
+  modalBody.innerHTML = `
+    <div class="return-modal-heading">
+      <span class="return-modal-eyebrow">RETURN COSTUME</span>
+      <h2>Upload Photo & Return</h2>
+      <p>Photograph the costume’s current condition. After submission, it will await admin confirmation.</p>
+    </div>
+
+    <div class="return-modal-item">
+      ${itemImageHtml(item || {}, reservation.itemName)}
+      <div>
+        <h3>${reservation.itemName}</h3>
+        <p>Due Date: <strong>${getDueDate(reservation)}</strong></p>
+        ${isOverdue(reservation) ? '<p class="overdue">This costume is overdue. Please submit the return as soon as possible.</p>' : ''}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="modal-return-photo"><strong>Return Photo (required)</strong></label>
+      <input type="file" accept="image/*" capture="environment" id="modal-return-photo">
+      <img id="modal-return-preview" class="return-photo" alt="Return photo preview" style="display:none;">
+      <p class="small">Make sure the photo clearly shows the entire costume and any damage or stains.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="modal-return-note"><strong>Condition Notes</strong></label>
+      <textarea id="modal-return-note" rows="3" placeholder="Example: no issues; stain on cuff; broken zipper"></textarea>
+    </div>
+
+    <div class="progress" id="modal-return-progress-wrap" style="display:none;">
+      <div id="modal-return-progress"></div>
+    </div>
+
+    <button id="modal-return-submit" class="btn-primary return-submit-button"
+      onclick="returnItemFromModal(${reservation.id})">Confirm Return & Upload</button>
+  `;
+
+  const photoInput = document.getElementById('modal-return-photo');
+  const preview = document.getElementById('modal-return-preview');
+  if (photoInput && preview){
+    photoInput.addEventListener('change', () => {
+      if (photoInput.files && photoInput.files[0]){
+        preview.src = URL.createObjectURL(photoInput.files[0]);
+        preview.style.display = 'block';
+      } else {
+        preview.removeAttribute('src');
+        preview.style.display = 'none';
+      }
+    });
+  }
+
+  modal.style.display = 'flex';
+}
+
+async function uploadToCloudinary(file, reservation, damageNote=''){
+  const date = todayString();
+  const uploadedAt = new Date();
+  const uploadStamp = cloudinaryUploadStamp(uploadedAt);
+  const username = safeName(
+    reservation.reservedByUsername ||
+    (currentUser && currentUser.username) ||
+    reservation.reservedBy ||
+    'unknown-user'
+  );
+  const itemName = safeName(reservation.itemName || `item-${reservation.itemId || 'unknown'}`);
+
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', UPLOAD_PRESET);
+
+  // User return photos live separately from catalogue photos.
+  formData.append('asset_folder', 'returned costumes');
+  formData.append('folder', 'returned costumes');
+
+  // Easy-to-scan Cloudinary filename:
+  // YYYYMMDD-HHMMSS-username-item
+  formData.append('public_id', `${uploadStamp}-${username}-${itemName}`);
+
+  formData.append('tags', `${RETURN_TAG},return_${date.replaceAll('-', '_')}`);
+  formData.append(
+    'context',
+    `returned_by=${reservation.reservedBy || ''}|username=${reservation.reservedByUsername || ''}|item=${reservation.itemName}|date=${date}|uploaded_at=${uploadedAt.toISOString()}|due_date=${getDueDate(reservation)}|reservation_id=${reservation.id}|damage_note=${damageNote || 'None'}`
+  );
+
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    { method: 'POST', body: formData }
+  );
+  const result = await response.json();
+  if (!response.ok){
+    throw new Error(result?.error?.message || 'Cloudinary upload failed');
+  }
+  return result;
+}
+
+async function returnItemFromModal(reservationId){
+  const input = document.getElementById('modal-return-photo');
+  const noteInput = document.getElementById('modal-return-note');
+  const submitButton = document.getElementById('modal-return-submit');
+  const progressWrap = document.getElementById('modal-return-progress-wrap');
+  const progress = document.getElementById('modal-return-progress');
+
+  if (!input || !input.files || input.files.length === 0){
+    alert('Please take or upload a return photo.');
+    return;
+  }
+
+  const reservation = reservations.find(r => r.id === reservationId);
+  if (!reservation){
+    alert('Loan record not found.');
+    return;
+  }
+  if (!currentUser || !((reservation.userUid && reservation.userUid === (currentUser.uid || currentUser.id)) || (!reservation.userUid && reservation.reservedByUsername === currentUser.username))){
+    alert('You can only return costumes borrowed by your account.');
+    return;
+  }
+  if (reservation.status !== 'borrowed'){
+    alert('This costume is no longer awaiting return.');
+    closeModal();
+    renderReturnItems();
+    return;
+  }
+
+  const damageNote = noteInput ? noteInput.value.trim() : '';
+
+  if (submitButton){
+    submitButton.disabled = true;
+    submitButton.textContent = 'Uploading…';
+  }
+  if (progressWrap && progress){
+    progressWrap.style.display = 'block';
+    progress.style.width = '30%';
+  }
+
+  try {
+    const uploadResult = await uploadToCloudinary(
+      input.files[0],
+      reservation,
+      damageNote
+    );
+
+    if (progress) progress.style.width = '80%';
+
+    const record = {
+      id: Date.now(),
+      itemId: reservation.itemId,
+      itemName: reservation.itemName,
+      returnedBy: reservation.reservedBy,
+      returnedByUsername: reservation.reservedByUsername,
+      userUid: reservation.userUid || (currentUser && (currentUser.uid || currentUser.id)) || '',
+      returnedAt: new Date().toLocaleString(),
+      date: todayString(),
+      dueDate: getDueDate(reservation),
+      damageNote: damageNote || 'None',
+      photoUrl: uploadResult.secure_url,
+      publicId: uploadResult.public_id,
+      folder: uploadResult.folder || 'returned costumes'
+    };
+
+    returnRecords.push(record);
+    save('returnRecords', returnRecords);
+
+    reservation.status = 'pendingReturn';
+    reservation.returnRecordId = record.id;
+    reservation.returnedAt = record.returnedAt;
+    reservation.returnPhotoUrl = record.photoUrl;
+
+    const item = items.find(i => i.id === reservation.itemId);
+    if (item) item.status = 'pendingReturn';
+
+    save('items', items);
+    save('reservations', reservations);
+    syncReservationStatus(reservation, 'pendingReturn');
+
+    if (progress) progress.style.width = '100%';
+
+    closeModal();
+    alert('Return photo uploaded. It is now awaiting admin review.');
+
+    renderReturnItems();
+    renderReservations();
+    renderPickupItems();
+    renderItems(getSortedItems(items));
+    updateStats();
+    updateActionNavs();
+    updateActionNavs();
+    if (isAdmin()){
+      renderAdminInventoryTable();
+      renderAdminPendingReturns();
+      updateAdminNavCounts();
+    }
+  } catch (error){
+    if (progressWrap) progressWrap.style.display = 'none';
+    if (submitButton){
+      submitButton.disabled = false;
+      submitButton.textContent = 'Confirm Return & Upload';
+    }
+    alert('Return failed: ' + error.message);
+  }
+}
+
+
+
+function adminItemHasActiveLoan(itemId){
+  return reservations.some(r =>
+    String(r.itemId) === String(itemId) &&
+    ['reserved', 'borrowed', 'pendingReturn'].includes(r.status || 'reserved')
+  );
+}
+
+function openAdminItemEditor(itemId){
+  if (!isAdmin()){
+    alert('Only admins can edit the clothing catalogue.');
+    return;
+  }
+
+  const item = getItemById(itemId);
+  if (!item){
+    alert('Costume not found.');
+    return;
+  }
+
+  const modal = document.getElementById('item-modal');
+  const modalBody = document.getElementById('modal-body');
+  if (!modal || !modalBody) return;
+
+  const categories = ['Wigs','Dresses','Outfits','Accessories','Props','Shoes'];
+  const sizes = ['XS','S','M','L','XL','XXL','One Size'];
+  const genders = ['Women','Men','Unisex'];
+
+  const optionHtml = (values, selected) => values.map(value =>
+    `<option value="${escapeHtml(value)}" ${String(value) === String(selected) ? 'selected' : ''}>${escapeHtml(value)}</option>`
+  ).join('');
+
+  modalBody.innerHTML = `
+    <div class="admin-photo-editor-heading">
+      <span class="admin-photo-editor-eyebrow">ADMIN CATALOGUE EDITOR</span>
+      <h2>Edit Costume</h2>
+      <p>Edit the information students see in the Clothing Catalogue. You can also hide a costume without deleting its data.</p>
+    </div>
+
+    <div class="admin-catalogue-form-grid">
+      <div class="form-group">
+        <label for="admin-edit-name"><strong>Costume Name</strong></label>
+        <input id="admin-edit-name" type="text" value="${escapeHtml(item.name || '')}">
+      </div>
+      <div class="form-group">
+        <label for="admin-edit-category"><strong>Category</strong></label>
+        <select id="admin-edit-category">${optionHtml(categories, item.category)}${item.category && !categories.includes(item.category) ? `<option value="${escapeHtml(item.category)}" selected>${escapeHtml(item.category)}</option>` : ''}</select>
+      </div>
+      <div class="form-group">
+        <label for="admin-edit-size"><strong>Size</strong></label>
+        <select id="admin-edit-size">${optionHtml(sizes, item.size)}${item.size && !sizes.includes(item.size) ? `<option value="${escapeHtml(item.size)}" selected>${escapeHtml(item.size)}</option>` : ''}</select>
+      </div>
+      <div class="form-group">
+        <label for="admin-edit-gender"><strong>Gender</strong></label>
+        <select id="admin-edit-gender">${optionHtml(genders, item.gender || 'Unisex')}${item.gender && !genders.includes(item.gender) ? `<option value="${escapeHtml(item.gender)}" selected>${escapeHtml(item.gender)}</option>` : ''}</select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="admin-edit-donor"><strong>Donor / Source</strong></label>
+      <input id="admin-edit-donor" type="text" value="${escapeHtml(item.donor || '')}">
+    </div>
+
+    <div class="form-group">
+      <label for="admin-edit-description"><strong>Description</strong></label>
+      <textarea id="admin-edit-description" rows="4">${escapeHtml(item.description || '')}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input id="admin-edit-hidden" type="checkbox" ${isItemHidden(item) ? 'checked' : ''} style="width:auto;margin-right:8px;">
+        <strong>Hide this costume from students</strong>
+      </label>
+      <p class="small">Hidden costumes stay in Firestore and the admin dashboard, but disappear from the student Clothing Catalogue and cannot be newly reserved.</p>
+    </div>
+
+    <div class="admin-catalogue-actions">
+      <button class="btn-primary" onclick='saveAdminItemDetails(${JSON.stringify(String(item.id))})'>Save Changes</button>
+      <button class="btn-secondary" onclick='openAdminPhotoEditor(${JSON.stringify(String(item.id))})'>Change Photo</button>
+    </div>
+
+    <div class="admin-catalogue-danger-zone">
+      <p><strong>Delete Costume</strong></p>
+      <p class="small">Deleting removes this costume from the live catalogue and Firestore. Historical rental and return records are kept.</p>
+      <button class="cancel-btn" onclick='deleteAdminCatalogueItem(${JSON.stringify(String(item.id))})'>Delete Costume Permanently</button>
+    </div>
+  `;
+
+  modal.style.display = 'flex';
+}
+
+function saveAdminItemDetails(itemId){
+  if (!isAdmin()){
+    alert('Only admins can edit the clothing catalogue.');
+    return;
+  }
+
+  const item = getItemById(itemId);
+  if (!item) return;
+
+  const name = (document.getElementById('admin-edit-name')?.value || '').trim();
+  const category = document.getElementById('admin-edit-category')?.value || '';
+  const size = document.getElementById('admin-edit-size')?.value || '';
+  const gender = document.getElementById('admin-edit-gender')?.value || '';
+  const donor = (document.getElementById('admin-edit-donor')?.value || '').trim();
+  const description = (document.getElementById('admin-edit-description')?.value || '').trim();
+  const hidden = !!document.getElementById('admin-edit-hidden')?.checked;
+
+  if (!name){
+    alert('Costume name is required.');
+    return;
+  }
+
+  const previousName = item.name;
+  item.name = name;
+  item.category = category;
+  item.size = size;
+  item.gender = gender;
+  item.donor = donor;
+  item.description = description;
+  item.hidden = hidden;
+  item.updatedAt = new Date().toISOString();
+  item.updatedBy = currentUser ? (currentUser.username || currentUser.name || 'admin') : 'admin';
+
+  if (previousName !== name){
+    reservations.forEach(r => {
+      if (String(r.itemId) === String(item.id)) r.itemName = name;
+    });
+  }
+
+  save('items', items);
+  if (previousName !== name) save('reservations', reservations);
+
+  closeModal();
+  renderItems(getSortedItems(items));
+  renderReservations();
+  renderPickupItems();
+  renderReturnItems();
+  renderAdminInventoryTable();
+  updateStats();
+  updateAdminNavCounts();
+  scheduleAdminSheetSync();
+  alert(hidden ? 'Changes saved. This costume is now hidden from students.' : 'Costume details updated.');
+}
+
+function toggleItemHidden(itemId){
+  if (!isAdmin()){
+    alert('Only admins can change catalogue visibility.');
+    return;
+  }
+
+  const item = getItemById(itemId);
+  if (!item) return;
+
+  item.hidden = !isItemHidden(item);
+  item.updatedAt = new Date().toISOString();
+  item.updatedBy = currentUser ? (currentUser.username || currentUser.name || 'admin') : 'admin';
+
+  save('items', items);
+  closeModal();
+  renderItems(getSortedItems(items));
+  renderAdminInventoryTable();
+  updateStats();
+  scheduleAdminSheetSync();
+  alert(item.hidden ? 'Costume hidden from students.' : 'Costume is visible in the catalogue again.');
+}
+
+async function deleteAdminCatalogueItem(itemId){
+  if (!isAdmin()){
+    alert('Only admins can delete costumes.');
+    return;
+  }
+
+  const item = getItemById(itemId);
+  if (!item) return;
+
+  if (adminItemHasActiveLoan(item.id)){
+    alert('This costume has an active reservation, loan, or pending return. Resolve that record before deleting the costume. You can hide it instead.');
+    return;
+  }
+
+  if (!confirm(`Permanently delete “${item.name}” from the live catalogue?\n\nThis removes the costume from Firestore. Rental and return history will be kept.`)) return;
+
+  await deleteFirestoreDoc('items', item.id);
+  items = items.filter(candidate => String(candidate.id) !== String(item.id));
+  saveLocalOnly('items', items);
+
+  closeModal();
+  renderItems(getSortedItems(items));
+  renderAdminInventoryTable();
+  updateStats();
+  scheduleAdminSheetSync();
+  alert('Costume deleted from the live catalogue.');
+}
+
+function openAdminPhotoEditor(itemId){
+  if (!isAdmin()){
+    alert('You do not have admin permission.');
+    return;
+  }
+
+  const item = getItemById(itemId);
+  if (!item){
+    alert('Costume not found.');
+    return;
+  }
+
+  const modal = document.getElementById('item-modal');
+  const modalBody = document.getElementById('modal-body');
+  if (!modal || !modalBody){
+    alert('Unable to open the photo editor. Refresh the page and try again.');
+    return;
+  }
+
+  modalBody.innerHTML = `
+    <div class="admin-photo-editor-heading">
+      <span class="admin-photo-editor-eyebrow">ADMIN PHOTO EDITOR</span>
+      <h2>Change Costume Photo</h2>
+      <p>Whether or not this costume already has a photo, you can upload a new one to replace it. The Home page and Clothing Catalogue will update after upload.</p>
+    </div>
+
+    <div class="admin-photo-editor-current">
+      ${itemImageHtml(item, item.name)}
+      <div>
+        <h3>${item.name}</h3>
+        <p class="small">${item.category} / ${item.size}</p>
+        <p class="small">${getItemPhotoUrl(item) ? 'A photo is currently available. Upload a new one to replace it.' : 'This costume does not have a photo yet.'}</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="admin-item-photo-input"><strong>Choose New Photo</strong></label>
+      <input id="admin-item-photo-input" type="file" accept="image/*" capture="environment">
+      <img id="admin-item-photo-preview" class="return-photo" alt="New costume photo preview" style="display:none;">
+    </div>
+
+    <div class="progress" id="admin-item-photo-progress-wrap" style="display:none;">
+      <div id="admin-item-photo-progress"></div>
+    </div>
+
+    <button id="admin-item-photo-submit" class="btn-primary admin-photo-submit"
+      onclick='saveAdminItemPhoto(${JSON.stringify(String(item.id))})'>Upload & Replace Photo</button>
+
+    ${getItemPhotoUrl(item) ? `<button class="cancel-btn admin-photo-remove" onclick='removeAdminItemPhoto(${JSON.stringify(String(item.id))})'>Remove Current Photo</button>` : ''}
+  `;
+
+  const input = document.getElementById('admin-item-photo-input');
+  const preview = document.getElementById('admin-item-photo-preview');
+  if (input && preview){
+    input.addEventListener('change', () => {
+      if (input.files && input.files[0]){
+        preview.src = URL.createObjectURL(input.files[0]);
+        preview.style.display = 'block';
+      } else {
+        preview.removeAttribute('src');
+        preview.style.display = 'none';
+      }
+    });
+  }
+
+  modal.style.display = 'flex';
+}
+
+async function uploadAdminItemPhoto(file, item){
+  const uploadedAt = new Date();
+  const uploadStamp = cloudinaryUploadStamp(uploadedAt);
+  const adminName = safeName((currentUser && currentUser.username) || 'admin');
+  const itemName = safeName(item.name || `item-${item.id}`);
+
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', UPLOAD_PRESET);
+
+  // Public catalogue images are kept in their own Cloudinary folder.
+  formData.append('asset_folder', 'uploaded costumes by admin');
+  formData.append('folder', 'uploaded costumes by admin');
+
+  // Keep catalogue files readable and unique.
+  formData.append('public_id', `${uploadStamp}-${adminName}-item_${safeName(item.id)}-${itemName}`);
+
+  formData.append('tags', `costume_catalog,item_${item.id}`);
+  formData.append(
+    'context',
+    `item_id=${item.id}|item_name=${item.name}|updated_by=${currentUser ? currentUser.username : 'admin'}|updated_at=${uploadedAt.toISOString()}`
+  );
+
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    { method: 'POST', body: formData }
+  );
+  const result = await response.json();
+
+  if (!response.ok){
+    throw new Error(result?.error?.message || 'Photo upload failed');
+  }
+  return result;
+}
+
+async function saveAdminItemPhoto(itemId){
+  if (!isAdmin()){
+    alert('You do not have admin permission.');
+    return;
+  }
+
+  const item = getItemById(itemId);
+  const input = document.getElementById('admin-item-photo-input');
+  const submit = document.getElementById('admin-item-photo-submit');
+  const progressWrap = document.getElementById('admin-item-photo-progress-wrap');
+  const progress = document.getElementById('admin-item-photo-progress');
+
+  if (!item){
+    alert('Costume not found.');
+    return;
+  }
+  if (!input || !input.files || input.files.length === 0){
+    alert('Please choose a new photo first.');
+    return;
+  }
+
+  if (submit){
+    submit.disabled = true;
+    submit.textContent = 'Uploading…';
+  }
+  if (progressWrap && progress){
+    progressWrap.style.display = 'block';
+    progress.style.width = '35%';
+  }
+
+  try{
+    const result = await uploadAdminItemPhoto(input.files[0], item);
+    if (progress) progress.style.width = '85%';
+
+    setItemPhotoUrl(item, result.secure_url);
+    item.imagePublicId = result.public_id;
+    item.imageUpdatedAt = new Date().toLocaleString();
+    item.imageUpdatedBy = currentUser.username;
+
+    save('items', items);
+
+    if (progress) progress.style.width = '100%';
+    closeModal();
+
+    renderItems(getSortedItems(items));
+    renderAdminInventoryTable();
+    updateStats();
+
+    alert('Costume photo updated. The Home page and Clothing Catalogue will now show the new photo.');
+  } catch(error){
+    if (progressWrap) progressWrap.style.display = 'none';
+    if (submit){
+      submit.disabled = false;
+      submit.textContent = 'Upload & Replace Photo';
+    }
+    alert('Photo update failed: ' + error.message);
+  }
+}
+
+function removeAdminItemPhoto(itemId){
+  if (!isAdmin()){
+    alert('You do not have admin permission.');
+    return;
+  }
+
+  const item = getItemById(itemId);
+  if (!item){
+    alert('Costume not found.');
+    return;
+  }
+
+  if (!confirm(`Remove the current photo for “${item.name}”?`)){
+    return;
+  }
+
+  setItemPhotoUrl(item, '');
+  delete item.imagePublicId;
+  item.imageUpdatedAt = new Date().toLocaleString();
+  item.imageUpdatedBy = currentUser.username;
+
+  save('items', items);
+  closeModal();
+  renderItems(getSortedItems(items));
+  renderAdminInventoryTable();
+  alert('The current costume photo has been removed from the website.');
+}
+
+function previewDonatePhoto(){
+  const input = document.getElementById('donate-photo');
+  const preview = document.getElementById('donate-photo-preview');
+  if (input.files && input.files[0]){
+    preview.src = URL.createObjectURL(input.files[0]);
+    preview.style.display = 'block';
+  } else {
+    preview.removeAttribute('src');
+    preview.style.display = 'none';
+  }
+}
+
+async function uploadDonationToCloudinary(file, itemData){
+  const date = todayString();
+  const uploadedAt = new Date();
+  const uploadStamp = cloudinaryUploadStamp(uploadedAt);
+  const adminName = safeName((currentUser && currentUser.username) || 'admin');
+  const itemName = safeName(itemData.name || 'unnamed-item');
+
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', UPLOAD_PRESET);
+
+  // Admin-added clothing is part of the public catalogue.
+  formData.append('asset_folder', 'uploaded costumes by admin');
+  formData.append('folder', 'uploaded costumes by admin');
+  formData.append('public_id', `${uploadStamp}-${adminName}-${itemName}`);
+
+  formData.append('tags', `${DONATION_TAG},costume_catalog,donation_${date.replaceAll('-', '_')}`);
+  formData.append(
+    'context',
+    `name=${itemData.name}|category=${itemData.category}|size=${itemData.size}|description=${itemData.description || ''}|donor=${itemData.donor || ''}|uploaded_by=${currentUser ? currentUser.username : 'admin'}|date=${date}|uploaded_at=${uploadedAt.toISOString()}`
+  );
+
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    { method: 'POST', body: formData }
+  );
+  const result = await response.json();
+  if (!response.ok) throw new Error(result?.error?.message || 'Cloudinary upload failed');
+  return result;
+}
+
+async function handleDonate(event){
+  event.preventDefault();
+
+  if (!isAdmin()){
+    alert('Only admins can add costumes.');
+    showSection('home');
+    return;
+  }
+  const photoInput = document.getElementById('donate-photo');
+  if (!photoInput.files || photoInput.files.length === 0){
+    alert('Please upload a costume photo first.');
+    return;
+  }
+
+  const itemData = {
+    name: document.getElementById('donate-name').value.trim(),
+    category: document.getElementById('donate-category').value,
+    size: document.getElementById('donate-size').value,
+    gender: '',
+    description: document.getElementById('donate-desc').value.trim(),
+    donor: document.getElementById('donate-donor').value.trim() || 'Not provided'
+  };
+
+  const submit = document.getElementById('donate-submit');
+  const progressWrap = document.getElementById('donate-progress-wrap');
+  const progress = document.getElementById('donate-progress');
+  submit.disabled = true;
+  submit.textContent = 'Adding costume...';
+  progressWrap.style.display = 'block';
+  progress.style.width = '35%';
+
+  try {
+    const uploadResult = await uploadDonationToCloudinary(photoInput.files[0], itemData);
+    progress.style.width = '85%';
+    const newItem = {
+      id: Date.now(),
+      ...itemData,
+      status: 'available',
+      imageUrl: uploadResult.secure_url,
+      cloudPublicId: uploadResult.public_id,
+      donatedAt: todayString(),
+      source: 'cloudinary',
+      donatedByUid: currentUser ? (currentUser.uid || currentUser.id || '') : ''
+    };
+    items.push(newItem);
+    save('items', items);
+    document.getElementById('donate-form').reset();
+    document.getElementById('donate-photo-preview').style.display = 'none';
+    progress.style.width = '100%';
+    alert('Costume added! The photo has been uploaded and will appear in the Clothing Catalogue.');
+    showSection('catalog');
+  } catch (error) {
+    alert('Add costume failed: ' + error.message);
+  } finally {
+    submit.disabled = false;
+    submit.textContent = 'Add Costume & Upload Photo';
+    setTimeout(() => { progressWrap.style.display = 'none'; progress.style.width = '0%'; }, 800);
+  }
+}
+
+async function loadCloudDonations(){
+  try {
+    const response = await fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${DONATION_TAG}.json?_=${Date.now()}`);
+    if (!response.ok) return;
+    const data = await response.json();
+    const cloudItems = (data.resources || []).map(r => {
+      const context = r.context || {};
+      return {
+        id: 'cloud_' + r.public_id,
+        name: context.name || extractItemFromPublicId(r.public_id),
+        category: context.category || 'Unisex',
+        size: context.size || 'One Size',
+        gender: context.gender || 'Unisex',
+        description: context.description || '',
+        donor: context.donor || 'Unknown Donor',
+        status: 'available',
+        imageUrl: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}.${r.format}`,
+        cloudPublicId: r.public_id,
+        donatedAt: context.date || extractDateFromPublicId(r.public_id),
+        source: 'cloudinary'
+      };
+    });
+    let changed = false;
+    cloudItems.forEach(cloudItem => {
+      if (!items.some(item => item.cloudPublicId === cloudItem.cloudPublicId)) {
+        items.push(cloudItem);
+        changed = true;
+      }
+    });
+    if (changed) save('items', items);
+    renderItems(getSortedItems(items));
+    updateStats();
+    updateActionNavs();
+  } catch (error) {
+    console.warn('Unable to read cloud costume uploads: ', error);
+  }
+}
+
+
+async function handleLogin(event){
+  event.preventDefault();
+  if (!requireFirebase()) return;
+
+  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  const password = document.getElementById('login-password').value;
+  const submitButton = document.getElementById('login-submit');
+
+  if (submitButton){
+    submitButton.disabled = true;
+    submitButton.textContent = 'Logging in…';
+  }
+
+  try{
+    await firebaseAuth.signInWithEmailAndPassword(email, password);
+    document.getElementById('login-form').reset();
+    showSection('home');
+  } catch(error){
+    alert(firebaseErrorMessage(error));
+  } finally{
+    if (submitButton){
+      submitButton.disabled = false;
+      submitButton.textContent = 'Log In';
+    }
+  }
+}
+
+async function handleRegister(event){
+  event.preventDefault();
+  if (!requireFirebase()) return;
+
+  const username = document.getElementById('register-username').value.trim();
+  const password = document.getElementById('register-password').value;
+  const confirmPassword = document.getElementById('register-confirm-password').value;
+  const name = document.getElementById('register-name').value.trim();
+  const email = document.getElementById('register-email').value.trim().toLowerCase();
+  const studentIdInput = document.getElementById('register-student-id');
+  const studentId = studentIdInput ? studentIdInput.value.trim() : '';
+  const submitButton = document.getElementById('register-submit');
+
+  if (!name){
+    alert('Please enter your preferred name.');
+    return;
+  }
+  if (!username){
+    alert('Please enter your legal name.');
+    return;
+  }
+  if (password !== confirmPassword){
+    alert('Passwords do not match.');
+    return;
+  }
+  if (password.length < 6){
+    alert('Password must be at least 6 characters.');
+    return;
+  }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  if (submitButton){
+    submitButton.disabled = true;
+    submitButton.textContent = 'Creating account…';
+  }
+
+  let credential = null;
+  try{
+    const usernameKey = username.toLowerCase();
+
+    // Create the Firebase Authentication account first.
+    // Firestore rules do not allow unauthenticated users to query the users collection.
+    credential = await firebaseAuth.createUserWithEmailAndPassword(email, password);
+
+    await firebaseDb.collection('users').doc(credential.user.uid).set({
+      username,
+      usernameKey,
+      name,
+      email,
+      studentId,
+      role: 'user',
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    await credential.user.updateProfile({ displayName: name });
+
+    syncReminderService('upsertUser', {
+      userId: credential.user.uid,
+      username,
+      name,
+      email
+    });
+
+    document.getElementById('register-form').reset();
+    showSection('home');
+    alert('Account created. You are now logged in.');
+  } catch(error){
+    // If Auth succeeded but Firestore profile creation failed, remove the incomplete account.
+    if (credential && credential.user){
+      try{ await credential.user.delete(); } catch(deleteError){ console.warn(deleteError); }
+    }
+    alert(firebaseErrorMessage(error));
+  } finally{
+    if (submitButton){
+      submitButton.disabled = false;
+      submitButton.textContent = 'Sign Up';
+    }
+  }
+}
+
+async function handleForgotPassword(){
+  if (!requireFirebase()) return;
+
+  let email = '';
+  const emailInput = document.getElementById('login-email');
+  if (emailInput) email = emailInput.value.trim().toLowerCase();
+
+  if (!email){
+    email = prompt('Enter the email used to sign up: ') || '';
+    email = email.trim().toLowerCase();
+  }
+  if (!email) return;
+
+  try{
+    await firebaseAuth.sendPasswordResetEmail(email);
+    alert('Password reset email sent. Check your inbox.');
+  } catch(error){
+    alert(firebaseErrorMessage(error));
+  }
+}
+
+async function logout(){
+  if (!firebaseReady){
+    currentUser = null;
+    updateAuthUI();
+    showSection('home');
+    return;
+  }
+  try{
+    await firebaseAuth.signOut();
+    showSection('home');
+  } catch(error){
+    alert(firebaseErrorMessage(error));
+  }
+}
+
+function startFirebaseAuthObserver(){
+  if (!initializeFirebase()){
+    currentUser = null;
+    authStateResolved = true;
+    updateAuthUI();
+    return;
+  }
+
+  firebaseAuth.onAuthStateChanged(async firebaseUser => {
+    try{
+      currentUser = firebaseUser ? await loadFirebaseUserProfile(firebaseUser) : null;
+    } catch(error){
+      console.error('Failed to load user profile: ', error);
+      currentUser = firebaseUser ? {
+        id: firebaseUser.uid,
+        uid: firebaseUser.uid,
+        username: firebaseUser.email ? firebaseUser.email.split('@')[0] : 'user',
+        name: firebaseUser.displayName || firebaseUser.email || 'User',
+        email: firebaseUser.email || '',
+        role: 'user'
+      } : null;
+    }
+
+    authStateResolved = true;
+    updateAuthUI();
+    startFirestoreDataListeners();
+    renderReservations();
+    renderPickupItems();
+    renderReturnItems();
+    updateActionNavs();
+    renderItems(getSortedItems(items));
+    updateStats();
+    updateActionNavs();
+
+    if (currentUser){
+      console.log('Firebase user signed in: ', currentUser.email);
+    }
+  });
+}
+
+function updateAdminNav(){
+  const group = document.getElementById('admin-nav-group');
+  if (!group) return;
+  group.style.display = isAdmin() ? 'inline-flex' : 'none';
+  updateAdminNavCounts();
+}
+
+function updateAuthUI(){
+  const authLinks = document.getElementById('auth-links');
+  const userInfo = document.getElementById('user-info');
+  const userName = document.getElementById('user-name');
+
+  if (currentUser){
+    authLinks.style.display = 'none';
+    userInfo.style.display = 'flex';
+    userName.textContent = currentUser.name + (isAdmin() ? ' (Admin)' : '');
+  } else {
+    authLinks.style.display = 'flex';
+    userInfo.style.display = 'none';
+  }
+
+  updateAdminNav();
+  updateActionNavs();
+  renderItems(getSortedItems(items));
+}
+
+function findActiveReservationForItem(itemId){
+  return reservations.find(r => r.itemId === itemId && ((r.status || 'reserved') === 'reserved' || r.status === 'borrowed' || r.status === 'pendingReturn')) || null;
+}
+function findLatestReturnForItem(itemId){
+  return returnRecords.filter(r => r.itemId === itemId).sort((a,b) => String(b.returnedAt || b.date || '').localeCompare(String(a.returnedAt || a.date || '')))[0] || null;
+}
+function renderAdminSummaryCards(){
+  const box = document.getElementById('admin-summary-cards');
+  if (!box) return;
+  const borrowedCount = reservations.filter(r => r.status === 'borrowed').length;
+  const pendingCount = reservations.filter(r => r.status === 'pendingReturn').length;
+  const reservedCount = reservations.filter(r => (r.status || 'reserved') === 'reserved').length;
+  const availableCount = items.filter(item => item.status === 'available' && !isItemHidden(item)).length;
+  const hiddenCount = items.filter(item => isItemHidden(item)).length;
+  const todayReturns = returnRecords.filter(r => r.date === todayString()).length;
+  box.innerHTML = `
+    <div class="admin-summary-card borrowed"><span class="admin-summary-label">Borrowed · Return Due</span><span class="admin-summary-number">${borrowedCount}</span></div>
+    <div class="admin-summary-card pending"><span class="admin-summary-label">Returns Awaiting Confirmation</span><span class="admin-summary-number">${pendingCount}</span></div>
+    <div class="admin-summary-card reserved"><span class="admin-summary-label">Reserved · Awaiting Pickup</span><span class="admin-summary-number">${reservedCount}</span></div>
+    <div class="admin-summary-card available"><span class="admin-summary-label">Available</span><span class="admin-summary-number">${availableCount}</span></div>
+    <div class="admin-summary-card returned"><span class="admin-summary-label">Returns Uploaded Today</span><span class="admin-summary-number">${todayReturns}</span></div>
+  `;
+}
+
+function getActualStatusCell(item, active, latestReturn){
+  const status = item.status || 'available';
+
+  if (status === 'borrowed' && active){
+    return `👤 <b>With Borrower</b><br><span class="small">❌ Not Returned</span><br><span class="small">Borrower: ${active.reservedBy}</span><br><span class="small">Due Date: ${getDueDate(active)}</span>`;
+  }
+
+  if (status === 'pendingReturn' && active){
+    const pendingReturn = latestReturn || returnRecords.find(r => r.id === active.returnRecordId) || {};
+    return `🧺 <b>Returned · Awaiting Admin Review</b><br><span class="small">Returned By: ${pendingReturn.returnedBy || active.reservedBy || 'Unknown User'}</span><br><span class="small">Uploaded At: ${pendingReturn.returnedAt || pendingReturn.date || active.returnedAt || 'Unknown Time'}</span>`;
+  }
+
+  if (status === 'reserved' && active){
+    return `📦 <b>In Closet · Awaiting Pickup</b><br><span class="small">Reserved By: ${active.reservedBy}</span><br><span class="small">Due Date: ${getDueDate(active)}</span>`;
+  }
+
+  if (latestReturn){
+    return `📦 <b>In Closet</b><br><span class="small">✅ Available</span><br><span class="small">Most Recent Return: ${latestReturn.returnedBy || 'Unknown User'}，${latestReturn.date || latestReturn.returnedAt || 'Unknown Time'}</span>`;
+  }
+
+  return '📦 <b>In Closet</b><br><span class="small">✅ Available</span><br><span class="small">No previous return recorded</span>';
+}
+
+function getAdminPhotoCell(item, active, latestReturn){
+  if (item.status !== 'pendingReturn'){
+    return '<span class="admin-empty-photo">—</span>';
+  }
+
+  const record = returnRecords.find(r => active && r.id === active.returnRecordId) || latestReturn;
+  const url = record && record.photoUrl ? record.photoUrl : (active && active.returnPhotoUrl ? active.returnPhotoUrl : '');
+
+  if (!url){
+    return '<span class="admin-empty-photo">Pending, but no photo available</span>';
+  }
+
+  return `<button class="btn-secondary" onclick='openPhotoModal(${JSON.stringify(url)}, ${JSON.stringify(item.name)}, ${JSON.stringify((record&&record.returnedBy)||(active&&active.reservedBy)||"")}, ${JSON.stringify((record&&(record.returnedAt||record.date))||(active&&active.returnedAt)||"")}, ${JSON.stringify((record&&record.dueDate)||(active?getDueDate(active):""))})'>View Pending Return Photo</button>`;
+}
+
+function confirmReturn(itemId){
+  if (!isAdmin()){
+    alert('Please log in with an admin account.');
+    return;
+  }
+  const reservationIndex = reservations.findIndex(r => r.itemId === itemId && r.status === 'pendingReturn');
+  if (reservationIndex === -1){
+    alert('No return awaiting confirmation was found.');
+    return;
+  }
+  const reservation = reservations[reservationIndex];
+  const item = getItemById(itemId);
+  const record = returnRecords.find(r => r.id === reservation.returnRecordId) || findLatestReturnForItem(itemId);
+  if (record){
+    record.confirmed = true;
+    record.confirmedAt = new Date().toLocaleString();
+    record.confirmedBy = currentUser.name;
+  }
+  if (item) item.status = 'available';
+  syncReservationStatus(reservation, 'completed');
+  reservations.splice(reservationIndex, 1);
+  deleteFirestoreDoc('reservations', reservation.id);
+  save('items', items);
+  save('reservations', reservations);
+  save('returnRecords', returnRecords);
+  renderAdminInventoryTable();
+  renderLocalReturnRecords();
+  renderItems(getSortedItems(items));
+  updateStats();
+  updateActionNavs();
+  updateAdminNavCounts();
+  alert('Return confirmed. This costume is now available again.');
+}
+
+
+function requireReturnReupload(itemId){
+  if (!isAdmin()){
+    alert('Please log in with an admin account.');
+    return;
+  }
+  const reservation = reservations.find(r => r.itemId === itemId && r.status === 'pendingReturn');
+  if (!reservation){
+    alert('No return awaiting confirmation was found.');
+    return;
+  }
+  if (!confirm('Request a new return photo? The costume will return to Borrowed · Return Due status.')) return;
+
+  const record = returnRecords.find(r => r.id === reservation.returnRecordId);
+  if (record){
+    record.rejected = true;
+    record.rejectedAt = new Date().toLocaleString();
+    record.rejectedBy = currentUser.name;
+  }
+
+  reservation.status = 'borrowed';
+  syncReservationStatus(reservation, 'borrowed');
+  delete reservation.returnRecordId;
+  delete reservation.returnedAt;
+  delete reservation.returnPhotoUrl;
+
+  const item = getItemById(itemId);
+  if (item) item.status = 'borrowed';
+
+  save('items', items);
+  save('reservations', reservations);
+  save('returnRecords', returnRecords);
+
+  renderAdminInventoryTable();
+  renderLocalReturnRecords();
+  renderItems(getSortedItems(items));
+  updateStats();
+  updateActionNavs();
+  updateAdminNavCounts();
+  alert('A re-upload was requested. The costume is now shown as Borrowed · Return Due again.');
+}
+
+function getAdminActionCell(item, active, latestReturn){
+  const status = item.status || 'available';
+  const editPhotoButton = `<button class="btn-secondary admin-photo-edit-btn" onclick='openAdminPhotoEditor(${JSON.stringify(String(item.id))})'>Change Costume Photo</button>`;
+  const editDetailsButton = `<button class="btn-secondary" onclick='openAdminItemEditor(${JSON.stringify(String(item.id))})'>Edit Details</button>`;
+  const visibilityButton = `<button class="admin-hide-btn" onclick='toggleItemHidden(${JSON.stringify(String(item.id))})'>${isItemHidden(item) ? 'Unhide' : 'Hide'}</button>`;
+  const deleteButton = `<button class="catalog-delete-btn" onclick='deleteAdminCatalogueItem(${JSON.stringify(String(item.id))})'>Delete</button>`;
+  const catalogueButtons = `${editDetailsButton}<br>${editPhotoButton}<br>${visibilityButton}<br>${deleteButton}`;
+
+  if (status === 'pendingReturn'){
+    const photoUrl = latestReturn && latestReturn.photoUrl ? latestReturn.photoUrl : (active && active.returnPhotoUrl ? active.returnPhotoUrl : '');
+    return `${photoUrl ? `<button class="btn-secondary" onclick='openPhotoModal(${JSON.stringify(photoUrl)}, ${JSON.stringify(item.name)}, ${JSON.stringify((latestReturn&&latestReturn.returnedBy)||(active&&active.reservedBy)||"")}, ${JSON.stringify((latestReturn&&(latestReturn.returnedAt||latestReturn.date))||(active&&active.returnedAt)||"")}, ${JSON.stringify(active?getDueDate(active):"")})'>View Return Photo</button><br>` : ''}<button class="btn-primary" onclick="confirmReturn(${item.id})">Confirm Return</button><br><button class="cancel-btn" onclick="requireReturnReupload(${item.id})">Request Re-upload</button><br>${catalogueButtons}`;
+  }
+
+  if (status === 'borrowed' && active){
+    return `<span class="small">Currently borrowed. Remind the borrower to return it on time.</span><br>${catalogueButtons}`;
+  }
+
+  if (status === 'reserved' && active){
+    return `<button class="cancel-btn" onclick="cancelReservation(${active.id})">Cancel Reservation</button><br>${catalogueButtons}`;
+  }
+
+  if (status === 'available'){
+    return catalogueButtons;
+  }
+
+  return catalogueButtons;
+}
+
+let adminTableSort = { key: 'status', direction: 'asc' };
+function daysOverdue(reservation){
+  if (!reservation || !isOverdue(reservation)) return 0;
+  const due = dateFromString(getDueDate(reservation));
+  const today = dateFromString(todayString());
+  return Math.max(1, Math.floor((today - due) / 86400000));
+}
+function renderAdminTaskPanel(){
+  const box = document.getElementById('admin-task-panel');
+  if (!box) return;
+  const pending = reservations
+    .filter(r => r.status === 'pendingReturn')
+    .sort((a, b) => {
+      const recordA = getReturnRecordForReservation(a);
+      const recordB = getReturnRecordForReservation(b);
+      const timeA = new Date((recordA && (recordA.returnedAt || recordA.date)) || a.returnedAt || 0).getTime();
+      const timeB = new Date((recordB && (recordB.returnedAt || recordB.date)) || b.returnedAt || 0).getTime();
+      return timeB - timeA;
+    });
+  const overdue = reservations.filter(r => r.status === 'borrowed' && isOverdue(r));
+  const reserved = reservations.filter(r => (r.status || 'reserved') === 'reserved');
+  const tasks = [];
+  pending.forEach(r => tasks.push(`<div class="admin-task-item pending"><div><strong>Returns Awaiting Confirmation：${r.itemName}</strong><span class="small">Returned By: ${r.reservedBy}</span></div><button class="btn-primary" onclick="renderAdminInventoryTable(); document.getElementById('admin-inventory-table').scrollIntoView({behavior:'smooth'})">Review</button></div>`));
+  overdue.forEach(r => tasks.push(`<div class="admin-task-item overdue-task"><div><strong>Overdue ${daysOverdue(r)} days：${r.itemName}</strong><span class="small">Borrower: ${r.reservedBy} · Due Date: ${getDueDate(r)}</span></div><span class="overdue">Follow Up</span></div>`));
+  reserved.forEach(r => tasks.push(`<div class="admin-task-item reserved-task"><div><strong>Awaiting Pickup: ${r.itemName}</strong><span class="small">Reserved By: ${r.reservedBy}</span></div><span class="small">${getDueDate(r)}  return by </span></div>`));
+  box.innerHTML = `<h3>Needs Attention Today</h3>${tasks.length ? `<div class="admin-task-list">${tasks.join('')}</div>` : '<div class="admin-task-empty">There are no pending confirmations or overdue items today.</div>'}`;
+}
+function setAdminTableSort(key){
+  if (adminTableSort.key === key) adminTableSort.direction = adminTableSort.direction === 'asc' ? 'desc' : 'asc';
+  else { adminTableSort.key = key; adminTableSort.direction = 'asc'; }
+  renderAdminInventoryTable();
+}
+function adminSortIndicator(key){
+  if (adminTableSort.key !== key) return '<span class="sort-indicator">↕</span>';
+  return `<span class="sort-indicator">${adminTableSort.direction === 'asc' ? '▲' : '▼'}</span>`;
+}
+function sortAdminItems(list){
+  const dir = adminTableSort.direction === 'asc' ? 1 : -1;
+  return [...list].sort((a,b) => {
+    const activeA=findActiveReservationForItem(a.id), activeB=findActiveReservationForItem(b.id);
+    let av='', bv='';
+    if(adminTableSort.key==='name'){ av=a.name||''; bv=b.name||''; }
+    else if(adminTableSort.key==='status'){ av=getAdminStatusRank(getEffectiveItemStatus(a)); bv=getAdminStatusRank(getEffectiveItemStatus(b)); }
+    else if(adminTableSort.key==='due'){ av=activeA?getDueDate(activeA):'9999-99-99'; bv=activeB?getDueDate(activeB):'9999-99-99'; }
+    const cmp = typeof av === 'number' ? av-bv : String(av).localeCompare(String(bv),'zh-CN');
+    return cmp*dir || String(a.name).localeCompare(String(b.name),'zh-CN');
+  });
+}
+function openPhotoModal(url, itemName='', returnedBy='', returnedAt='', dueDate=''){
+  if(!url) return;
+  document.getElementById('photo-modal-image').src=url;
+  document.getElementById('photo-modal-info').innerHTML=`<b>${itemName || 'Return Photo'}</b>${returnedBy?`<br>Returned By: ${returnedBy}`:''}${returnedAt?`<br>Return Time：${returnedAt}`:''}${dueDate?`<br>Original Due Date: ${dueDate}`:''}`;
+  document.getElementById('photo-modal').style.display='flex';
+}
+function closePhotoModal(){ document.getElementById('photo-modal').style.display='none'; }
+function renderAdminInventoryTable(){
+  const box = document.getElementById('admin-inventory-table');
+  if (!box) return;
+  if (!isAdmin()){
+    box.innerHTML = '<div class="empty-state"><p>Please log in with an admin account.</p></div>';
+    return;
+  }
+  renderAdminTaskPanel();
+  renderAdminSummaryCards();
+  const rows = sortAdminItems(items).map(item => {
+    const active = findActiveReservationForItem(item.id);
+    const latestReturn = findLatestReturnForItem(item.id);
+    const actualStatusText = getActualStatusCell(item, active, latestReturn);
+    const photoHtml = getAdminPhotoCell(item, active, latestReturn);
+    const actionHtml = getAdminActionCell(item, active, latestReturn);
+    const overdueText = active && isOverdue(active) && item.status !== 'pendingReturn' ? `<br><span class="overdue-days">Overdue ${daysOverdue(active)} days</span>` : '';
+    return `
+      <tr>
+        <td><b>${item.name}</b><br><span class="small">${item.category} / ${item.size} / ${item.gender}</span></td>
+        <td>${isItemHidden(item) ? '<span class="catalog-hidden-badge">HIDDEN</span>' : '<span class="status-pill status-available">VISIBLE</span>'}</td>
+        <td><span class="status-pill ${getStatusPillClass(item.status)}">${getItemStatusText(item.status)}</span>${overdueText}</td>
+        <td>${actualStatusText}<br><span class="small">Pickup Date：${active && active.pickupDate ? active.pickupDate : "—"}<br>Due Date: ${active && active.dueDate ? active.dueDate : "—"}</span></td>
+        <td>${photoHtml}</td>
+        <td>${actionHtml}</td>
+      </tr>`;
+  }).join('');
+  box.innerHTML = `
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th class="sortable-th" onclick="setAdminTableSort('name')">Costume${adminSortIndicator('name')}</th>
+          <th>Catalogue Visibility</th>
+          <th class="sortable-th" onclick="setAdminTableSort('status')">Displayed Status${adminSortIndicator('status')}</th>
+          <th>Actual Status<br><span class="small">Pickup / Due Date</span></th>
+          <th>View Photo</th>
+          <th>Admin Actions<br><span class="small">Includes catalogue photo editing</span></th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+
+let damageFilter = 'unresolved';
+
+function getReturnRecordForReservation(reservation){
+  return returnRecords.find(r => r.id === reservation.returnRecordId)
+    || returnRecords.find(r => r.itemId === reservation.itemId && !r.confirmed)
+    || findLatestReturnForItem(reservation.itemId);
+}
+
+function updateAdminNavCounts(){
+  const pendingCount = reservations.filter(r => r.status === 'pendingReturn').length;
+  const unresolvedDamageCount = returnRecords.filter(r =>
+    r.damageNote && r.damageNote.trim() && r.damageNote.trim() !== 'None' && !r.damageResolved
+  ).length;
+
+  const returnBadge = pendingCount ? `<span class="admin-badge">${pendingCount}</span>` : '';
+  const damageBadge = unresolvedDamageCount ? `<span class="admin-badge">${unresolvedDamageCount}</span>` : '';
+
+  const returnCount = document.getElementById('admin-return-count');
+  const damageCount = document.getElementById('admin-damage-count');
+  const returnsTitle = document.getElementById('admin-returns-title-count');
+  const damageTitle = document.getElementById('admin-damage-title-count');
+
+  if (returnCount) returnCount.innerHTML = returnBadge;
+  if (damageCount) damageCount.innerHTML = damageBadge;
+  if (returnsTitle) returnsTitle.textContent = pendingCount ? ` (${pendingCount})` : '';
+  if (damageTitle) damageTitle.textContent = unresolvedDamageCount ? ` (${unresolvedDamageCount} Unresolved)` : '';
+}
+
+function renderAdminPendingReturns(){
+  const box = document.getElementById('admin-pending-returns-page');
+  if (!box) return;
+  if (!isAdmin()){
+    box.innerHTML = '<div class="empty-state">Please log in with an admin account.</div>';
+    return;
+  }
+
+  const pending = reservations.filter(r => r.status === 'pendingReturn');
+  updateAdminNavCounts();
+
+  if (!pending.length){
+    box.innerHTML = '<div class="empty-state">There are no returns awaiting admin confirmation.</div>';
+    return;
+  }
+
+  box.innerHTML = `<div class="admin-review-grid">${pending.map(r => {
+    const record = getReturnRecordForReservation(r);
+    const photoUrl = (record && record.photoUrl) || r.returnPhotoUrl || r.returnPhoto || '';
+    const damageNote = (record && record.damageNote) || r.damageNote || 'None';
+    const returnedBy = (record && record.returnedBy) || r.returnedBy || r.reservedBy || 'Unknown';
+    const returnedAt = (record && (record.returnedAt || record.date)) || r.returnedAt || 'Unknown';
+
+    return `<article class="admin-review-card">
+      <span class="status-pill pill-pending">Awaiting Admin Confirmation</span>
+      <h3>${r.itemName}</h3>
+      <p><b>Returned By: </b>${returnedBy}</p>
+      <p><b>Returned At: </b>${returnedAt}</p>
+      <p><b>Original Due Date: </b>${getDueDate(r)}</p>
+      ${photoUrl ? `<button type="button" style="padding:0;border:0;background:none;cursor:pointer;width:auto;display:inline-block" onclick='openPhotoModal(${JSON.stringify(photoUrl)}, ${JSON.stringify(r.itemName)}, ${JSON.stringify(returnedBy)}, ${JSON.stringify(returnedAt)}, ${JSON.stringify(getDueDate(r))})'><img src="${photoUrl}" alt="${r.itemName} Return Photo"></button>` : '<div class="image-placeholder" style="height:190px">No return photo</div>'}
+      <p><b>Damage / Stain Notes：</b>${damageNote}</p>
+      <div class="admin-review-actions">
+        <button class="btn-primary" onclick="confirmReturn(${r.itemId}); renderAdminPendingReturns(); renderDamageAlerts(); updateAdminNavCounts();">Confirm Return</button>
+        <button class="cancel-btn" onclick="requireReturnReupload(${r.itemId}); renderAdminPendingReturns(); updateAdminNavCounts();">Request Re-upload</button>
+      </div>
+    </article>`;
+  }).join('')}</div>`;
+}
+
+function setDamageFilter(filter){
+  damageFilter = filter;
+  renderDamageAlerts();
+}
+
+function markDamageResolved(recordId){
+  if (!isAdmin()){
+    alert('Please log in with an admin account');
+    return;
+  }
+  const record = returnRecords.find(r => String(r.id) === String(recordId));
+  if (!record) return;
+  record.damageResolved = true;
+  record.damageResolvedAt = new Date().toLocaleString();
+  record.damageResolvedBy = currentUser.name;
+  save('returnRecords', returnRecords);
+  renderDamageAlerts();
+  updateAdminNavCounts();
+}
+
+function markDamageUnresolved(recordId){
+  if (!isAdmin()) return;
+  const record = returnRecords.find(r => String(r.id) === String(recordId));
+  if (!record) return;
+  record.damageResolved = false;
+  delete record.damageResolvedAt;
+  delete record.damageResolvedBy;
+  save('returnRecords', returnRecords);
+  renderDamageAlerts();
+  updateAdminNavCounts();
+}
+
+function renderDamageAlerts(){
+  const box = document.getElementById('admin-damage-page');
+  if (!box) return;
+  if (!isAdmin()){
+    box.innerHTML = '<div class="empty-state">Please log in with an admin account.</div>';
+    return;
+  }
+
+  const damaged = returnRecords.filter(r =>
+    r.damageNote && r.damageNote.trim() && r.damageNote.trim() !== 'None'
+  );
+
+  const filtered = damaged.filter(r => {
+    if (damageFilter === 'resolved') return !!r.damageResolved;
+    if (damageFilter === 'unresolved') return !r.damageResolved;
+    return true;
+  });
+
+  updateAdminNavCounts();
+
+  if (!filtered.length){
+    const text = damageFilter === 'resolved'
+      ? 'There are no resolved damage reports.'
+      : damageFilter === 'unresolved'
+        ? 'There are no unresolved damage reports.'
+        : 'No damage reports.';
+    box.innerHTML = `<div class="empty-state">${text}</div>`;
+    return;
+  }
+
+  box.innerHTML = `<div class="admin-review-grid">${filtered.map(r => {
+    const resolved = !!r.damageResolved;
+    return `<article class="admin-review-card ${resolved ? 'damage-resolved' : 'damage-unresolved'}">
+      <span class="damage-status ${resolved ? 'resolved' : 'unresolved'}">${resolved ? '✓ Resolved' : '● Unresolved'}</span>
+      <h3>⚠️ ${r.itemName || 'Unknown Costume'}</h3>
+      <p><b>${r.recordType === 'pickupDamage' ? 'Reported By' : 'Returned By'}：</b>${r.reportedBy || r.returnedBy || 'Unknown'}</p>
+      <p><b>${r.recordType === 'pickupDamage' ? 'Pickup Report Time' : 'Return Time'}：</b>${r.reportedAt || r.returnedAt || r.date || 'Unknown'}</p>
+      <p><b>Reported At Stage：</b>${r.recordType === 'pickupDamage' ? 'Found at Pickup' : 'Reported at Return'}</p>
+      <p><b>Issue：</b>${r.damageNote}</p>
+      ${r.photoUrl ? `<button type="button" style="padding:0;border:0;background:none;cursor:pointer;width:auto;display:inline-block" onclick='openPhotoModal(${JSON.stringify(r.photoUrl)}, ${JSON.stringify(r.itemName||"")}, ${JSON.stringify(r.returnedBy||"")}, ${JSON.stringify(r.returnedAt||r.date||"")}, ${JSON.stringify(r.dueDate||"")})'><img src="${r.photoUrl}" alt="Damage Photo"></button>` : ''}
+      ${resolved
+        ? `<p class="small">Resolved By：${r.damageResolvedBy || 'Admin'}<br>Resolved At：${r.damageResolvedAt || 'Unknown'}</p><button class="btn-secondary" onclick="markDamageUnresolved(${JSON.stringify(r.id)})">Mark Unresolved Again</button>`
+        : `<button class="btn-primary" onclick="markDamageResolved(${JSON.stringify(r.id)})">✓ Resolved</button>`}
+    </article>`;
+  }).join('')}</div>`;
+}
+
+let currentReturnHistoryRecords = [];
+let currentReturnHistoryEmptyText = 'No return history yet.';
+
+function normalizeHistoryDate(record){
+  const raw = record.date || record.returnedAt || '';
+  const match = String(raw).match(/\d{4}-\d{2}-\d{2}/);
+  if (match) return match[0];
+  const parsed = new Date(raw);
+  if (!Number.isNaN(parsed.getTime())) return parsed.toISOString().split('T')[0];
+  return 'Unknown Date';
+}
+
+function renderLocalReturnRecords(){
+  setReturnHistoryRecords(returnRecords.filter(r => r.recordType !== 'pickupDamage').slice().reverse(), 'There are no return records in Firestore yet.');
+}
+
+async function loadAdminReturns(){
+  if (!isAdmin()){ alert('Please log in with an admin account.'); return; }
+  const list = document.getElementById('admin-return-list');
+  list.innerHTML = '<div class="empty-state"><p>Loading Cloudinary photos...</p></div>';
+  try {
+    const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${RETURN_TAG}.json?_=${Date.now()}`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Cloudinary Resource List is not enabled, or the photos do not have the returned_costume tag.');
+    const data = await response.json();
+    const resources = (data.resources || []).map(r => {
+      const context = r.context || {};
+      return { id: r.public_id, itemName: context.item || extractItemFromPublicId(r.public_id), returnedBy: context.returned_by || 'Unknown User', returnedAt: context.date || '', date: context.date || extractDateFromPublicId(r.public_id), dueDate: context.due_date || '', photoUrl: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}.${r.format}`, publicId: r.public_id, folder: r.public_id.split('/').slice(0,-1).join('/') };
+    }).sort((a,b) => normalizeHistoryDate(b).localeCompare(normalizeHistoryDate(a)));
+    setReturnHistoryRecords(resources, 'There are no return photos in Cloudinary yet.');
+  } catch (error){
+    list.innerHTML = `<div class="empty-state"><p>Unable to load cloud photos: ${error.message}</p><p class="small">See the README: Resource List must be enabled and uploads must include the returned_costume tag.</p></div>`;
+  }
+}
+
+function extractDateFromPublicId(publicId){ const m = String(publicId).match(/\d{4}-\d{2}-\d{2}/); return m ? m[0] : ''; }
+function extractItemFromPublicId(publicId){ return String(publicId).split('/').pop().replace(/_\d+$/, '').replaceAll('_',' '); }
+
+function setReturnHistoryRecords(records, emptyText){
+  currentReturnHistoryRecords = Array.isArray(records) ? records : [];
+  currentReturnHistoryEmptyText = emptyText || 'No return history yet.';
+  filterReturnHistory();
+}
+
+function getReturnHistoryFieldLabel(field){
+  return {
+    all: 'All Fields',
+    itemName: 'Costume Name',
+    returnedBy: 'Returned By',
+    returnedAt: 'Return Time',
+    dueDate: 'Original Due Date'
+  }[field] || 'All Fields';
+}
+
+function getReturnHistorySearchText(record, field){
+  const values = {
+    itemName: record.itemName || '',
+    returnedBy: record.returnedBy || '',
+    returnedAt: `${record.returnedAt || ''} ${record.date || ''}`,
+    dueDate: record.dueDate || ''
+  };
+  if (field === 'all') return Object.values(values).join(' ');
+  return values[field] || '';
+}
+
+function updateReturnHistorySearchPlaceholder(){
+  const input = document.getElementById('return-history-search');
+  const fieldSelect = document.getElementById('return-history-field');
+  if (!input) return;
+  const field = fieldSelect ? fieldSelect.value : 'all';
+  const placeholders = {
+    all: 'Search costume, returner, return time, or due date…',
+    itemName: 'Search by costume name…',
+    returnedBy: 'Search by returner…',
+    returnedAt: 'Search by return time, e.g. 2026-07-05…',
+    dueDate: 'Search by original due date, e.g. 2026-07-19…'
+  };
+  input.placeholder = placeholders[field] || placeholders.all;
+}
+
+function filterReturnHistory(){
+  const input = document.getElementById('return-history-search');
+  const fieldSelect = document.getElementById('return-history-field');
+  const field = fieldSelect ? fieldSelect.value : 'all';
+  const rawKeyword = input ? input.value.trim() : '';
+  const keyword = rawKeyword.toLowerCase();
+  const filtered = keyword
+    ? currentReturnHistoryRecords.filter(record =>
+        String(getReturnHistorySearchText(record, field)).toLowerCase().includes(keyword)
+      )
+    : currentReturnHistoryRecords;
+  const emptyMessage = keyword
+    ? `No ${getReturnHistoryFieldLabel(field)} containing “${rawKeyword}” was found in return history.`
+    : currentReturnHistoryEmptyText;
+  renderAdminCards(filtered, emptyMessage);
+}
+
+function clearReturnHistorySearch(){
+  const input = document.getElementById('return-history-search');
+  const fieldSelect = document.getElementById('return-history-field');
+  if (input) input.value = '';
+  if (fieldSelect) fieldSelect.value = 'all';
+  updateReturnHistorySearchPlaceholder();
+  filterReturnHistory();
+}
+
+function renderAdminCards(records, emptyText){
+  const list = document.getElementById('admin-return-list');
+  list.innerHTML = '';
+  if (!records || records.length === 0){
+    list.innerHTML = `<div class="empty-state history-no-results"><p>${emptyText}</p></div>`;
+    return;
+  }
+
+  const sorted = [...records].sort((a,b) => {
+    const dateCompare = normalizeHistoryDate(b).localeCompare(normalizeHistoryDate(a));
+    if (dateCompare !== 0) return dateCompare;
+    return String(b.returnedAt || '').localeCompare(String(a.returnedAt || ''));
+  });
+
+  const groups = new Map();
+  sorted.forEach(record => {
+    const date = normalizeHistoryDate(record);
+    if (!groups.has(date)) groups.set(date, []);
+    groups.get(date).push(record);
+  });
+
+  groups.forEach((groupRecords, date) => {
+    const section = document.createElement('section');
+    section.className = 'history-date-group';
+    const heading = document.createElement('h4');
+    heading.className = 'history-date-heading';
+    heading.innerHTML = `<span><span class="history-collapse-icon">▶</span>${date}</span><span class="history-date-count">${groupRecords.length}  returns</span>`;
+    const row = document.createElement('div');
+    row.className = 'history-date-row is-collapsed';
+    heading.onclick = () => { const collapsed = row.classList.toggle('is-collapsed'); heading.querySelector('.history-collapse-icon').textContent = collapsed ? '▶' : '▼'; };
+
+    groupRecords.forEach(r => {
+      const card = document.createElement('div');
+      card.className = 'history-photo-card';
+      const photo = r.photoUrl
+        ? `<button type="button" style="padding:0;border:0;background:none;cursor:pointer;width:auto;display:inline-block" onclick='openPhotoModal(${JSON.stringify(r.photoUrl)}, ${JSON.stringify(r.itemName||"")}, ${JSON.stringify(r.returnedBy||"")}, ${JSON.stringify(r.returnedAt||r.date||"")}, ${JSON.stringify(r.dueDate||"")})'><img class="history-photo-thumb" src="${r.photoUrl}" alt="Return Photo"></button>`
+        : '<div class="image-placeholder" style="height:130px;">No Photo</div>';
+      card.innerHTML = `${photo}<h4>${r.itemName}</h4><p>Returned By: ${r.returnedBy || 'Unknown User'}</p><p>Return Time：${r.returnedAt || r.date || 'Unknown Time'}</p>${r.dueDate ? `<p>Original Due Date: ${r.dueDate}</p>` : ''}`;
+      row.appendChild(card);
+    });
+
+    section.appendChild(heading);
+    section.appendChild(row);
+    list.appendChild(section);
+    if (list.children.length === 1) { row.classList.remove('is-collapsed'); heading.querySelector('.history-collapse-icon').textContent = '▼'; }
+  });
+}
+
+window.onclick = function(event){
+  const modal = document.getElementById('item-modal');
+  const photoModal = document.getElementById('photo-modal');
+  const pickupDamageModal = document.getElementById('pickup-damage-modal');
+  if (event.target === modal) modal.style.display = 'none';
+  if (event.target === photoModal) closePhotoModal();
+  if (event.target === pickupDamageModal) closePickupDamageModal();
+};
+document.addEventListener('DOMContentLoaded', () => {
+  updateReturnHistorySearchPlaceholder();
+  syncItemStatusFromReservations();
+  renderItems(getSortedItems(items));
+  updateAuthUI();
+  updateAdminNavCounts();
+  updateStats();
+  loadCloudDonations();
+  startFirebaseAuthObserver();
+});
+</script>
+</body>
+</html>
