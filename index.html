@@ -968,6 +968,8 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 .checkout-rule-card li+li{margin-top:7px}
 .checkout-return-reminder{background:#e9f1fb;border-left:4px solid #285bc4;padding:15px 18px;border-radius:4px;margin:14px 0 22px;line-height:1.5}
 @media(max-width:760px){.nav{gap:6px}.nav a,.nav button{font-size:14px;padding:12px 13px;min-height:44px}.checkout-rules{grid-template-columns:1fr}}
+#admin-pickups .admin-pickup-confirm:disabled{opacity:.48;cursor:not-allowed;box-shadow:none;}
+#admin-pickups .pickup-card{margin-bottom:16px;}
 </style>
 </head>
 <body>
@@ -985,6 +987,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
       <span id="admin-nav-group" style="display:none;align-items:center;gap:10px;flex-wrap:wrap;">
         <span class="admin-menu-label">🔒 Admin</span>
         <a class="admin-link" href="#admin-inventory" onclick="showSection('admin-inventory')">📋 Inventory Status <span id="admin-inventory-count"></span></a>
+        <a class="admin-link" href="#admin-pickups" onclick="showSection('admin-pickups')">📦 Manage Pickups <span id="admin-pickup-count"></span></a>
         <a class="admin-link" href="#admin-returns" onclick="showSection('admin-returns')">📦 Manage Returns <span id="admin-return-count"></span></a>
         <a class="admin-link" href="#admin-damage" onclick="showSection('admin-damage')">⚠️ Damage Reports <span id="admin-damage-count"></span></a>
         <a class="admin-link" href="#admin-history" onclick="showSection('admin-history')">📷 Return History</a>
@@ -1025,8 +1028,8 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
       <div class="blue-section-head"><span>02 / THE COLLECTION</span><h3>Ready for Spirit Week?</h3><a href="#catalog" onclick="showSection('catalog')">View all costumes ↗</a></div>
       <div class="blue-category-grid">
         <button onclick="filterByCategory('Wigs')"><span class="cat-illustration">✳</span><strong>Wigs</strong><small>EXPLORE ↗</small></button>
-        <button onclick="filterByCategory('Dresses')"><span class="cat-illustration">♢</span><strong>Dresses</strong><small>EXPLORE ↗</small></button>
-        <button onclick="filterByCategory('Full Body Costumes')"><span class="cat-illustration">✦</span><strong>Full Body Costumes</strong><small>EXPLORE ↗</small></button><button onclick="filterByCategory('Tops & Bottoms')"><span class="cat-illustration">✺</span><strong>Tops & Bottoms</strong><small>EXPLORE ↗</small></button>
+        <button onclick="filterByCategory('Tops')"><span class="cat-illustration">♢</span><strong>Tops</strong><small>EXPLORE ↗</small></button>
+        <button onclick="filterByCategory('Full Body Costumes')"><span class="cat-illustration">✦</span><strong>Full Body Costumes</strong><small>EXPLORE ↗</small></button><button onclick="filterByCategory('Bottoms')"><span class="cat-illustration">✺</span><strong>Bottoms</strong><small>EXPLORE ↗</small></button>
         <button onclick="filterByCategory('Accessories')"><span class="cat-illustration">☆</span><strong>Accessories</strong><small>EXPLORE ↗</small></button>
         <button onclick="filterByCategory('Shoes')"><span class="cat-illustration">◇</span><strong>Shoes</strong><small>EXPLORE ↗</small></button>
       </div>
@@ -1038,9 +1041,9 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
       <div class="section-header">
         <h2>Clothing Catalogue</h2>
         <div class="filters">
-          <select id="category-filter" onchange="filterItems()"><option value="all">All Categories</option><option value="Wigs">Wigs</option><option value="Dresses">Dresses</option><option value="Full Body Costumes">Full Body Costumes</option><option value="Tops & Bottoms">Tops & Bottoms</option><option value="Accessories">Accessories</option><option value="Shoes">Shoes</option></select>
+          <select id="category-filter" onchange="filterItems()"><option value="all">All Categories</option><option value="Wigs">Wigs</option><option value="Tops">Tops</option><option value="Full Body Costumes">Full Body Costumes</option><option value="Bottoms">Bottoms</option><option value="Accessories">Accessories</option><option value="Shoes">Shoes</option></select>
           <select id="size-filter" onchange="filterItems()"><option value="all">All Sizes</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="One Size">One Size</option><option value="38">38</option><option value="42">42</option></select>
-          <select id="gender-filter" onchange="filterItems()"><option value="all">All Genders</option><option value="Men">Men</option><option value="Women">Women</option><option value="Unisex">Unisex</option></select>
+          
           <input type="text" id="search-input" placeholder="Search costumes..." onkeyup="filterItems()">
         </div>
       </div>
@@ -1070,6 +1073,19 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
       </div>
       <div id="reserved-reservations-list" class="reservations-list"></div>
     </section>
+
+<section id="admin-pickups" class="section">
+  <div class="pickup-page-heading">
+    <div><span class="pickup-eyebrow">ADMIN · STUDENT AFFAIRS</span><h2>Manage Pickups</h2>
+      <p>Confirm a student's pickup on their scheduled day. Reservations from all students appear here.</p></div>
+    <span id="admin-pickups-page-count" class="pickup-page-count">0 awaiting pickup</span>
+  </div>
+  <div class="checkout-rules"><div class="checkout-rule-card"><span class="checkout-rule-label">PICKUP CHECKLIST</span>
+    <ul><li>Check the student's name and costume before handing it over.</li>
+    <li>Confirm pickup <strong>only on the scheduled pickup date</strong>.</li>
+    <li>Reservations not picked up by 11:59 PM on that day expire.</li></ul></div></div>
+  <div id="admin-pickups-list" class="reservations-list pickup-list"></div>
+</section>
 
 <section id="pickup" class="section">
       <div class="pickup-page-heading">
@@ -1145,7 +1161,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
       <div class="notice admin-only-note">This page is visible only to admins. Added costumes will appear in the shared catalogue.</div>
       <form id="donate-form" onsubmit="handleDonate(event)">
         <div class="form-group"><label>Costume Name</label><input type="text" id="donate-name" required></div>
-        <div class="form-group"><label>Category</label><select id="donate-category" required><option value="">Select a category</option><option value="Wigs">Wigs</option><option value="Dresses">Dresses</option><option value="Full Body Costumes">Full Body Costumes</option><option value="Tops & Bottoms">Tops & Bottoms</option><option value="Accessories">Accessories</option><option value="Shoes">Shoes</option></select></div>
+        <div class="form-group"><label>Category</label><select id="donate-category" required><option value="">Select a category</option><option value="Wigs">Wigs</option><option value="Tops">Tops</option><option value="Full Body Costumes">Full Body Costumes</option><option value="Bottoms">Bottoms</option><option value="Accessories">Accessories</option><option value="Shoes">Shoes</option></select></div>
         <div class="form-group"><label>Size</label><select id="donate-size" required><option value="">Select a size</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="One Size">One Size</option></select></div>
         <div class="form-group"><label>Description</label><textarea id="donate-desc" rows="3"></textarea></div>
         <div class="form-group"><label>Source / Donor Name (optional)</label><input type="text" id="donate-donor" placeholder="Optional"></div>
@@ -1182,7 +1198,11 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 
     <section id="admin-returns" class="section">
       <h2>📦 Manage Returns <span id="admin-returns-title-count"></span></h2>
-      <div class="notice small">Shows returns with uploaded photos that are awaiting admin confirmation, newest first.</div>
+      <div class="notice small">Confirm submitted returns, or record a student's physical return on their behalf. Admin actions are recorded in return history.</div>
+      <h3>Borrowed Costumes · Admin Return Override</h3>
+      <p class="small">For a costume handed back to Student Affairs when the student has not submitted a return. Add a photo if available; the admin action will be recorded.</p>
+      <div id="admin-borrowed-returns-page"></div>
+      <h3>Submitted Returns · Awaiting Confirmation</h3>
       <div id="admin-pending-returns-page"></div>
     </section>
 
@@ -1645,6 +1665,7 @@ function renderAfterCloudSync(){
   if (isAdmin()){
     renderAdminInventoryTable();
     renderAdminPendingReturns();
+    renderAdminPickups();
     renderDamageAlerts();
     scheduleAdminSheetSync();
   }
@@ -1874,7 +1895,7 @@ function modalImageHtml(item){
 }
 
 
-const adminSectionIds = ['admin-inventory','admin-returns','admin-damage','admin-history','donate'];
+const adminSectionIds = ['admin-pickups','admin-inventory','admin-returns','admin-damage','admin-history','donate'];
 
 function showSection(sectionId){
   if(adminSectionIds.includes(sectionId) && !isAdmin()){
@@ -1890,8 +1911,9 @@ function showSection(sectionId){
   if (sectionId === 'reserve') renderReservations();
   if (sectionId === 'pickup') renderPickupItems();
   if (sectionId === 'return') renderReturnItems();
+  if (sectionId === 'admin-pickups') renderAdminPickups();
   if (sectionId === 'admin-inventory') renderAdminInventoryTable();
-  if (sectionId === 'admin-returns') renderAdminPendingReturns();
+  if (sectionId === 'admin-returns') { renderAdminPendingReturns(); renderAdminBorrowedReturns(); }
   if (sectionId === 'admin-damage') renderDamageAlerts();
   if (sectionId === 'admin-history') renderLocalReturnRecords();
   updateStats();
@@ -1998,9 +2020,8 @@ function closeModal(){ document.getElementById('item-modal').style.display = 'no
 function filterItems(){
   const category = document.getElementById('category-filter').value;
   const size = document.getElementById('size-filter').value;
-  const gender = document.getElementById('gender-filter').value;
   const search = document.getElementById('search-input').value.toLowerCase();
-  const filtered = items.filter(item => (category === 'all' || (item.category === category || (category === 'Full Body Costumes' && item.category === 'Outfits') || (category === 'Accessories' && item.category === 'Props'))) && (size === 'all' || item.size === size) && (gender === 'all' || item.gender === gender) && (item.name.toLowerCase().includes(search) || item.description.toLowerCase().includes(search)));
+  const filtered = items.filter(item => (category === 'all' || (item.category === category || (category === 'Full Body Costumes' && item.category === 'Outfits') || (category === 'Accessories' && item.category === 'Props'))) && (size === 'all' || item.size === size) && (item.name.toLowerCase().includes(search) || item.description.toLowerCase().includes(search)));
   renderItems(getSortedItems(filtered));
 }
 function filterByCategory(category){ showSection('catalog'); document.getElementById('category-filter').value = category; filterItems(); }
@@ -2231,6 +2252,50 @@ function pickupUrgencyClass(milliseconds){
   return 'urgent';
 }
 
+function adminPickupEscape(value){
+  return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function renderAdminPickups(){
+  const list = document.getElementById('admin-pickups-list');
+  const count = document.getElementById('admin-pickups-page-count');
+  if (!list || !count) return;
+  if (!isAdmin()) { list.innerHTML = '<div class="empty-state">Admin access required.</div>'; return; }
+  const pending = reservations.filter(r => (r.status || 'reserved') === 'reserved')
+    .sort((a,b) => String(a.pickupDate || '').localeCompare(String(b.pickupDate || '')));
+  count.textContent = `${pending.length} awaiting pickup`;
+  list.innerHTML = '';
+  if (!pending.length){
+    list.innerHTML = '<div class="empty-state">No student pickups are awaiting confirmation.</div>';
+    return;
+  }
+  pending.forEach(r => {
+    const item = items.find(i => String(i.id) === String(r.itemId));
+    const isPickupDay = r.pickupDate === todayString();
+    const card = document.createElement('div');
+    card.className = 'reservation-card pickup-card';
+    card.innerHTML = `
+      ${itemImageHtml(item || {}, adminPickupEscape(r.itemName || 'Costume'))}
+      <div class="pickup-card-body">
+        <span class="reservation-card-status reserved">${isPickupDay ? 'Ready for Pickup Today' : 'Reserved · Awaiting Pickup'}</span>
+        <h3>${adminPickupEscape(r.itemName || (item && item.name) || 'Costume')}</h3>
+        <p class="admin-reservation-owner"><strong>Student:</strong> ${adminPickupEscape(reservationOwnerLabel(r))}</p>
+        <div class="pickup-date-grid">
+          <div><span>Scheduled Pickup</span><strong>${adminPickupEscape(r.pickupDate || 'Not set')}</strong></div>
+          <div><span>Return Due</span><strong>${adminPickupEscape(getDueDate(r))}</strong></div>
+        </div>
+        <div class="reservation-action-area">
+          <button class="btn-primary reservation-main-action admin-pickup-confirm" ${isPickupDay ? '' : 'disabled'}>Confirm Student Pickup</button>
+          <button class="reservation-cancel-action admin-pickup-cancel">Cancel Reservation</button>
+        </div>
+        ${isPickupDay ? '' : '<p class="small">Confirmation becomes available on the scheduled pickup date.</p>'}
+      </div>`;
+    card.querySelector('.admin-pickup-confirm').addEventListener('click', () => confirmPickup(r.id));
+    card.querySelector('.admin-pickup-cancel').addEventListener('click', () => adminCancelReservation(String(r.id)));
+    list.appendChild(card);
+  });
+}
+
 function renderPickupItems(){
   cleanupExpiredReservations();
 
@@ -2436,7 +2501,7 @@ function pickUpReservation(reservationId, pickupDamageNote=''){
       itemName: reservation.itemName,
       returnedBy: reservation.reservedBy,
       returnedByUsername: reservation.reservedByUsername,
-      userUid: reservation.userUid || (currentUser && (currentUser.uid || currentUser.id)) || '',
+      userUid: reservation.userUid || '',
       reportedBy: reservation.reservedBy,
       reportedAt: new Date().toLocaleString(),
       returnedAt: new Date().toLocaleString(),
@@ -2459,7 +2524,7 @@ function pickUpReservation(reservationId, pickupDamageNote=''){
   renderItems(getSortedItems(items));
   updateStats();
   updateActionNavs();
-  if (isAdmin()) renderAdminInventoryTable();
+  if (isAdmin()) { renderAdminInventoryTable(); renderAdminPickups(); }
 
   updateAdminNavCounts();
   alert(pickupDamageNote
@@ -2623,7 +2688,7 @@ function openReturnModal(reservationId){
       <label for="modal-return-photo"><strong>Return Photo (required)</strong></label>
       <input type="file" accept="image/*" capture="environment" id="modal-return-photo">
       <img id="modal-return-preview" class="return-photo" alt="Return photo preview" style="display:none;">
-      <p class="small">Make sure the photo clearly shows the entire costume and any damage or stains.</p>
+      <p class="small">Make sure the photo shows the entire costume and any damage. Use JPG or PNG; HEIC/HEIF is not supported for reliable browser display.</p>
     </div>
 
     <div class="form-group">
@@ -2636,7 +2701,7 @@ function openReturnModal(reservationId){
     </div>
 
     <button id="modal-return-submit" class="btn-primary return-submit-button"
-      onclick="returnItemFromModal(${reservation.id})">Confirm Return & Upload</button>
+      onclick='returnItemFromModal(${JSON.stringify(String(reservation.id))})'>Confirm Return & Upload</button>
   `;
 
   const photoInput = document.getElementById('modal-return-photo');
@@ -2644,6 +2709,12 @@ function openReturnModal(reservationId){
   if (photoInput && preview){
     photoInput.addEventListener('change', () => {
       if (photoInput.files && photoInput.files[0]){
+        if (!checkReturnPhotoFormat(photoInput.files[0])){
+          photoInput.value = '';
+          preview.removeAttribute('src');
+          preview.style.display = 'none';
+          return;
+        }
         preview.src = URL.createObjectURL(photoInput.files[0]);
         preview.style.display = 'block';
       } else {
@@ -2709,6 +2780,7 @@ async function returnItemFromModal(reservationId){
     return;
   }
 
+  if (!checkReturnPhotoFormat(input.files[0])) return;
   const reservation = reservations.find(r => r.id === reservationId);
   if (!reservation){
     alert('Loan record not found.');
@@ -2832,7 +2904,7 @@ function openAdminItemEditor(itemId){
   const modalBody = document.getElementById('modal-body');
   if (!modal || !modalBody) return;
 
-  const categories = ['Wigs','Dresses','Full Body Costumes','Tops & Bottoms','Accessories','Shoes'];
+  const categories = ['Wigs','Tops','Full Body Costumes','Bottoms','Accessories','Shoes'];
   const sizes = ['XS','S','M','L','XL','XXL','One Size'];
   const genders = ['Women','Men','Unisex'];
 
@@ -3828,6 +3900,11 @@ function updateAdminNavCounts(){
   const returnBadge = pendingCount ? `<span class="admin-badge">${pendingCount}</span>` : '';
   const damageBadge = unresolvedDamageCount ? `<span class="admin-badge">${unresolvedDamageCount}</span>` : '';
 
+  const pickupCount = document.getElementById('admin-pickup-count');
+  if (pickupCount) {
+    const count = reservations.filter(r => (r.status || 'reserved') === 'reserved').length;
+    pickupCount.innerHTML = count ? `<span class="admin-badge">${count}</span>` : '';
+  }
   const returnCount = document.getElementById('admin-return-count');
   const damageCount = document.getElementById('admin-damage-count');
   const returnsTitle = document.getElementById('admin-returns-title-count');
@@ -3837,6 +3914,80 @@ function updateAdminNavCounts(){
   if (damageCount) damageCount.innerHTML = damageBadge;
   if (returnsTitle) returnsTitle.textContent = pendingCount ? ` (${pendingCount})` : '';
   if (damageTitle) damageTitle.textContent = unresolvedDamageCount ? ` (${unresolvedDamageCount} Unresolved)` : '';
+}
+
+function isHeicFile(file){
+  return !!file && (/\.hei[cf]$/i.test(file.name || '') || /image\/hei[cf]/i.test(file.type || ''));
+}
+function checkReturnPhotoFormat(file){
+  if (isHeicFile(file)){
+    alert('HEIC/HEIF photos may not display in browsers. Please convert this image to JPG or PNG, or take a new photo using Most Compatible camera format.');
+    return false;
+  }
+  return true;
+}
+function renderAdminBorrowedReturns(){
+  const box = document.getElementById('admin-borrowed-returns-page');
+  if (!box) return;
+  if (!isAdmin()){ box.innerHTML = '<div class="empty-state">Admin access required.</div>'; return; }
+  const borrowed = reservations.filter(r => r.status === 'borrowed');
+  if (!borrowed.length){ box.innerHTML = '<div class="empty-state">No borrowed costumes need an admin-recorded return.</div>'; return; }
+  box.innerHTML = '<div class="reservations-list">' + borrowed.map(r => `<div class="reservation-card">
+    <span class="status-pill pill-borrowed">Borrowed</span>
+    <h3>${adminPickupEscape(r.itemName)}</h3>
+    <p><b>Student:</b> ${adminPickupEscape(reservationOwnerLabel(r))}</p>
+    <p><b>Due:</b> ${adminPickupEscape(getDueDate(r))}</p>
+    <label class="small">Return photo (optional for admin override; JPG/PNG recommended)</label>
+    <input type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" id="admin-return-photo-${r.id}" style="width:100%;margin:8px 0 12px">
+    <label class="small">Condition notes</label>
+    <textarea id="admin-return-note-${r.id}" rows="2" style="width:100%;margin:8px 0 12px" placeholder="Condition when received"></textarea>
+    <button class="btn-primary" id="admin-return-button-${r.id}" onclick='adminConfirmPhysicalReturn(${JSON.stringify(String(r.id))})'>Record & Confirm Return</button>
+  </div>`).join('') + '</div>';
+}
+async function adminConfirmPhysicalReturn(reservationId){
+  if (!isAdmin()){ alert('Admin access required.'); return; }
+  const r = reservations.find(x => String(x.id) === String(reservationId) && x.status === 'borrowed');
+  if (!r){ alert('This costume is no longer marked as borrowed. Refresh the page.'); return; }
+  const photoInput = document.getElementById(`admin-return-photo-${r.id}`);
+  const file = photoInput?.files?.[0] || null;
+  if (file && !checkReturnPhotoFormat(file)) return;
+  if (!confirm(`Confirm that ${r.itemName} was physically returned by ${reservationOwnerLabel(r)}? This will make it available again.`)) return;
+  const button = document.getElementById(`admin-return-button-${r.id}`);
+  if (button){ button.disabled = true; button.textContent = 'Recording…'; }
+  try {
+    const note = document.getElementById(`admin-return-note-${r.id}`)?.value?.trim() || 'None';
+    const uploaded = file ? await uploadToCloudinary(file, r, note) : null;
+    const record = {
+      id: Date.now(), itemId: r.itemId, itemName: r.itemName,
+      returnedBy: r.reservedBy, returnedByUsername: r.reservedByUsername,
+      userUid: r.userUid || '', returnedAt: new Date().toLocaleString(),
+      date: todayString(), dueDate: getDueDate(r), damageNote: note,
+      photoUrl: uploaded?.secure_url || '', publicId: uploaded?.public_id || '',
+      folder: uploaded?.folder || 'returned costumes',
+      confirmed: true, confirmedAt: new Date().toLocaleString(),
+      confirmedBy: currentUser.name || currentUser.username || 'Admin',
+      adminOverride: true, recordedByAdmin: true,
+      noPhotoReason: file ? '' : 'Physical return verified by admin without a photo'
+    };
+    returnRecords.push(record);
+    r.returnRecordId = record.id;
+    r.returnedAt = record.returnedAt;
+    r.returnPhotoUrl = record.photoUrl;
+    const item = getItemById(r.itemId);
+    if (item) item.status = 'available';
+    syncReservationStatus(r, 'completed');
+    reservations.splice(reservations.indexOf(r), 1);
+    deleteFirestoreDoc('reservations', r.id);
+    save('items', items); save('reservations', reservations); save('returnRecords', returnRecords);
+    renderAdminBorrowedReturns(); renderAdminPendingReturns(); renderAdminInventoryTable();
+    renderItems(getSortedItems(items)); renderLocalReturnRecords();
+    updateStats(); updateActionNavs(); updateAdminNavCounts();
+    alert('Physical return recorded and confirmed. Costume is available again.');
+  } catch(error){
+    console.error('Admin return failed:', error);
+    alert('Could not record the return: ' + (error?.message || String(error)));
+    if (button){ button.disabled = false; button.textContent = 'Record & Confirm Return'; }
+  }
 }
 
 function renderAdminPendingReturns(){
@@ -3868,7 +4019,7 @@ function renderAdminPendingReturns(){
       <p><b>Returned By: </b>${returnedBy}</p>
       <p><b>Returned At: </b>${returnedAt}</p>
       <p><b>Original Due Date: </b>${getDueDate(r)}</p>
-      ${photoUrl ? `<button type="button" style="padding:0;border:0;background:none;cursor:pointer;width:auto;display:inline-block" onclick='openPhotoModal(${JSON.stringify(photoUrl)}, ${JSON.stringify(r.itemName)}, ${JSON.stringify(returnedBy)}, ${JSON.stringify(returnedAt)}, ${JSON.stringify(getDueDate(r))})'><img src="${photoUrl}" alt="${r.itemName} Return Photo"></button>` : '<div class="image-placeholder" style="height:190px">No return photo</div>'}
+      ${photoUrl ? `<button type="button" style="padding:0;border:0;background:none;cursor:pointer;width:auto;display:inline-block" onclick='openPhotoModal(${JSON.stringify(photoUrl)}, ${JSON.stringify(r.itemName)}, ${JSON.stringify(returnedBy)}, ${JSON.stringify(returnedAt)}, ${JSON.stringify(getDueDate(r))})'><img src="${photoUrl}" alt="${r.itemName} Return Photo" onerror="this.style.display='none';this.parentElement.insertAdjacentText('beforeend','Photo could not be displayed. Check Cloudinary URL / HEIC format.')"></button>` : '<div class="image-placeholder" style="height:190px">No return photo</div>'}
       <p><b>Damage / Stain Notes：</b>${damageNote}</p>
       <div class="admin-review-actions">
         <button class="btn-primary" onclick="confirmReturn(${r.itemId}); renderAdminPendingReturns(); renderDamageAlerts(); updateAdminNavCounts();">Confirm Return</button>
