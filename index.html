@@ -1020,7 +1020,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
         <div><span class="blue-eyebrow">01 / THE RULES</span><h3>How it<br><em>works.</em></h3></div>
         <div class="blue-rules-list">
           <div><strong>01</strong><span><b>Reserve</b> your costume.</span></div>
-          <div><strong>02</strong><span><b>Pick up</b> on your chosen day (within 7 days of reserving). Missed pickups are released after that day.</span></div>
+          <div><strong>02</strong><span><b>Pick up</b> on your chosen US business day (within 21 days of reserving). Missed pickups are released after that day.</span></div>
           <div><strong>03</strong><span><b>Borrow</b> for up to <b>14 days</b> from pickup.</span></div>
           <div><strong>04</strong><span><b>Return</b> on or before your due date: drop off at Student Affairs and upload a <b>photo</b>.</span></div>
         </div>
@@ -1061,7 +1061,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
       </div>
       <div class="checkout-rules" aria-label="Reservation and return rules">
         <div class="checkout-rule-card"><span class="checkout-rule-label">RESERVATION & PICKUP</span><ul>
-          <li>Choose a pickup date within <strong>7 days</strong> of reserving.</li>
+          <li>Choose a pickup date within <strong>21 days</strong> of reserving, on a US business day (Monday–Friday, excluding federal holidays).</li>
           <li>Pick up your costume <strong>only on your selected pickup date</strong> — not earlier.</li>
           <li>If you don't pick it up that day, your reservation <strong>expires at 11:59 PM</strong> and the costume becomes available again.</li>
         </ul></div>
@@ -1099,7 +1099,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 
 <div class="checkout-rules" aria-label="Reservation and return rules">
         <div class="checkout-rule-card"><span class="checkout-rule-label">RESERVATION & PICKUP</span><ul>
-          <li>Choose a pickup date within <strong>7 days</strong> of reserving.</li>
+          <li>Choose a pickup date within <strong>21 days</strong> of reserving, on a US business day (Monday–Friday, excluding federal holidays).</li>
           <li>Pick up your costume <strong>only on your selected pickup date</strong> — not earlier.</li>
           <li>If you don't pick it up that day, your reservation <strong>expires at 11:59 PM</strong> and the costume becomes available again.</li>
         </ul></div>
@@ -1790,7 +1790,50 @@ function todayString(){ return new Date().toISOString().split('T')[0]; }
 function dateFromString(value){ const [y,m,d] = String(value).split('-').map(Number); return new Date(y, m - 1, d); }
 function addDaysString(dateString, days){ const date = dateFromString(dateString || todayString()); date.setDate(date.getDate() + days); return date.toISOString().split('T')[0]; }
 function maxReturnDate(pickupDate){ return addDaysString(pickupDate || todayString(), 14); }
-function maxPickupDate(){ return addDaysString(todayString(), 7); }
+function maxPickupDate(){ return addDaysString(todayString(), 21); }
+
+// Nationwide US federal holidays, including the observed weekday when a fixed holiday falls on a weekend.
+function usFederalHolidayDates(year){
+  const dates = new Set();
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  const fixed = (y,m,day) => {
+    const d = new Date(y,m-1,day);
+    if (d.getDay() === 6) d.setDate(d.getDate()-1);
+    if (d.getDay() === 0) d.setDate(d.getDate()+1);
+    dates.add(iso(d));
+  };
+  const nth = (m,weekday,n) => { const d=new Date(year,m-1,1); d.setDate(1+(weekday-d.getDay()+7)%7+7*(n-1)); dates.add(iso(d)); };
+  const last = (m,weekday) => { const d=new Date(year,m,0); d.setDate(d.getDate()-(d.getDay()-weekday+7)%7); dates.add(iso(d)); };
+  // Adjacent years account for New Year's Day observed on December 31.
+  for(const y of [year-1,year,year+1]){
+    fixed(y,1,1); fixed(y,6,19); fixed(y,7,4); fixed(y,11,11); fixed(y,12,25);
+  }
+  nth(1,1,3); // Martin Luther King Jr. Day
+  nth(2,1,3); // Washington's Birthday
+  last(5,1);  // Memorial Day
+  nth(9,1,1); // Labor Day
+  nth(10,1,2); // Columbus Day
+  nth(11,4,4); // Thanksgiving Day
+  return dates;
+}
+function isUSBusinessDay(dateString){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(String(dateString))) return false;
+  const date=dateFromString(dateString);
+  if(isNaN(date.getTime()) || date.getDay()===0 || date.getDay()===6) return false;
+  return !usFederalHolidayDates(date.getFullYear()).has(dateString);
+}
+function pickupDateOptions(){
+  const today=todayString();
+  const options=[];
+  for(let offset=0;offset<=7;offset++){
+    const day=addDaysString(today,offset);
+    if(!isUSBusinessDay(day)) continue;
+    const label=dateFromString(day).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
+    options.push(`<option value="${day}">${label}</option>`);
+  }
+  return `<option value="">Select a pickup date</option>`+options.join('');
+}
+
 function cleanupExpiredReservations(){
   let changed = false;
   reservations = reservations.filter(r => {
@@ -1998,7 +2041,7 @@ function showItemDetail(item){
   const today = todayString();
   const latest = maxReturnDate(maxPickupDate());
   const pickupLatest = maxPickupDate();
-  const reserveControls = effectiveStatus === 'available' ? `<div class="form-group"><label>Pickup Date</label><input type="date" id="reserve-pickup-date" min="${today}" max="${pickupLatest}"><div class="due-date-help">Choose a pickup date within the next 7 days. Pickup is allowed only on that day; missed pickups expire at midnight.</div></div><div class="form-group"><label>Return Date</label><input type="date" id="reserve-due-date" min="${today}" max="${latest}"><div class="due-date-help">Return on or before your selected return date (maximum 14 days after pickup).</div></div><button onclick='reserveItem(${JSON.stringify(String(item.id))})' class="btn-primary reserve-btn">Reserve Now</button>` : '';
+  const reserveControls = effectiveStatus === 'available' ? `<div class="form-group"><label>Pickup Date</label><input type="date" id="reserve-pickup-date" min="${today}" max="${pickupLatest}" required><div class="due-date-help">Select a date on the calendar within the next 3 weeks. Pickup is available Monday–Friday, excluding observed US federal holidays. Missed pickups expire after your selected day.</div></div><div class="form-group"><label>Return Date</label><input type="date" id="reserve-due-date" min="${today}" max="${latest}"><div class="due-date-help">Return on or before your selected return date (maximum 14 days after pickup).</div></div><button onclick='reserveItem(${JSON.stringify(String(item.id))})' class="btn-primary reserve-btn">Reserve Now</button>` : '';
   const adminPhotoButton = isAdmin()
     ? `<button class="btn-secondary modal-admin-photo-button"
         onclick='openAdminPhotoEditor(${JSON.stringify(String(item.id))})'>
@@ -2028,6 +2071,10 @@ function filterByCategory(category){ showSection('catalog'); document.getElement
 
 document.addEventListener('change', function(event){
   if (event.target && event.target.id === 'reserve-pickup-date'){
+    if (event.target.value && !isUSBusinessDay(event.target.value)){
+      alert('Please choose a Monday–Friday pickup date that is not an observed US federal holiday.');
+      event.target.value = '';
+    }
     const due = document.getElementById('reserve-due-date');
     if (!due) return;
     due.min = event.target.value || todayString();
@@ -2048,7 +2095,8 @@ function reserveItem(itemId){
   let pickupDate = pickupInput && pickupInput.value ? pickupInput.value : '';
   let dueDate = dueInput && dueInput.value ? dueInput.value : '';
   if (!pickupDate || !dueDate){ alert('Choose pickup and return dates before reserving.'); return; }
-  if (pickupDate < today || pickupDate > pickupLatest){ alert('Pickup must be within one week of the reservation date.'); return; }
+  if (pickupDate < today || pickupDate > pickupLatest){ alert('Pickup must be within three weeks of the reservation date.'); return; }
+  if (!isUSBusinessDay(pickupDate)){ alert('Pickup dates must be Monday–Friday, excluding observed US federal holidays.'); return; }
   if (dueDate < today){ alert('Return date cannot be earlier than today.'); return; }
   if (dueDate > maxReturnDate(pickupDate)){ alert('Return date must be within 14 days after pickup.'); return; }
   if (pickupDate > dueDate){ alert('Return date cannot be before the pickup date.'); return; }
