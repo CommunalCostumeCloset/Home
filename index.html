@@ -948,7 +948,11 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 .item-card,.reservation-card,.auth-card,.stat-item,.admin-page-card{box-shadow:none;border:1px solid var(--line);border-radius:7px}.item-card{padding:10px}.item-image{height:210px;border-radius:4px;background:#eaf1fa}.item-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px #122b5a17}.item-tag{background:#e6eefb;color:var(--ink)}.category-btn{border-color:var(--line)}.filters input,.filters select,.form-group input,.form-group select,.form-group textarea{border-color:#cad9eb;border-radius:5px}.admin-table th{background:#e7f0fa}.admin-table th,.admin-table td{border-bottom-color:var(--line)}.modal-content{border-radius:9px}.footer{color:#567099}
 @media(max-width:760px){.header{padding:12px 16px}.section{padding:18px 14px 45px}.blue-hero{grid-template-columns:1fr}.blue-hero-copy{padding:40px 7% 38px}.blue-hero h2{font-size:clamp(46px,10vw,70px);margin:18px 0 24px}.blue-hero-art{min-height:290px}.art-frame{inset:9% 25% 15%}.blue-hero-bottom{display:none}.blue-category-grid{grid-template-columns:repeat(2,1fr)}.blue-category-grid button{min-height:160px}.blue-rules{grid-template-columns:1fr;padding:32px 25px;gap:5px}.blue-section-head a{margin-left:0}.blue-home-bottom{align-items:flex-start;flex-direction:column}}
 
-  /* V10.2: rules lead into the collection without a large gap */
+  /* V10.13: cross-platform category illustrations and clearer admin controls */
+.cat-illustration{display:flex;align-items:center;justify-content:center;top:18px;right:17px;width:118px;height:118px;transform:rotate(-9deg);opacity:.85}
+.cat-illustration svg{width:100%;height:100%;display:block}
+#admin-pickups .admin-pickup-confirm{min-height:48px;touch-action:manipulation}
+/* V10.2: rules lead into the collection without a large gap */
   .blue-rules-first{margin-top:34px;margin-bottom:44px}
   .blue-rules-first + .blue-section-head{margin-top:0}
   /* Highlight both choices as soon as a reservation is active. */
@@ -970,6 +974,15 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 @media(max-width:760px){.nav{gap:6px}.nav a,.nav button{font-size:14px;padding:12px 13px;min-height:44px}.checkout-rules{grid-template-columns:1fr}}
 #admin-pickups .admin-pickup-confirm:disabled{opacity:.48;cursor:not-allowed;box-shadow:none;}
 #admin-pickups .pickup-card{margin-bottom:16px;}
+
+/* V10.14: clear, finger-friendly iPhone camera and photo-library choices */
+.return-photo-choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.return-photo-choice{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:12px 10px;background:#122b5a;color:#fff;border:1px solid #122b5a;border-radius:7px;font-weight:800;font-size:14px;text-align:center;cursor:pointer}
+.return-photo-choice-secondary{background:#e6eefb;color:#122b5a;border-color:#b9cfee}
+.return-photo-choice:focus-within{outline:3px solid #8bb5ee;outline-offset:2px}
+.return-photo-hidden-input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+#modal-return-file-status{margin:8px 0 4px;font-weight:700}
+@media(max-width:430px){.return-photo-choices{grid-template-columns:1fr}.return-photo-choice{min-height:56px}}
 </style>
 </head>
 <body>
@@ -986,7 +999,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
       <a id="return-nav-link" href="#return" onclick="showSection('return')">Return Costume <span id="return-nav-count"></span></a>
       <span id="admin-nav-group" style="display:none;align-items:center;gap:10px;flex-wrap:wrap;">
         <span class="admin-menu-label">🔒 Admin</span>
-        <a class="admin-link" href="#admin-inventory" onclick="showSection('admin-inventory')">📋 Inventory Status <span id="admin-inventory-count"></span></a>
+        <a class="admin-link" href="#admin-inventory" onclick="showSection('admin-inventory')" >📋 Inventory Status <span id="admin-inventory-count"></span></a>
         <a class="admin-link" href="#admin-pickups" onclick="showSection('admin-pickups')">📦 Manage Pickups <span id="admin-pickup-count"></span></a>
         <a class="admin-link" href="#admin-returns" onclick="showSection('admin-returns')">📦 Manage Returns <span id="admin-return-count"></span></a>
         <a class="admin-link" href="#admin-damage" onclick="showSection('admin-damage')">⚠️ Damage Reports <span id="admin-damage-count"></span></a>
@@ -1013,7 +1026,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
           <h2>Shared<br><em>Costume</em> Closet<span class="blue-dot">.</span></h2>
           <button class="blue-hero-cta" onclick="showSection('catalog')">Explore the closet <span aria-hidden="true">↗</span></button>
         </div>
-        <div class="blue-hero-art" aria-hidden="true"><span class="art-sun">✳</span><span class="art-hanger">♧</span><div class="art-frame"><span>THE<br>CLOSET</span><small>wear · share · repeat</small></div><span class="art-star">✦</span></div>
+        <div class="blue-hero-art" aria-hidden="true"><span class="art-hanger">♧</span><div class="art-frame"><span>THE<br>CLOSET</span><small>wear · share · repeat</small></div><span class="art-star">✦</span></div>
         <span class="blue-hero-bottom">BORROW SOMETHING WONDERFUL &nbsp; ✳ &nbsp; PASS IT ON</span>
       </div>
       <div class="blue-rules blue-rules-first">
@@ -1027,11 +1040,11 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
       </div>
       <div class="blue-section-head"><span>02 / THE COLLECTION</span><h3>Ready for Spirit Week?</h3><a href="#catalog" onclick="showSection('catalog')">View all costumes ↗</a></div>
       <div class="blue-category-grid">
-        <button onclick="filterByCategory('Wigs')"><span class="cat-illustration">✳</span><strong>Wigs</strong><small>EXPLORE ↗</small></button>
-        <button onclick="filterByCategory('Tops')"><span class="cat-illustration">♢</span><strong>Tops</strong><small>EXPLORE ↗</small></button>
-        <button onclick="filterByCategory('Full Body Costumes')"><span class="cat-illustration">✦</span><strong>Full Body Costumes</strong><small>EXPLORE ↗</small></button><button onclick="filterByCategory('Bottoms')"><span class="cat-illustration">✺</span><strong>Bottoms</strong><small>EXPLORE ↗</small></button>
-        <button onclick="filterByCategory('Accessories')"><span class="cat-illustration">☆</span><strong>Accessories</strong><small>EXPLORE ↗</small></button>
-        <button onclick="filterByCategory('Shoes')"><span class="cat-illustration">◇</span><strong>Shoes</strong><small>EXPLORE ↗</small></button>
+        <button onclick="filterByCategory('Wigs')"><span class="cat-illustration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13c0-7 3-10 7-10s7 3 7 10"/><path d="M5 13v7l4-3 3 3 3-3 4 3v-7"/><path d="M9 6c-1 3-2 5-4 6M15 6c1 3 2 5 4 6"/></svg></span><strong>Wigs</strong><small>EXPLORE ↗</small></button>
+        <button onclick="filterByCategory('Tops')"><span class="cat-illustration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4l4 2 4-2 5 4-3 5-2-2v10H8V11l-2 2-3-5z"/></svg></span><strong>Tops</strong><small>EXPLORE ↗</small></button>
+        <button onclick="filterByCategory('Full Body Costumes')"><span class="cat-illustration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3l4 2 4-2 4 4-3 5-2-1 3 10H6l3-10-2 1-3-5z"/><path d="M9 11h6"/></svg></span><strong>Full Body Costumes</strong><small>EXPLORE ↗</small></button><button onclick="filterByCategory('Bottoms')"><span class="cat-illustration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l2 18h-6l-2-10-2 10H4z"/><path d="M6 7h12"/></svg></span><strong>Bottoms</strong><small>EXPLORE ↗</small></button>
+        <button onclick="filterByCategory('Accessories')"><span class="cat-illustration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.8 5.7L21 9.6l-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></svg></span><strong>Accessories</strong><small>EXPLORE ↗</small></button>
+        <button onclick="filterByCategory('Shoes')"><span class="cat-illustration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14c4 0 5-2 6-7l4 2 2 5 6 2v4H3z"/><path d="M3 17h18M14 13l2-1"/></svg></span><strong>Shoes</strong><small>EXPLORE ↗</small></button>
       </div>
       <div class="blue-home-bottom"><span>ONE CLOSET. ENDLESS POSSIBILITIES.</span><button onclick="showSection('catalog')">Browse costumes ↗</button></div>
       <div class="home-hidden-stats" aria-hidden="true"><span id="stat-items">0</span><span id="stat-reservations">0</span><span id="stat-returns">0</span></div>
@@ -1130,7 +1143,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
       <div class="return-status-section">
         <div class="return-status-header">
           <div>
-            <span class="return-status-icon">↩️</span>
+            <span class="return-status-icon">↩</span>
             <div>
               <h3>To Return</h3>
               <p>Costumes that have been picked up but not yet submitted for return.</p>
@@ -1157,7 +1170,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
     </section>
 
 <section id="donate" class="section">
-      <h2>🎁 Admin · Add Costume</h2>
+      <h2>Admin · Add Costume</h2>
       <div class="notice admin-only-note">This page is visible only to admins. Added costumes will appear in the shared catalogue.</div>
       <form id="donate-form" onsubmit="handleDonate(event)">
         <div class="form-group"><label>Costume Name</label><input type="text" id="donate-name" required></div>
@@ -1178,7 +1191,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 
 
     <section id="admin-inventory" class="section">
-      <h2>📋 Inventory Status</h2>
+      <h2>Inventory Status</h2>
       <div class="notice small">Use this table to review each costume’s catalogue visibility, displayed status, actual status, photo, and admin actions. Hidden costumes remain visible here for admins.</div>
       <div id="admin-task-panel" class="admin-task-panel"></div>
       <div id="admin-summary-cards" class="admin-summary-grid"></div>
@@ -1197,7 +1210,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
     </section>
 
     <section id="admin-returns" class="section">
-      <h2>📦 Manage Returns <span id="admin-returns-title-count"></span></h2>
+      <h2>Manage Returns <span id="admin-returns-title-count"></span></h2>
       <div class="notice small">Confirm submitted returns, or record a student's physical return on their behalf. Admin actions are recorded in return history.</div>
       <h3>Borrowed Costumes · Admin Return Override</h3>
       <p class="small">For a costume handed back to Student Affairs when the student has not submitted a return. Add a photo if available; the admin action will be recorded.</p>
@@ -1207,7 +1220,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
     </section>
 
     <section id="admin-damage" class="section">
-      <h2>⚠️ Damage Reports <span id="admin-damage-title-count"></span></h2>
+      <h2>Damage Reports <span id="admin-damage-title-count"></span></h2>
       <div class="notice small">Shows all reported damage, stains, or other issues. Marking a report resolved keeps it in history.</div>
       <div class="admin-toolbar">
         <button class="btn-primary" onclick="setDamageFilter('unresolved')">Unresolved</button>
@@ -1218,7 +1231,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
     </section>
 
     <section id="admin-history" class="section">
-      <h2>📷 Return History</h2>
+      <h2>Return History</h2>
       <div class="notice small">View all return history with search and date grouping.</div>
       <div class="admin-toolbar">
         <button class="btn-primary" onclick="renderLocalReturnRecords()">Show Firestore Records</button>
@@ -1240,7 +1253,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 
     <section id="login" class="section">
       <div class="auth-container"><div class="auth-card">
-        <h2>🔐 User Login</h2>
+        <h2>User Login</h2>
         <form id="login-form" onsubmit="handleLogin(event)">
           <div class="form-group"><label>Email</label><input type="email" id="login-email" autocomplete="email" required></div>
           <div class="form-group"><label>Password</label><input type="password" id="login-password" autocomplete="current-password" required></div>
@@ -1254,7 +1267,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 
     <section id="register" class="section">
       <div class="auth-container"><div class="auth-card">
-        <h2>📝 Create Account</h2>
+        <h2>Create Account</h2>
         <form id="register-form" onsubmit="handleRegister(event)">
           <div class="form-group">
             <label>Preferred Name</label>
@@ -1837,7 +1850,7 @@ function pickupDateOptions(){
 function cleanupExpiredReservations(){
   let changed = false;
   reservations = reservations.filter(r => {
-    if ((r.status || 'reserved') === 'reserved' && r.pickupDate){
+    if ((r.status || 'reserved') === 'reserved' && r.pickupDate && !r.adminUndoHold){
       const deadline = dateFromString(r.pickupDate);
       deadline.setHours(23, 59, 59, 999);
       if (Date.now() > deadline.getTime()){
@@ -2171,50 +2184,41 @@ async function adminCancelReservation(reservationId){
 }
 
 async function adminUndoPickup(reservationId){
-  if (!isAdmin()){
-    alert("Only admins can undo another user\'s pickup.");
-    return;
-  }
-
+  if (!isAdmin()) { alert('Only admins can undo a pickup.'); return; }
   const reservation = reservations.find(r => String(r.id) === String(reservationId));
-  if (!reservation) {
-    alert('This loan record could not be found.');
-    return;
-  }
-
-  if (reservation.status !== 'borrowed'){
-    alert('Only Borrowed · Return Due records can have pickup undone.');
-    return;
-  }
-
-  const owner = reservationOwnerLabel(reservation);
-  if (!confirm(`Cancel ${owner} 's pickup? The costume will become available again.`)) return;
-
+  if (!reservation) { alert('Loan record not found.'); return; }
+  if (reservation.status !== 'borrowed') { alert('Only borrowed costumes can have pickup undone.'); return; }
   const item = items.find(i => String(i.id) === String(reservation.itemId));
-  if (item) item.status = 'available';
+  if (!item) { alert('Costume record not found. Please refresh.'); return; }
+  if (!confirm(`Undo pickup for ${reservationOwnerLabel(reservation)}? The reservation will remain RESERVED, not available to other students. To release the costume, use Cancel Reservation.`)) return;
 
-  try{
-    if (firebaseReady && firebaseDb){
+  // Keep the same reservation and its owner; never release the costume on Undo Pickup.
+  // An undone past pickup date must not be auto-expired before the admin can cancel it.
+  const updatedReservation = { ...reservation, status: 'reserved', adminUndoHold: true };
+  const updatedItem = { ...item, status: 'reserved' };
+  try {
+    if (firebaseReady && firebaseDb) {
       const batch = firebaseDb.batch();
-      batch.delete(firebaseDb.collection('reservations').doc(String(reservation.id)));
-      if (item){
-        batch.set(firebaseDb.collection('items').doc(String(item.id)), {
-          ...cleanFirestoreValue(item),
-          status: 'available',
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-        }, {merge:true});
-      }
+      batch.set(firebaseDb.collection('reservations').doc(String(reservation.id)), {
+        ...cleanFirestoreValue(updatedReservation),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }, {merge:true});
+      batch.set(firebaseDb.collection('items').doc(String(item.id)), {
+        ...cleanFirestoreValue(updatedItem),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }, {merge:true});
       await batch.commit();
-    } else {
-      reservations = reservations.filter(r => String(r.id) !== String(reservation.id));
-      save('reservations', reservations);
-      if (item) save('items', items);
-      renderAfterCloudSync();
     }
-    alert("The user\'s pickup has been undone and the costume is available again.");
-  }catch(error){
+    Object.assign(reservation, updatedReservation);
+    Object.assign(item, updatedItem);
+    save('reservations', reservations);
+    save('items', items);
+    syncReservationStatus(reservation, 'reserved');
+    renderAfterCloudSync();
+    alert('Pickup undone. The costume is RESERVED for the same student. Use Cancel Reservation to return it to the available catalogue.');
+  } catch(error) {
     console.error(error);
-    alert('Cancellation failed: ' + (error.message || error));
+    alert('Undo pickup failed: ' + (error.message || error));
   }
 }
 
@@ -2333,10 +2337,10 @@ function renderAdminPickups(){
           <div><span>Return Due</span><strong>${adminPickupEscape(getDueDate(r))}</strong></div>
         </div>
         <div class="reservation-action-area">
-          <button class="btn-primary reservation-main-action admin-pickup-confirm" ${isPickupDay ? '' : 'disabled'}>Confirm Student Pickup</button>
+          <button class="btn-primary reservation-main-action admin-pickup-confirm">Confirm Student Pickup</button>
           <button class="reservation-cancel-action admin-pickup-cancel">Cancel Reservation</button>
         </div>
-        ${isPickupDay ? '' : '<p class="small">Confirmation becomes available on the scheduled pickup date.</p>'}
+        ${isPickupDay ? '' : '<p class="small">Admin override: confirm only after physically handing the costume to the student. The original scheduled date is shown above.</p>'}
       </div>`;
     card.querySelector('.admin-pickup-confirm').addEventListener('click', () => confirmPickup(r.id));
     card.querySelector('.admin-pickup-cancel').addEventListener('click', () => adminCancelReservation(String(r.id)));
@@ -2490,9 +2494,9 @@ function updateActionNavs(){
 }
 
 function confirmPickup(reservationId){
-  const reservation = reservations.find(r => r.id === reservationId);
-  if (!reservation) return;
-  pendingPickupReservationId = reservationId;
+  const reservation = reservations.find(r => String(r.id) === String(reservationId));
+  if (!reservation) { alert('Reservation not found. Please refresh and try again.'); return; }
+  pendingPickupReservationId = reservation.id;
   const note = document.getElementById('pickup-damage-note');
   if (note) note.value = '';
   const modal = document.getElementById('pickup-damage-modal');
@@ -2515,8 +2519,8 @@ function submitPickupConfirmation(){
 }
 
 function pickUpReservation(reservationId, pickupDamageNote=''){
-  const reservation = reservations.find(r => r.id === reservationId);
-  if (!reservation) return;
+  const reservation = reservations.find(r => String(r.id) === String(reservationId));
+  if (!reservation) { alert('Reservation not found. Please refresh and try again.'); return; }
 
   if (!isAdmin() && (!currentUser || !((reservation.userUid && reservation.userUid === (currentUser.uid || currentUser.id)) || (!reservation.userUid && reservation.reservedByUsername === currentUser.username)))){
     alert('You can only confirm your own reservation.');
@@ -2529,14 +2533,17 @@ function pickUpReservation(reservationId, pickupDamageNote=''){
   }
 
   // Pickup may be confirmed only on the date selected at reservation time.
-  if (reservation.pickupDate && todayString() !== reservation.pickupDate){
+  if (!isAdmin() && reservation.pickupDate && todayString() !== reservation.pickupDate){
     alert(todayString() < reservation.pickupDate
       ? `Pickup is only available on ${reservation.pickupDate}. Please come back on your scheduled day.`
       : 'Your pickup date has passed. This reservation is no longer valid.');
     return;
   }
 
+  if (isAdmin() && reservation.pickupDate !== todayString() && !confirm('Admin override: Confirm this student has physically picked up the costume today, even though the scheduled date is ' + (reservation.pickupDate || 'not set') + '?')) return;
+
   reservation.status = 'borrowed';
+  delete reservation.adminUndoHold;
 
   const item = items.find(i => i.id === reservation.itemId);
   if (item) item.status = 'borrowed';
@@ -2692,6 +2699,8 @@ function renderReturnItems(){
   });
 }
 
+let selectedReturnPhotoFile = null;
+
 function openReturnModal(reservationId){
   const reservation = reservations.find(r => r.id === reservationId);
   if (!reservation){
@@ -2715,6 +2724,7 @@ function openReturnModal(reservationId){
     return;
   }
 
+  selectedReturnPhotoFile = null;
   const item = items.find(i => i.id === reservation.itemId);
   modalBody.innerHTML = `
     <div class="return-modal-heading">
@@ -2733,10 +2743,16 @@ function openReturnModal(reservationId){
     </div>
 
     <div class="form-group">
-      <label for="modal-return-photo"><strong>Return Photo (required)</strong></label>
-      <input type="file" accept="image/*" capture="environment" id="modal-return-photo">
+      <strong>Return Photo (required)</strong>
+      <div class="return-photo-choices">
+        <label class="return-photo-choice" for="modal-return-camera"><span aria-hidden="true">📷</span> Take Photo</label>
+        <label class="return-photo-choice return-photo-choice-secondary" for="modal-return-photo"><span aria-hidden="true">▧</span> Choose Existing Photo</label>
+      </div>
+      <input type="file" accept="image/*" capture="environment" id="modal-return-camera" class="return-photo-hidden-input" aria-label="Take a return photo with camera">
+      <input type="file" accept="image/*" id="modal-return-photo" class="return-photo-hidden-input" aria-label="Choose a return photo from photo library">
+      <p id="modal-return-file-status" class="small" role="status" aria-live="polite">No photo selected yet.</p>
       <img id="modal-return-preview" class="return-photo" alt="Return photo preview" style="display:none;">
-      <p class="small">Make sure the photo shows the entire costume and any damage. Use JPG or PNG; HEIC/HEIF is not supported for reliable browser display.</p>
+      <p class="small">Photograph the entire costume, including any damage. JPG or PNG recommended; HEIC/HEIF files are not supported.</p>
     </div>
 
     <div class="form-group">
@@ -2752,25 +2768,28 @@ function openReturnModal(reservationId){
       onclick='returnItemFromModal(${JSON.stringify(String(reservation.id))})'>Confirm Return & Upload</button>
   `;
 
-  const photoInput = document.getElementById('modal-return-photo');
   const preview = document.getElementById('modal-return-preview');
-  if (photoInput && preview){
-    photoInput.addEventListener('change', () => {
-      if (photoInput.files && photoInput.files[0]){
-        if (!checkReturnPhotoFormat(photoInput.files[0])){
-          photoInput.value = '';
-          preview.removeAttribute('src');
-          preview.style.display = 'none';
-          return;
-        }
-        preview.src = URL.createObjectURL(photoInput.files[0]);
-        preview.style.display = 'block';
-      } else {
-        preview.removeAttribute('src');
-        preview.style.display = 'none';
-      }
-    });
+  const status = document.getElementById('modal-return-file-status');
+  const cameraInput = document.getElementById('modal-return-camera');
+  const libraryInput = document.getElementById('modal-return-photo');
+  let previewUrl = null;
+  function handleReturnPhotoSelection(input, otherInput){
+    const file = input.files && input.files[0];
+    if (!file) return; // iPhone users may cancel the camera without losing their previous selection.
+    if (!checkReturnPhotoFormat(file)){
+      input.value = '';
+      return;
+    }
+    selectedReturnPhotoFile = file;
+    if (otherInput) otherInput.value = '';
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    previewUrl = URL.createObjectURL(file);
+    preview.src = previewUrl;
+    preview.style.display = 'block';
+    status.textContent = 'Photo ready: ' + (file.name || 'Camera photo');
   }
+  cameraInput.addEventListener('change', () => handleReturnPhotoSelection(cameraInput, libraryInput));
+  libraryInput.addEventListener('change', () => handleReturnPhotoSelection(libraryInput, cameraInput));
 
   modal.style.display = 'flex';
 }
@@ -2823,12 +2842,13 @@ async function returnItemFromModal(reservationId){
   const progressWrap = document.getElementById('modal-return-progress-wrap');
   const progress = document.getElementById('modal-return-progress');
 
-  if (!input || !input.files || input.files.length === 0){
+  const returnPhotoFile = selectedReturnPhotoFile || (input && input.files && input.files[0]);
+  if (!returnPhotoFile){
     alert('Please take or upload a return photo.');
     return;
   }
 
-  if (!checkReturnPhotoFormat(input.files[0])) return;
+  if (!checkReturnPhotoFormat(returnPhotoFile)) return;
   const reservation = reservations.find(r => r.id === reservationId);
   if (!reservation){
     alert('Loan record not found.');
@@ -2862,7 +2882,7 @@ async function returnItemFromModal(reservationId){
 
   try {
     const uploadResult = await uploadToCloudinary(
-      input.files[0],
+      returnPhotoFile,
       reservation,
       damageNote
     );
