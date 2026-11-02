@@ -984,6 +984,9 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 #modal-return-file-status{margin:8px 0 4px;font-weight:700}
 @media(max-width:430px){.return-photo-choices{grid-template-columns:1fr}.return-photo-choice{min-height:56px}}
 
+.closet-header-notification{display:flex;align-items:center;margin-left:auto;padding:0 10px}
+#closet-notification-button{white-space:nowrap;font-size:13px;cursor:pointer}
+@media(max-width:760px){.closet-header-notification{padding:4px 0;margin-left:6px}#closet-notification-button{font-size:11px;padding:8px!important}}
 /* V10.17: mobile-first navigation without changing desktop layout */
 .mobile-bottom-nav,.mobile-more-panel{display:none}
 .return-review{display:none;margin:14px 0;padding:14px;border:1px solid #bed2ed;background:#f2f7ff;border-radius:12px}
@@ -1052,6 +1055,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
         <button onclick="logout()">Log Out</button>
       </div>
     </nav>
+    <div class="closet-header-notification"><button onclick="openClosetNotifications()" id="closet-notification-button" style="border:1px solid #9bb4cf;border-radius:24px;background:#fff;color:#1d4269;padding:9px 12px;box-shadow:0 3px 12px #1233" aria-label="Open notifications">🔔 Notifications<span class="closet-notification-count"></span></button></div>
   </header>
 
 
@@ -1059,7 +1063,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
   <button class="mobile-tab active" data-mobile-target="home" onclick="showSection('home')"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10h-7v-7h-4v7H3z"/></svg><span>Home</span></button>
   <button class="mobile-tab" data-mobile-target="catalog" onclick="showSection('catalog')"><svg viewBox="0 0 24 24"><path d="M9 6a3 3 0 0 1 6 0c0 2-3 2-3 4m0 0L3 17v3h18v-3l-9-7"/></svg><span>Catalog</span></button>
-  <button class="mobile-tab" data-mobile-target="reserve" onclick="showSection('reserve')"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6m10-6v6M3 11h18m-13 5h8"/></svg><span>My Items</span></button>
+  <button class="mobile-tab" data-mobile-target="pickup" onclick="showSection('pickup')"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6m10-6v6M3 11h18m-13 5h8"/></svg><span>Pickup</span></button>
   <button class="mobile-tab" data-mobile-target="return" onclick="showSection('return')"><svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 2 7M4 5v6h6m2-2v6m-3-3 3 3 3-3"/></svg><span>Return</span></button>
   <button class="mobile-tab" id="mobile-more-tab" aria-expanded="false" aria-controls="mobile-more-panel" onclick="toggleMobileMore()"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg><span>More</span></button>
 </nav>
@@ -1517,7 +1521,10 @@ async function notifyStudentOfAdminAction(reservation, type){
     return: `An administrator confirmed the return of ${reservation.itemName} on your behalf. No further action is needed.`
   }[type];
   if (!message) return;
-  const eventId = `${type}:${id}:${type === 'reupload' ? (reservation.returnRecordId || 'request') : 'admin'}`;
+  // Every separate re-upload request must notify the student; pickup/return stay idempotent.
+  const eventId = type === 'reupload'
+    ? `reupload:${id}:${Date.now()}:${Math.random().toString(36).slice(2,9)}`
+    : `${type}:${id}:admin`;
   if (firebaseDb && uid){
     try {
       const ref = firebaseDb.collection('users').doc(String(uid));
@@ -1531,6 +1538,7 @@ async function notifyStudentOfAdminAction(reservation, type){
     } catch(error){ console.warn('Student notification could not be saved:', error); }
   }
   // The email service resolves the recipient from its own reservation records.
+  // The Apps Script request is fire-and-forget (no-cors); inspect Notification Log to confirm email.
   syncReminderService('adminNotification', {eventId, reservationId:id, type});
 }
 
@@ -1543,7 +1551,7 @@ function startClosetNotifications(){
     const notes=Array.isArray(snap.data()?.closetNotifications)?snap.data().closetNotifications:[];
     const count=notes.filter(n=>!n.read).length;
     document.querySelectorAll('.closet-notification-count').forEach(el=>el.textContent=count?` (${count})`:'');
-    if(box) box.innerHTML=notes.length?notes.map(n=>`<div style="padding:12px 0;border-bottom:1px solid #d7dfea"><strong>${n.read?'':'● '}${escapeHtmlForNotifications(n.itemName||'Costume update')}</strong><p>${escapeHtmlForNotifications(n.message)}</p><small>${escapeHtmlForNotifications((n.createdAt||'').slice(0,10))}</small></div>`).join(''):'No notifications yet.';
+    if(box) box.innerHTML=notes.length?notes.map(n=>`<div style="padding:12px 0;border-bottom:1px solid #d7dfea"><strong>${n.read?'':'● '}${n.type==='reupload'?'📷 New photo requested':n.type==='pickup'?'📦 Pickup confirmed':n.type==='return'?'✅ Return confirmed':'Costume update'}</strong><p>${escapeHtmlForNotifications(n.message)}</p><small>${n.type==='reupload'?'Action required':'No action needed'}</small><p><strong>${escapeHtmlForNotifications(n.itemName||'')}</strong></p><small>${escapeHtmlForNotifications((n.createdAt||'').slice(0,10))}</small></div>`).join(''):'No notifications yet.';
   },err=>{if(box) box.textContent='Notifications unavailable. Please check Firestore permissions.';console.warn(err);});
 }
 function escapeHtmlForNotifications(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
@@ -2058,7 +2066,7 @@ function updateMobileNavigation(sectionId){
   if(more) more.setAttribute('aria-expanded','false');
   document.querySelectorAll('.mobile-tab').forEach(btn=>{
     const target = btn.dataset.mobileTarget;
-    const active = target === sectionId || (target === 'reserve' && sectionId === 'pickup');
+    const active = target === sectionId;
     btn.classList.toggle('active',active);
     if(active) btn.setAttribute('aria-current','page'); else btn.removeAttribute('aria-current');
   });
@@ -2068,7 +2076,7 @@ function toggleMobileMore(){
   const grid=document.getElementById('mobile-more-grid');
   if(!panel||!grid) return;
   if(panel.classList.contains('open')){panel.classList.remove('open');document.getElementById('mobile-more-tab').setAttribute('aria-expanded','false');return;}
-  const links=[['Cancel Reservation','reserve'],['Confirm Pickup','pickup'],['Return Costume','return']];
+  const links=[['Cancel Reservation','reserve']];
   if(isAdmin()) links.push(['📋 Inventory Status','admin-inventory'],['📦 Manage Pickups','admin-pickups'],['📦 Manage Returns','admin-returns'],['⚠️ Damage Reports','admin-damage'],['📷 Return History','admin-history'],['🎁 Add Costume','donate']);
   if(currentUser) links.push(['Log Out','logout']);
   else links.push(['Log In','login'],['Sign Up','register']);
@@ -4557,7 +4565,7 @@ document.addEventListener('DOMContentLoaded', () => {
   startFirebaseAuthObserver();
 });
 </script>
-<button onclick="openClosetNotifications()" id="closet-notification-button" style="position:fixed;right:15px;bottom:90px;z-index:3000;border:1px solid #9bb4cf;border-radius:24px;background:#fff;color:#1d4269;padding:11px 15px;box-shadow:0 3px 12px #1233" aria-label="Open notifications">🔔 Notifications<span class="closet-notification-count"></span></button>
+
 <div id="closet-notification-panel" style="display:none;position:fixed;inset:0;background:#0007;z-index:5000;align-items:center;justify-content:center;padding:18px" onclick="if(event.target===this)this.style.display='none'">
  <div style="background:#fff;border-radius:16px;max-width:480px;width:100%;max-height:80vh;overflow:auto;padding:24px;color:#183c61"><button style="float:right" onclick="document.getElementById('closet-notification-panel').style.display='none'">Close ×</button><h2>Notifications</h2><div id="closet-notification-list">Log in to see notifications.</div></div>
 </div>
