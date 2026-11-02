@@ -1023,6 +1023,15 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
  .item-image{height:130px}
 }
 @media(max-width:360px){.mobile-tab{font-size:9px}.mobile-tab svg{width:21px;height:21px}.items-grid{grid-template-columns:1fr 1fr}}
+
+/* Make admin return work visibly actionable (borrowed overrides + pending returns). */
+.nav a.admin-link.admin-returns-needs-attention {
+  background:#c8dcff;
+  box-shadow:inset 0 0 0 2px #3767bc;
+}
+.nav a.admin-link.admin-returns-needs-attention .admin-badge {
+  background:#fff;color:#122b5a;min-width:22px;text-align:center;
+}
 </style>
 </head>
 <body>
@@ -2109,7 +2118,7 @@ function showSection(sectionId){
   if (sectionId === 'return') renderReturnItems();
   if (sectionId === 'admin-pickups') renderAdminPickups();
   if (sectionId === 'admin-inventory') renderAdminInventoryTable();
-  if (sectionId === 'admin-returns') { renderAdminPendingReturns(); renderAdminBorrowedReturns(); }
+  if (sectionId === 'admin-returns') { renderAdminPendingReturns(); renderAdminBorrowedReturns(); updateAdminNavCounts(); }
   if (sectionId === 'admin-damage') renderDamageAlerts();
   if (sectionId === 'admin-history') renderLocalReturnRecords();
   updateStats();
@@ -4198,7 +4207,11 @@ function updateAdminNavCounts(){
   const returnsTitle = document.getElementById('admin-returns-title-count');
   const damageTitle = document.getElementById('admin-damage-title-count');
 
-  if (returnCount) returnCount.innerHTML = returnBadge;
+  if (returnCount) {
+    returnCount.innerHTML = returnBadge;
+    const link = returnCount.closest('a');
+    if (link) link.classList.toggle('admin-returns-needs-attention', manageableReturnCount > 0);
+  }
   if (damageCount) damageCount.innerHTML = damageBadge;
   if (returnsTitle) returnsTitle.textContent = manageableReturnCount ? ` (${manageableReturnCount})` : '';
   if (damageTitle) damageTitle.textContent = unresolvedDamageCount ? ` (${unresolvedDamageCount} Unresolved)` : '';
@@ -4219,6 +4232,8 @@ function renderAdminBorrowedReturns(){
   if (!box) return;
   if (!isAdmin()){ box.innerHTML = '<div class="empty-state">Admin access required.</div>'; return; }
   const borrowed = reservations.filter(r => r.status === 'borrowed');
+  // Refresh the admin badge from the same data used to render these cards.
+  updateAdminNavCounts();
   if (!borrowed.length){ box.innerHTML = '<div class="empty-state">No borrowed costumes need an admin-recorded return.</div>'; return; }
   box.innerHTML = '<div class="reservations-list">' + borrowed.map(r => `<div class="reservation-card">
     <span class="status-pill pill-borrowed">Borrowed</span>
