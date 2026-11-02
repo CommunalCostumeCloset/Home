@@ -983,6 +983,43 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 .return-photo-hidden-input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
 #modal-return-file-status{margin:8px 0 4px;font-weight:700}
 @media(max-width:430px){.return-photo-choices{grid-template-columns:1fr}.return-photo-choice{min-height:56px}}
+
+/* V10.17: mobile-first navigation without changing desktop layout */
+.mobile-bottom-nav,.mobile-more-panel{display:none}
+.return-review{display:none;margin:14px 0;padding:14px;border:1px solid #bed2ed;background:#f2f7ff;border-radius:12px}
+.return-review.is-visible{display:block}
+.return-review-label{display:flex;align-items:flex-start;gap:12px;line-height:1.45;font-weight:700;color:#122b5a;cursor:pointer}
+.return-review-label input{width:23px;height:23px;flex-shrink:0;accent-color:#2456a8;margin:0}
+.return-review-hint{margin:7px 0 0 35px;font-size:13px;color:#55647a}
+#modal-return-submit:disabled{opacity:.48;cursor:not-allowed}
+@media(max-width:760px){
+ body{padding-bottom:calc(78px + env(safe-area-inset-bottom,0px))}
+ .header{position:relative;padding:13px 17px!important}
+ .header .logo h1{font-size:clamp(22px,5.7vw,30px);line-height:1.12}
+ .header .logo p{margin:5px 0 0;font-size:10px;letter-spacing:.11em}
+ .header .nav{display:none!important}
+ .section{padding:18px 14px 28px!important}
+ .mobile-bottom-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;bottom:0;left:0;right:0;z-index:18;background:#fffdf9;border-top:1px solid #c6d6e8;box-shadow:0 -4px 18px #10294a18;padding:8px 4px calc(8px + env(safe-area-inset-bottom,0px))}
+ .mobile-tab{border:0;background:transparent;color:#19345b;min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:700;border-radius:10px;cursor:pointer}
+ .mobile-tab svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+ .mobile-tab.active{background:#dce9f9;color:#2457aa}
+ .mobile-more-panel{display:none;position:fixed;bottom:calc(75px + env(safe-area-inset-bottom,0px));left:12px;right:12px;z-index:19;background:#fffdf9;border:1px solid #c6d6e8;border-radius:18px;padding:16px;box-shadow:0 12px 36px #10294a30;max-height:65vh;overflow-y:auto}
+ .mobile-more-panel.open{display:block}
+ .mobile-more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .mobile-more-grid button{border:1px solid #c8d8eb;background:#f1f6fc;color:#16335e;border-radius:11px;padding:13px 8px;font-size:13px;font-weight:700;min-height:48px;text-align:left}
+ .mobile-more-grid button.admin-mobile{background:#f3edfa}
+ .modal{padding:8px;align-items:center}
+ .modal-content{width:100%;max-height:calc(100dvh - 24px);padding:22px 16px;border-radius:15px}
+ .blue-hero-copy{padding:32px 7% 26px}
+ .blue-hero-art{min-height:210px}
+ .art-frame{inset:7% 23% 10%}
+ .blue-category-grid button{min-height:138px}
+ .filters>*{min-width:0}
+ .items-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .item-card{padding:10px}
+ .item-image{height:130px}
+}
+@media(max-width:360px){.mobile-tab{font-size:9px}.mobile-tab svg{width:21px;height:21px}.items-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -1017,6 +1054,19 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
     </nav>
   </header>
 
+
+<!-- Compact navigation only on vertical screens. Desktop navigation stays unchanged. -->
+<nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+  <button class="mobile-tab active" data-mobile-target="home" onclick="showSection('home')"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10h-7v-7h-4v7H3z"/></svg><span>Home</span></button>
+  <button class="mobile-tab" data-mobile-target="catalog" onclick="showSection('catalog')"><svg viewBox="0 0 24 24"><path d="M9 6a3 3 0 0 1 6 0c0 2-3 2-3 4m0 0L3 17v3h18v-3l-9-7"/></svg><span>Catalog</span></button>
+  <button class="mobile-tab" data-mobile-target="reserve" onclick="showSection('reserve')"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6m10-6v6M3 11h18m-13 5h8"/></svg><span>My Items</span></button>
+  <button class="mobile-tab" data-mobile-target="return" onclick="showSection('return')"><svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 2 7M4 5v6h6m2-2v6m-3-3 3 3 3-3"/></svg><span>Return</span></button>
+  <button class="mobile-tab" id="mobile-more-tab" aria-expanded="false" aria-controls="mobile-more-panel" onclick="toggleMobileMore()"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg><span>More</span></button>
+</nav>
+<div id="mobile-more-panel" class="mobile-more-panel" aria-label="More pages">
+  <strong style="display:block;color:#122b5a;margin-bottom:12px">More options</strong>
+  <div id="mobile-more-grid" class="mobile-more-grid"></div>
+</div>
   <main>
 
     <section id="home" class="section active">
@@ -1455,6 +1505,54 @@ function syncReminderService(action, payload = {}){
   }).catch(error => console.warn('Reminder service sync failed: ', error));
 }
 
+// V10.18: Store notifications in the student's existing Firestore user profile.
+// The profile's notification array is capped to prevent unbounded growth.
+async function notifyStudentOfAdminAction(reservation, type){
+  if (!isAdmin() || !reservation) return;
+  const id = String(reservation.id);
+  const uid = reservation.userUid;
+  const message = {
+    reupload: `Please upload a new return photo for ${reservation.itemName}. Your return is not yet confirmed.`,
+    pickup: `An administrator confirmed pickup of ${reservation.itemName} on your behalf. Return by ${getDueDate(reservation)}.`,
+    return: `An administrator confirmed the return of ${reservation.itemName} on your behalf. No further action is needed.`
+  }[type];
+  if (!message) return;
+  const eventId = `${type}:${id}:${type === 'reupload' ? (reservation.returnRecordId || 'request') : 'admin'}`;
+  if (firebaseDb && uid){
+    try {
+      const ref = firebaseDb.collection('users').doc(String(uid));
+      await firebaseDb.runTransaction(async transaction => {
+        const snap = await transaction.get(ref);
+        if (!snap.exists) throw new Error('Student profile not found');
+        const prior = Array.isArray(snap.data().closetNotifications) ? snap.data().closetNotifications : [];
+        if (prior.some(n => n.id === eventId)) return;
+        transaction.update(ref, {closetNotifications: [{id:eventId, type, message, itemName:reservation.itemName, createdAt:new Date().toISOString(), read:false}, ...prior].slice(0,60)});
+      });
+    } catch(error){ console.warn('Student notification could not be saved:', error); }
+  }
+  // The email service resolves the recipient from its own reservation records.
+  syncReminderService('adminNotification', {eventId, reservationId:id, type});
+}
+
+let closetNotificationUnsubscribe = null;
+function startClosetNotifications(){
+  if (closetNotificationUnsubscribe){closetNotificationUnsubscribe(); closetNotificationUnsubscribe=null;}
+  const box=document.getElementById('closet-notification-list');
+  if (!currentUser || !firebaseDb){if(box) box.textContent='Log in to see notifications.';return;}
+  closetNotificationUnsubscribe=firebaseDb.collection('users').doc(String(currentUser.uid||currentUser.id)).onSnapshot(snap=>{
+    const notes=Array.isArray(snap.data()?.closetNotifications)?snap.data().closetNotifications:[];
+    const count=notes.filter(n=>!n.read).length;
+    document.querySelectorAll('.closet-notification-count').forEach(el=>el.textContent=count?` (${count})`:'');
+    if(box) box.innerHTML=notes.length?notes.map(n=>`<div style="padding:12px 0;border-bottom:1px solid #d7dfea"><strong>${n.read?'':'● '}${escapeHtmlForNotifications(n.itemName||'Costume update')}</strong><p>${escapeHtmlForNotifications(n.message)}</p><small>${escapeHtmlForNotifications((n.createdAt||'').slice(0,10))}</small></div>`).join(''):'No notifications yet.';
+  },err=>{if(box) box.textContent='Notifications unavailable. Please check Firestore permissions.';console.warn(err);});
+}
+function escapeHtmlForNotifications(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+async function openClosetNotifications(){
+  document.getElementById('closet-notification-panel').style.display='flex';
+  if(!currentUser||!firebaseDb)return;
+  const ref=firebaseDb.collection('users').doc(String(currentUser.uid||currentUser.id));
+  try{const snap=await ref.get();const notes=snap.data()?.closetNotifications||[];if(notes.some(n=>!n.read))await ref.update({closetNotifications:notes.map(n=>({...n,read:true}))});}catch(e){console.warn(e);}
+}
 function syncReservationRecord(reservation){
   syncReminderService('upsertReservation', {
     reservationId: reservation.id,
@@ -1953,12 +2051,45 @@ function modalImageHtml(item){
 
 const adminSectionIds = ['admin-pickups','admin-inventory','admin-returns','admin-damage','admin-history','donate'];
 
+function updateMobileNavigation(sectionId){
+  const panel = document.getElementById('mobile-more-panel');
+  if(panel) panel.classList.remove('open');
+  const more = document.getElementById('mobile-more-tab');
+  if(more) more.setAttribute('aria-expanded','false');
+  document.querySelectorAll('.mobile-tab').forEach(btn=>{
+    const target = btn.dataset.mobileTarget;
+    const active = target === sectionId || (target === 'reserve' && sectionId === 'pickup');
+    btn.classList.toggle('active',active);
+    if(active) btn.setAttribute('aria-current','page'); else btn.removeAttribute('aria-current');
+  });
+}
+function toggleMobileMore(){
+  const panel=document.getElementById('mobile-more-panel');
+  const grid=document.getElementById('mobile-more-grid');
+  if(!panel||!grid) return;
+  if(panel.classList.contains('open')){panel.classList.remove('open');document.getElementById('mobile-more-tab').setAttribute('aria-expanded','false');return;}
+  const links=[['Cancel Reservation','reserve'],['Confirm Pickup','pickup'],['Return Costume','return']];
+  if(isAdmin()) links.push(['📋 Inventory Status','admin-inventory'],['📦 Manage Pickups','admin-pickups'],['📦 Manage Returns','admin-returns'],['⚠️ Damage Reports','admin-damage'],['📷 Return History','admin-history'],['🎁 Add Costume','donate']);
+  if(currentUser) links.push(['Log Out','logout']);
+  else links.push(['Log In','login'],['Sign Up','register']);
+  grid.innerHTML='';
+  links.forEach(([label,target])=>{
+    const button=document.createElement('button');button.type='button';button.textContent=label;
+    if(adminSectionIds.includes(target)) button.className='admin-mobile';
+    button.onclick=()=>{if(target==='logout')logout();else showSection(target);panel.classList.remove('open');};
+    grid.appendChild(button);
+  });
+  panel.classList.add('open');document.getElementById('mobile-more-tab').setAttribute('aria-expanded','true');
+}
+
 function showSection(sectionId){
   if(adminSectionIds.includes(sectionId) && !isAdmin()){
     alert('You do not have admin permission.');
     sectionId='home';
   }
 
+  updateMobileNavigation(sectionId);
+  if(window.matchMedia && window.matchMedia('(max-width:760px)').matches) window.scrollTo(0,0);
   cleanupExpiredReservations();
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   const target = document.getElementById(sectionId);
@@ -2573,6 +2704,7 @@ function pickUpReservation(reservationId, pickupDamageNote=''){
   save('reservations', reservations);
   save('items', items);
   syncReservationStatus(reservation, 'borrowed');
+  if (isAdmin()) notifyStudentOfAdminAction(reservation, 'pickup');
 
   renderReservations();
   renderPickupItems();
@@ -2752,6 +2884,10 @@ function openReturnModal(reservationId){
       <input type="file" accept="image/*" id="modal-return-photo" class="return-photo-hidden-input" aria-label="Choose a return photo from photo library">
       <p id="modal-return-file-status" class="small" role="status" aria-live="polite">No photo selected yet.</p>
       <img id="modal-return-preview" class="return-photo" alt="Return photo preview" style="display:none;">
+      <div id="modal-return-review" class="return-review" aria-live="polite">
+        <label class="return-review-label"><input type="checkbox" id="modal-return-approved"><span>Yes, this is the photo I want to submit.</span></label>
+        <p class="return-review-hint">Check the photo above. If it is wrong, tap Take Photo or Choose Existing Photo again. Nothing uploads until you confirm below.</p>
+      </div>
       <p class="small">Photograph the entire costume, including any damage. iPhone camera photos are automatically optimized for upload. JPG and PNG photos are supported; HEIC/HEIF may need conversion.</p>
     </div>
 
@@ -2765,7 +2901,7 @@ function openReturnModal(reservationId){
     </div>
 
     <button id="modal-return-submit" class="btn-primary return-submit-button"
-      onclick='returnItemFromModal(${JSON.stringify(String(reservation.id))})'>Confirm Return & Upload</button>
+      onclick='returnItemFromModal(${JSON.stringify(String(reservation.id))})' disabled>Confirm Return & Upload</button>
   `;
 
   const preview = document.getElementById('modal-return-preview');
@@ -2773,6 +2909,10 @@ function openReturnModal(reservationId){
   const cameraInput = document.getElementById('modal-return-camera');
   const libraryInput = document.getElementById('modal-return-photo');
   let previewUrl = null;
+  const approval = document.getElementById('modal-return-approved');
+  const review = document.getElementById('modal-return-review');
+  const submit = document.getElementById('modal-return-submit');
+  approval.addEventListener('change',()=>{submit.disabled=!approval.checked;});
   function handleReturnPhotoSelection(input, otherInput){
     const file = input.files && input.files[0];
     if (!file) return; // iPhone users may cancel the camera without losing their previous selection.
@@ -2781,6 +2921,9 @@ function openReturnModal(reservationId){
       return;
     }
     selectedReturnPhotoFile = file;
+    approval.checked = false;
+    submit.disabled = true;
+    review.classList.add('is-visible');
     if (otherInput) otherInput.value = '';
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     previewUrl = URL.createObjectURL(file);
@@ -2904,6 +3047,11 @@ async function returnItemFromModal(reservationId){
   }
 
   if (!checkReturnPhotoFormat(returnPhotoFile)) return;
+  const approved = document.getElementById('modal-return-approved');
+  if(!approved || !approved.checked){
+    alert('Please review the photo and check the confirmation box before uploading.');
+    return;
+  }
   const reservation = reservations.find(r => String(r.id) === String(reservationId));
   if (!reservation){
     alert('Loan record not found.');
@@ -3826,6 +3974,7 @@ function confirmReturn(itemId){
   }
   if (item) item.status = 'available';
   syncReservationStatus(reservation, 'completed');
+  notifyStudentOfAdminAction(reservation, 'return');
   reservations.splice(reservationIndex, 1);
   deleteFirestoreDoc('reservations', reservation.id);
   save('items', items);
@@ -3860,6 +4009,7 @@ function requireReturnReupload(itemId){
     record.rejectedBy = currentUser.name;
   }
 
+  notifyStudentOfAdminAction(reservation, 'reupload');
   reservation.status = 'borrowed';
   syncReservationStatus(reservation, 'borrowed');
   delete reservation.returnRecordId;
@@ -4101,6 +4251,7 @@ async function adminConfirmPhysicalReturn(reservationId){
     const item = getItemById(r.itemId);
     if (item) item.status = 'available';
     syncReservationStatus(r, 'completed');
+    notifyStudentOfAdminAction(r, 'return');
     reservations.splice(reservations.indexOf(r), 1);
     deleteFirestoreDoc('reservations', r.id);
     save('items', items); save('reservations', reservations); save('returnRecords', returnRecords);
@@ -4406,5 +4557,10 @@ document.addEventListener('DOMContentLoaded', () => {
   startFirebaseAuthObserver();
 });
 </script>
+<button onclick="openClosetNotifications()" id="closet-notification-button" style="position:fixed;right:15px;bottom:90px;z-index:3000;border:1px solid #9bb4cf;border-radius:24px;background:#fff;color:#1d4269;padding:11px 15px;box-shadow:0 3px 12px #1233" aria-label="Open notifications">🔔 Notifications<span class="closet-notification-count"></span></button>
+<div id="closet-notification-panel" style="display:none;position:fixed;inset:0;background:#0007;z-index:5000;align-items:center;justify-content:center;padding:18px" onclick="if(event.target===this)this.style.display='none'">
+ <div style="background:#fff;border-radius:16px;max-width:480px;width:100%;max-height:80vh;overflow:auto;padding:24px;color:#183c61"><button style="float:right" onclick="document.getElementById('closet-notification-panel').style.display='none'">Close ×</button><h2>Notifications</h2><div id="closet-notification-list">Log in to see notifications.</div></div>
+</div>
+<script>setInterval(()=>{const uid=(typeof currentUser!=="undefined"&&currentUser)?(currentUser.uid||currentUser.id):null;if(uid&&uid!==window.__closetNotifiedUid){window.__closetNotifiedUid=uid;startClosetNotifications();}else if(!uid&&window.__closetNotifiedUid){window.__closetNotifiedUid=null;startClosetNotifications();}},1600);</script>
 </body>
 </html>
