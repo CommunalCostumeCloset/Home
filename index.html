@@ -1570,6 +1570,7 @@ function syncReservationRecord(reservation){
     username: reservation.reservedByUsername,
     email: reservation.email || '',
     reservedAt: reservation.reservedAt,
+    pickupDate: reservation.pickupDate || '',
     dueDate: getDueDate(reservation),
     status: reservation.status || 'reserved'
   });
