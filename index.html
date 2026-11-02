@@ -988,7 +988,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Trebuchet MS',Arial,s
 <body>
   <header class="header">
     <div class="logo">
-      <h1>Shared Costume Closet ✳</h1>
+      <h1>Shared Costume Closet</h1>
       <p>Give every costume another moment on stage</p>
     </div>
     <nav class="nav">
@@ -2702,7 +2702,7 @@ function renderReturnItems(){
 let selectedReturnPhotoFile = null;
 
 function openReturnModal(reservationId){
-  const reservation = reservations.find(r => r.id === reservationId);
+  const reservation = reservations.find(r => String(r.id) === String(reservationId));
   if (!reservation){
     alert('Loan record not found.');
     return;
@@ -2725,7 +2725,7 @@ function openReturnModal(reservationId){
   }
 
   selectedReturnPhotoFile = null;
-  const item = items.find(i => i.id === reservation.itemId);
+  const item = items.find(i => String(i.id) === String(reservation.itemId));
   modalBody.innerHTML = `
     <div class="return-modal-heading">
       <span class="return-modal-eyebrow">RETURN COSTUME</span>
@@ -2752,7 +2752,7 @@ function openReturnModal(reservationId){
       <input type="file" accept="image/*" id="modal-return-photo" class="return-photo-hidden-input" aria-label="Choose a return photo from photo library">
       <p id="modal-return-file-status" class="small" role="status" aria-live="polite">No photo selected yet.</p>
       <img id="modal-return-preview" class="return-photo" alt="Return photo preview" style="display:none;">
-      <p class="small">Photograph the entire costume, including any damage. JPG or PNG recommended; HEIC/HEIF files are not supported.</p>
+      <p class="small">Photograph the entire costume, including any damage. iPhone camera photos are automatically optimized for upload. JPG and PNG photos are supported; HEIC/HEIF may need conversion.</p>
     </div>
 
     <div class="form-group">
@@ -2794,6 +2794,59 @@ function openReturnModal(reservationId){
   modal.style.display = 'flex';
 }
 
+// Reduce iPhone camera photos before uploading: large originals may time out on cellular.
+// Convert browser-decodable images to a standard JPEG for reliable Cloudinary uploads.
+async function prepareReturnPhotoForUpload(file){
+  if (!file || !file.type || (!file.type.startsWith('image/') && !/\.(jpe?g|png|webp|heic|heif)$/i.test(file.name || ''))){
+    throw new Error('Please select a valid photo.');
+  }
+  if (isHeicFile(file)){
+    // Safari may expose a HEIC photo but not support canvas decoding consistently.
+    throw new Error('This iPhone photo is HEIC/HEIF. Please use Take Photo in this form, or choose a JPG/PNG image.');
+  }
+  if (file.size > 20 * 1024 * 1024){
+    throw new Error('Photo is too large. Please take another photo.');
+  }
+  if (typeof createImageBitmap !== 'function' && typeof Image === 'undefined') return file;
+  let bitmap = null;
+  let objectUrl = null;
+  try {
+    let width, height, source;
+    if (typeof createImageBitmap === 'function'){
+      bitmap = await createImageBitmap(file);
+      width = bitmap.width; height = bitmap.height; source = bitmap;
+    } else {
+      objectUrl = URL.createObjectURL(file);
+      const image = new Image();
+      await new Promise((resolve, reject) => {
+        image.onload = resolve;
+        image.onerror = reject;
+        image.src = objectUrl;
+      });
+      width = image.naturalWidth; height = image.naturalHeight; source = image;
+    }
+    const maxEdge = 1800;
+    const scale = Math.min(1, maxEdge / Math.max(width, height));
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.max(1, Math.round(width * scale));
+    canvas.height = Math.max(1, Math.round(height * scale));
+    const context = canvas.getContext('2d');
+    if (!context) return file;
+    context.fillStyle = '#fff';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(source, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', .82));
+    if (!blob) return file;
+    return new File([blob], 'return-photo.jpg', {type:'image/jpeg'});
+  } catch (error){
+    console.warn('Photo optimization unavailable; trying original image', error);
+    return file;
+  } finally {
+    if (bitmap) bitmap.close();
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+  }
+}
+
 async function uploadToCloudinary(file, reservation, damageNote=''){
   const date = todayString();
   const uploadedAt = new Date();
@@ -2828,9 +2881,11 @@ async function uploadToCloudinary(file, reservation, damageNote=''){
     `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
     { method: 'POST', body: formData }
   );
-  const result = await response.json();
+  let result;
+  try { result = await response.json(); }
+  catch (_) { throw new Error('Photo service returned an invalid response. Please try again.'); }
   if (!response.ok){
-    throw new Error(result?.error?.message || 'Cloudinary upload failed');
+    throw new Error(result?.error?.message || 'Cloudinary upload failed (HTTP ' + response.status + ')');
   }
   return result;
 }
@@ -2849,7 +2904,7 @@ async function returnItemFromModal(reservationId){
   }
 
   if (!checkReturnPhotoFormat(returnPhotoFile)) return;
-  const reservation = reservations.find(r => r.id === reservationId);
+  const reservation = reservations.find(r => String(r.id) === String(reservationId));
   if (!reservation){
     alert('Loan record not found.');
     return;
@@ -2881,8 +2936,10 @@ async function returnItemFromModal(reservationId){
   }
 
   try {
+    const preparedPhoto = await prepareReturnPhotoForUpload(returnPhotoFile);
+    if (progress) progress.style.width = '45%';
     const uploadResult = await uploadToCloudinary(
-      returnPhotoFile,
+      preparedPhoto,
       reservation,
       damageNote
     );
@@ -2913,7 +2970,7 @@ async function returnItemFromModal(reservationId){
     reservation.returnedAt = record.returnedAt;
     reservation.returnPhotoUrl = record.photoUrl;
 
-    const item = items.find(i => i.id === reservation.itemId);
+    const item = items.find(i => String(i.id) === String(reservation.itemId));
     if (item) item.status = 'pendingReturn';
 
     save('items', items);
@@ -2943,7 +3000,7 @@ async function returnItemFromModal(reservationId){
       submitButton.disabled = false;
       submitButton.textContent = 'Confirm Return & Upload';
     }
-    alert('Return failed: ' + error.message);
+    alert('Return failed: ' + (error && error.message ? error.message : 'Network or photo upload error. Please try again on Wi-Fi.') + '\nYour reservation has not been marked returned.');
   }
 }
 
