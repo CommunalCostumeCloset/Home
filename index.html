@@ -4176,12 +4176,16 @@ function getReturnRecordForReservation(reservation){
 }
 
 function updateAdminNavCounts(){
+  // Manage Returns includes both student-submitted returns and borrowed items
+  // that admins can physically return using Record & Confirm Return.
   const pendingCount = reservations.filter(r => r.status === 'pendingReturn').length;
+  const borrowedReturnCount = reservations.filter(r => r.status === 'borrowed').length;
+  const manageableReturnCount = pendingCount + borrowedReturnCount;
   const unresolvedDamageCount = returnRecords.filter(r =>
     r.damageNote && r.damageNote.trim() && r.damageNote.trim() !== 'None' && !r.damageResolved
   ).length;
 
-  const returnBadge = pendingCount ? `<span class="admin-badge">${pendingCount}</span>` : '';
+  const returnBadge = manageableReturnCount ? `<span class="admin-badge">${manageableReturnCount}</span>` : '';
   const damageBadge = unresolvedDamageCount ? `<span class="admin-badge">${unresolvedDamageCount}</span>` : '';
 
   const pickupCount = document.getElementById('admin-pickup-count');
@@ -4196,7 +4200,7 @@ function updateAdminNavCounts(){
 
   if (returnCount) returnCount.innerHTML = returnBadge;
   if (damageCount) damageCount.innerHTML = damageBadge;
-  if (returnsTitle) returnsTitle.textContent = pendingCount ? ` (${pendingCount})` : '';
+  if (returnsTitle) returnsTitle.textContent = manageableReturnCount ? ` (${manageableReturnCount})` : '';
   if (damageTitle) damageTitle.textContent = unresolvedDamageCount ? ` (${unresolvedDamageCount} Unresolved)` : '';
 }
 
